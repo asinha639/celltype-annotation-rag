@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import os
 from pathlib import Path
@@ -58,7 +60,32 @@ def get_embedding(text: str, hf_token: str) -> list[float]:
     raise ValueError(f"Unexpected embedding response format: {type(result)}")
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Prepare paper chunks and embeddings.")
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=12,
+        help="Number of worker threads for embedding generation (default: 12).",
+    )
+    return parser.parse_args()
+
+
+def embed_chunk(chunk_id: int, text: str, hf_token: str) -> tuple[int, list[float]]:
+    print(f"Embedding chunk {chunk_id}")
+    try:
+        embedding = get_embedding(text, hf_token)
+    except Exception as exc:
+        raise RuntimeError(f"Failed to embed chunk_id {chunk_id}: {exc}") from exc
+    return chunk_id, embedding
+
+
 def main() -> None:
+    args = parse_args()
+    workers = args.workers
+    if workers < 1:
+        raise ValueError("--workers must be at least 1.")
+
     hf_token = os.getenv("HF_TOKEN")
     if not hf_token:
         raise RuntimeError("HF_TOKEN environment variable is not set.")
@@ -89,17 +116,24 @@ def main() -> None:
         print(f"Saved: data/paper_texts/{text_output_path.name}")
 
         chunk_texts = chunk_text(full_text, chunk_size=1200, chunk_overlap=200)
+        print(f"Embedding chunks with {workers} workers...")
+
+        chunk_embeddings: list[list[float] | None] = [None] * len(chunk_texts)
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            future_to_chunk_id = {
+                executor.submit(embed_chunk, idx, chunk, hf_token): idx
+                for idx, chunk in enumerate(chunk_texts)
+            }
+            for future in as_completed(future_to_chunk_id):
+                chunk_id, embedding = future.result()
+                chunk_embeddings[chunk_id] = embedding
+
         chunks = []
         for idx, chunk in enumerate(chunk_texts):
-            print(f"Embedding chunk {idx}")
-            embedding = get_embedding(chunk, hf_token)
-            chunks.append(
-                {
-                    "chunk_id": idx,
-                    "text": chunk,
-                    "embedding": embedding,
-                }
-            )
+            embedding = chunk_embeddings[idx]
+            if embedding is None:
+                raise RuntimeError(f"Missing embedding for chunk_id {idx}.")
+            chunks.append({"chunk_id": idx, "text": chunk, "embedding": embedding})
 
         chunk_payload = {"source_pdf": pdf_path.name, "chunks": chunks}
 
