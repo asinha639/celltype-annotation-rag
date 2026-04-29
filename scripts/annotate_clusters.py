@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 
 import requests
+from retrieve_context import retrieve_context_points
 
 HF_URL = "https://router.huggingface.co/v1/chat/completions"
 MODEL_NAME = os.getenv("HF_MODEL", "meta-llama/Llama-3.1-8B-Instruct")
@@ -24,12 +25,25 @@ def load_clusters(path: Path) -> list[dict]:
     return clusters
 
 
-def build_messages(cluster_id: str, genes: list[str]) -> list[dict]:
+def build_messages(cluster_id: str, genes: list[str], literature_context: str) -> list[dict]:
     genes_text = ", ".join(genes)
-    prompt = (
-        "You are a single-cell RNA-seq annotation assistant. "
-        f"Cluster: {cluster_id}. "
-        f"Top marker genes: {genes_text}.\n\n"
+    prompt_input = {
+        "cluster": cluster_id,
+        "top_marker_genes": genes_text,
+        "literature_context": literature_context,
+    }
+    system_prompt = (
+        "You are a single-cell RNA-seq annotation assistant.\n"
+        "Use both sources for reasoning:\n"
+        "1) top marker genes for the cluster\n"
+        "2) literature_context snippets from retrieved papers\n"
+        "Be conservative: literature supports reasoning, but final cell-type decisions must be driven by marker genes.\n"
+        "marker_evidence must ONLY include genes from the input marker list for this cluster. "
+        "Do not add genes from literature_context into marker_evidence.\n"
+        "Do not mention genes from other clusters."
+    )
+
+    user_prompt = (
         "Return only valid JSON with keys exactly:\n"
         "cluster\n"
         "predicted_cell_type\n"
@@ -38,9 +52,9 @@ def build_messages(cluster_id: str, genes: list[str]) -> list[dict]:
         "alternative_cell_types\n\n"
         "warning\n"
         "marker_evidence\n\n"
+        "Input:\n"
+        f"{json.dumps(prompt_input, ensure_ascii=False)}\n\n"
         "Rules:\n"
-        "- for this cluster, only discuss the marker genes provided above\n"
-        "- do not mention genes from other clusters\n"
         "- be conservative in cell type calling\n"
         "- do not overcall neutrophils unless markers include FCGR3B, CSF3R, CXCR2, S100A8, S100A9, LCN2, or MPO\n"
         "- if markers include LYZ, FCN1, CTSS, S100A8, and S100A9, prefer classical monocyte over neutrophil unless strong neutrophil markers are present\n"
@@ -52,7 +66,10 @@ def build_messages(cluster_id: str, genes: list[str]) -> list[dict]:
         "- no markdown, no extra text"
     )
 
-    return [{"role": "user", "content": prompt}]
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt},
+    ]
 
 
 def call_hf_chat(token: str, messages: list[dict], temperature: float = 0.2) -> str:
@@ -222,7 +239,16 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
             continue
 
         last_exception: Exception | None = None
-        messages = build_messages(cluster_id, genes)
+        query_text = " ".join(genes)
+        try:
+            retrieved = retrieve_context_points(query_text, token, limit=5)
+        except Exception as exc:
+            print(f"Literature retrieval failed for cluster {cluster_id}: {exc}")
+            retrieved = []
+
+        literature_texts = [item.get("text", "").strip() for item in retrieved if item.get("text")]
+        literature_context = "\n\n".join(literature_texts[:5])
+        messages = build_messages(cluster_id, genes, literature_context)
 
         for attempt in range(1, 4):
             try:

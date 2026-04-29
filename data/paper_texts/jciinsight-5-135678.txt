@@ -1,0 +1,736 @@
+1insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+Authorship note: YJ, BRR, and JC 
+contributed equally to this work.
+Conflict of interest: The authors have 
+declared that no conflict of interest 
+exists.
+Copyright: © 2020, American Society 
+for Clinical Investigation.
+Submitted: December 12, 2019 
+Accepted: June 3, 2020 
+Published: June 18, 2020.
+Reference information: JCI Insight. 
+2020;5(13):e135678. 
+https://doi.org/10.1172/jci.
+insight.135678.
+Single cell RNA sequencing identifies an 
+early monocyte gene signature in acute 
+respiratory distress syndrome
+Yale Jiang,1,2 Brian R. Rosborough,3 Jie Chen,3 Sudipta Das,3 Georgios D. Kitsios,3 Bryan J. McVerry,3 
+Rama K. Mallampalli,4 Janet S. Lee,3 Anuradha Ray,3,5 Wei Chen,1 and Prabir Ray3,5
+1Division of Pulmonary, Allergy and Critical Care Medicine, Department of Medicine, University of Pittsburgh, Pittsburgh, 
+Pennsylvania, USA. 2School of Medicine, Tsinghua University, Beijing, China. 3Division of Pulmonary, Allergy and Critical 
+Care Medicine, Department of Medicine, and 4Pulmonary, Critical Care, and Sleep Medicine, The Ohio State University 
+Wexner Medical Center, Davis Heart Lung Research Institute, Columbus, Ohio. 5Department of Immunology, University of 
+Pittsburgh, Pittsburgh, Pennsylvania, USA.
+Introduction
+The acute respiratory distress syndrome (ARDS) is a clinical syndrome that is often life threatening and 
+affects 3 million people worldwide, accounting for up to 10% of intensive care unit (ICU) admissions (1). Its 
+clinical manifestations include acute hypoxemia, noncardiogenic pulmonary edema, and reduced lung com-
+pliance (increase in stiffness). ARDS can precipitate as a result of a variety of pulmonary insults (pneumo-
+nia typically resulting from bacterial or viral infections, gastric aspiration) or nonpulmonary insults (sepsis, 
+trauma, pancreatitis). ARDS carries high mortality (30%–40%), and survivors experience long-term sequel-
+ae of the syndrome, including pulmonary function limitations and sustained neurocognitive deficiencies (2).
+Despite decades of intense research and multiple clinical trials, treatment options remain limited, rely-
+ing on supportive care with invasive mechanical ventilation and efforts to reverse the underlying etiology 
+(3–5). Targeted interventions require a deeper understanding of the mechanisms that induce ARDS. Fur-
+thermore, ARDS develops rapidly after the initial insult, and since it is not possible to assess lung injury 
+directly, and no consensus is yet reached regarding biomarkers that can be included in the definition of 
+ARDS, indirect clinical criteria are relied upon for a diagnosis of ARDS (6).
+During the initial exudative phase of lung injury in ARDS patients, innate immune cells, including neu-
+trophils and monocytes, are recruited to the alveolar airspaces and cause damage to epithelial and endothelial 
+barriers, resulting in accumulation of proteinaceous edema fluid in the alveoli and interstitium (6–9). During 
+lung injury, resident alveolar macrophages secrete proinflammatory cytokines that aid in the recruitment of 
+circulating neutrophils and mononuclear cells to the lung, causing sustenance of inflammation and tissue 
+Acute respiratory distress syndrome (ARDS) results from overwhelming pulmonary 
+inflammation. Prior bulk RNA sequencing provided limited insights into ARDS pathogenesis. 
+We used single cell RNA sequencing to probe ARDS at a higher resolution. PBMCs of patients 
+with pneumonia and sepsis with early ARDS were compared with those of sepsis patients who 
+did not develop ARDS. Monocyte clusters from ARDS patients revealed multiple distinguishing 
+characteristics in comparison with monocytes from patients without ARDS, including 
+downregulation of SOCS3 expression, accompanied by a proinflammatory signature with 
+upregulation of multiple type I IFN–induced genes, especially in CD16+ cells. To generate an ARDS 
+risk score, we identified upregulation of 29 genes in the monocytes of these patients, and 17 
+showed a similar profile in cells of patients in independent cohorts. Monocytes had increased 
+expression of RAB11A, known to inhibit neutrophil efferocytosis; ATP2B1, a calcium pump that 
+exports Ca2+ implicated in endothelial barrier disruption; and SPARC, associated with processing 
+of procollagen to collagen. These data show that monocytes of ARDS patients upregulate 
+expression of genes not just restricted to those associated with inflammation. Together, our 
+findings identify molecules that are likely involved in ARDS pathogenesis that may inform 
+biomarker and therapeutic development.
+2insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+injury (10). The inflammatory phase of ARDS is followed by a fibroproliferative phase characterized by 
+resolution of inflammation and deposition of collagen (7, 11, 12). Although the inflammatory cascade result-
+ing in acute lung injury is relatively understood in mouse models, mechanistic understanding of ARDS in 
+humans remains limited.
+Prior studies have used the microarray platform to observe patients with sepsis compared with those 
+with sepsis and acute lung injury/ARDS to identify transcripts associated with ARDS. In one study, an 
+8-gene signature was able to distinguish between patients with sepsis and patients with sepsis with acute 
+lung injury (13). Further investigation found elevated RNA of IL-1 superfamily cytokines with a statistical-
+ly significant increase in IL-1β and a trend toward an increase in IL-18 when observing patients with ARDS 
+and sepsis compared with patients lacking ARDS (14). IL-18 has been associated with increased mortality 
+in sepsis-induced ARDS (15). Expression of genes related to neutrophil function was also found to be ele-
+vated in patients with ARDS when compared with patients with sepsis alone (16). Taken together, these 
+studies suggest that differential gene expression in PBMCs may be associated with ARDS development and 
+underlie mechanisms of inflammatory injury to the lungs in patients with sepsis. However, microarray data 
+are limited in their ability to resolve activated transcription programs at the cellular level. Single cell RNA 
+sequencing (scRNA-seq) overcomes this limitation by unbiased sequencing of transcripts in individual cells 
+and has the potential to provide deeper insights into the mechanisms of ARDS (17).
+In this study, we performed scRNA-seq to identify early transcriptomic signatures associated with the 
+development of ARDS in patients with pneumonia-associated direct lung injury. PBMCs were isolated 
+from immunocompetent patients within 24 hours of intubation to test the hypothesis that early transcrip-
+tomic changes are identifiable by scRNA-seq that can differentiate between patients who develop ARDS 
+versus those who do not, secondary to pneumonia. In our attempt to identify molecular signatures that 
+are associated with diffuse alveolar injury and capillary leak, ARDS patients selected for this analysis 
+were compared with patients requiring mechanical ventilatory support for sepsis and pneumonia but did 
+not meet clinical criteria for ARDS (18). Our study has identified previously unrecognized differences in 
+gene expression in NK cells and monocyte clusters of patients with ARDS as compared with those who 
+did not develop ARDS that may help in future biomarker and therapeutic development.
+Results
+Subject characteristics. Peripheral blood samples were collected from 4 patients at risk for ARDS with pneu-
+monia and sepsis (sepsis only) and 3 patients who had advanced to ARDS with sepsis and pneumonia 
+(sepsis+ARDS) within 24 hours of initiation of mechanical ventilation (Figure 1A). Subjects ranged in age 
+from 36–78 years, with median age of 51 years, as summarized in Table 1. A diagnosis of ARDS was made 
+retrospectively according to the Berlin definition of exposure to a known ARDS risk factor within 1 week 
+and development of bilateral opacities on chest radiograph that are not fully explained by cardiogenic pul-
+monary edema (18). Compared with subjects with ARDS, the sepsis-only group had a higher proportion of 
+males. One ARDS patient tested positive for influenza, but the pathogen was not identified in the other 2 
+cases. Ventilator settings at the time of enrollment are included (Table 1).
+Cluster identification. Cell types were identified in an unbiased manner after batch correction and nor-
+malization. Main clusters commonly observed in PBMCs, as well as subpopulations within monocytes 
+and T cells, were identified (Figure 1, B and C; Supplemental Table 1; Supplemental Table 2; Supple-
+mental Figure 1; and Supplemental Figure 2, A and B; supplemental material available online with this 
+article; https://doi.org/10.1172/jci.insight.135678DS1). The Mono/B cluster was suspected to be com-
+posed of multiplets of monocytes and B cells, while the Mono/T cluster with relatively high proportion 
+of mitochondrial genes indicated poor quality (Supplemental Figure 1). CD14 + monocytes were further 
+clustered into 4 subpopulations. Two cell clusters could not be identified and were excluded from further 
+analysis. We found a significant decrease in the number of NK cells, which may be due to recruitment of 
+these clusters to the focus of inflammation or differential expression of specific genes, as discussed below . 
+The proportion of B cells was elevated in ARDS (Figure 1D). Genes used to identify cell clusters were 
+conserved in both patient groups (Figure 1E).
+Differentially expressed genes in cells from sepsis-only versus sepsis+ARDS subjects. We identified 53 differen-
+tially expressed genes (DEGs) between sepsis-only and sepsis+ARDS subjects in all cells (Bonferroni-ad-
+justed P < 0.01, absolute value of average log fold change [logFC] > 0.1, Supplemental Table 3). Among 
+them, several IFN-related genes were upregulated in sepsis+ARDS compared with sepsis-only patients.  
+3insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+In a recently reported study that employed bulk RNA-seq, one of these genes — IFI44L, an important 
+paralog of the gene IFN-induced protein 44, an IFN stimulated gene (ISG) — was found to be differentially 
+expressed between ARDS and ARDS-hematopoietic stem cell transplanted patients (19). Other intriguing 
+genes included HLA-DQB1, a member of the HLA complex, and NAMPT, a regulator of intracellular NAD 
+Figure 1. scRNA-seq analysis reveals the cellular composition of PBMCs in sepsis-only and sepsis+ARDS patients. (A) The schematic illustrates the 
+experimental design and work flow. (B) PBMCs were analyzed from sepsis only (n = 4) and sepsis+ARDS (n = 3) patients and projected with uniform manifold 
+approximation and projection (UMAP) plots with colors and the number in parenthesis indicating the identified cell cluster. (C) The heatmap depicts the mark-
+er genes corresponding to each cluster identified in B. (D) The frequency of each cell type is depicted in the columns. Each patient is represented by an indi-
+vidual color in a shade of blue/green (sepsis-only) or orange/red (sepsis+ARDS). The yellow dashed line represents an equal frequency between the 2 groups, 
+since there are 4 sepsis-only patients and 3 sepsis+ARDS patients. (E) The plot shows identification of marker genes for each cell cluster, with the size of the 
+dot corresponding to the percentage of cells within the cell population expressing the gene. The brightness of the color represents the average expression level 
+across all cells within the cluster. Blue and red dots indicate sepsis-only and sepsis+ARDS patients, respectively. CD14Mono, CD14+ monocyte; CD8T , CD8+ T 
+cell; CD4T , CD4+ T cell; B, B cell; NK, NK cell; NKT , NK T cell; CD16Mono, CD16+ monocytes; Mk, megakaryocyte.
+4insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+pool and cellular metabolism (20). AREG, which encodes amphiregulin, was among the downregulated 
+genes. Downregulation of AREG induces epithelial cell apoptosis in LPS-induced lung injury in mice (21).
+Canonical signaling pathways are activated in NK cells in ARDS. In agreement with a reduced frequency 
+of NK cells shown in Figure 1D, the t-Distributed Stochastic Neighbor Embedding (t-SNE) profiles in 
+Figure 2A show reduction in NK cell numbers in ARDS patients. Figure 2B shows that overall gene 
+expression was also reduced in the NK cells, which was especially true for specific genes such as PTGDS 
+(encodes prostaglandin D2 synthase). Interestingly, genetic deletion of the isoform of prostaglandin D2 
+synthase found in hematopoietic cells resulted in increased inflammation at the outset in a mouse model 
+of peritonitis and also impaired resolution of inflammation (22). Furthermore, prostaglandin D2 has been 
+shown to inhibit NK cell secretion of type 1 cytokines (23). Expression of the IFN-inducible genes, IFI44L 
+and IFITM3, was upregulated in NK cells of ARDS patients, while, interestingly, expression of IFNGR1 
+was undetectable (Figure 2C). IFNGR1 is ubiquitously expressed by all cell types, and its downregulation 
+may prevent proinflammatory responses to IFN-γ , as recently observed in human monocytes (24). Path-
+way enrichment analysis using the 102 suppressed genes (Bonferroni-corrected P  < 0.01, logFC < –0.1) 
+revealed pathways inhibited in ARDS patients. Altogether, 29 pathways were found to be significantly 
+downregulated (Bonferroni-corrected P  < 0.01, Supplemental Table 4). The most significantly enriched 
+pathways in each biological process group are shown in Figure 2D. In ARDS patients, the combined 
+downregulation of genes that negatively regulate NF-κ B activation, negatively regulate mitogen-activated 
+protein (MAP) kinases, and also negatively regulate serine/threonine protein kinases suggests an increase 
+in activation status of NK cells in the context of ARDS.
+Type I IFN–associated pathways and transcription factors are upregulated in the monocytes of  ARDS patients. 
+Monocytes are heterogeneous and dynamic in circulation. We identified 4 clusters of CD14 + monocytes 
+and 1 cluster of CD16+ monocytes (Figure 3, A and B). The first cluster of CD14+ monocytes showed high 
+expression of CES1, also known as monocyte esterase. CD74, along with HLA family genes, were markers 
+for the second cluster. The third cluster expressed higher levels of CTSD, which encodes lysosomal protease 
+cathepsin D, while the last cluster of monocytes had high expression of platelet basic protein precursor gene 
+(PPBP) (Figure 3C). These 4 clusters of CD14+ monocytes could represent various stages of differentiation 
+of monocytes, which may have functional consequences in ARDS. The proportion of each of the monocyte 
+subsets in the 2 patient groups was not significantly different, which is shown in Supplemental Figure 3.
+Pathways enriched in the top DEGs in each monocyte subpopulation in patients with sepsis+ARDS 
+relative to those in patients with sepsis only were examined (Bonferroni-adjusted P < 0.01, logFC > 0.1; 
+Supplemental Table 5). Pathways corresponding to upregulated genes are illustrated in Figure 3D, where 
+each node denotes a biological process while colors of the nodes distinguish the 5 monocyte subpopula-
+tions. Both CD16+ monocytes and CD14+ monocytes from the CES1 (cluster 1) and CD74 (cluster 2) clusters 
+Table 1. Patient characteristics
+Sample Age Sex Sepsis ARDS Pneumonia Pneumonia 
+pathogen
+SOFA Tidal volume 
+(cc/kg)
+PEEP Plateau 
+pressure
+Sepsis_1 65 Female + - + Klebsiella 
+pneumoniae
+6 7 .09 5 16
+Sepsis_2 62 Male + - + Klebsiella 
+oxytoca, MSSA
+7 7 .28 14 20
+Sepsis_3 51 Male + - + Enterobacter 
+species
+6 7.1 6 5 14
+Sepsis_4 78 Male + - + Enterobacter 
+aerogenes, E. 
+coli, MRSA
+9 7.1 5 16
+ARDS_1 73 Female + + + Influenza 7 8.05 8 21
+ARDS_2 51 Female + + + N/A 4 7 .32 8 22
+ARDS_3 36 Female + + + N/A 4 5.84 18 27
+Patient demographics, pneumonia pathogen, and ventilator settings at the time of enrollment are shown. 
+SOFA, sequential organ failure assessment; PEEP , positive end–expiratory pressure. MSSA, Methicillin-sensitive 
+Staphylococcus aureus.
+5insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+Figure 2. NK cells show a distinct gene expression profile in ARDS patients. ( A) NK cells from sepsis-only (n  = 4) and sepsis+ARDS (n  = 3) patients 
+are plotted in a t-SNE distribution. (B ) The heatmap shows differential gene expression in NK cells in the 2 patient groups. The overall log 2FC of 
+combined patient samples is indicated on the right side of the plot. (C ) Violin plots of IFNGR1 and IFITM3 in sepsis-only and sepsis+ARDS patients. 
+(D) Significantly downregulated genes in NK cells in ARDS patients were analyzed by ClueGO, with each node representing the identified pathway. 
+The size of the node corresponds to the enrichment significance.
+6insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+
+7insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+showed upregulation of type I IFN signaling pathways. CD74 (cluster 2) and CTSD (cluster 3) monocytes 
+were linked to neutrophil migration and degranulation, respectively. The CTSD (cluster 3) monocyte cluster 
+was enriched in pathways related to host defense, including responses to LPS and virus. Pathways involved 
+in platelet aggregation were upregulated in ARDS in the CD74 (cluster 2) monocyte cluster. Analysis of 
+gene regulatory networks in monocytes revealed transcription factors that are differentially activated in 
+monocytes of ARDS versus sepsis-only patients (Figure 3E). The IFN regulatory transcription factor (IRF) 
+family proteins IRF1, IRF2, and IRF7 and STAT family (STAT1, STAT2) were activated in the monocyte 
+populations of ARDS patients, while C/EBP/β, FOXO1, and ATF4 were suppressed in these cells. By RNA-
+seq, we previously showed that human alveolar macrophages exhibit a strong type I IFN gene signature and 
+increased IRF7 expression when stimulated by LPS ex vivo (25).
+SOCS3 expression is downregulated in the monocytes of  ARDS patients. We next examined whether 
+increased expression of IFN-induced genes in the ARDS group was caused by a deficiency of negative 
+regulators of JAK-STAT signaling such as SOCS3. As published previously, SOCS3 efficiently blocks 
+type II IFN–induced (IFN-γ –induced) responses in cells stimulated by IL-6 (26). Deletion of SOCS3 in 
+macrophages was shown to induce aberrant STAT1 activation in response to IL-6 (27). In subsequent 
+studies, SOCS3 was also shown to inhibit type I IFN–induced (IFN-β –induced) signaling in macro-
+phages (28). Given that serum IL-6 and IFN-γ  levels have been associated with poor prognosis in ARDS 
+(29, 30), we examined whether the monocyte populations in the ARDS patients had a defect in SOCS3  
+expression as compared with cells from patients with sepsis only. This analysis showed that indeed 
+SOCS3 expression was barely detectable in all of the monocyte clusters in ARDS patients, while robust 
+expression was detected in cells from patients with sepsis only (Figure 4). Since SOCS1 also inhibits 
+type I (31) and type II (32) IFN signaling, we also examined its expression in monocytes (Supplemental 
+Figure 4A). SOCS1 expression, however, was low in all CD14- and CD16-expressing monocyte clusters. 
+We next examined IFN receptor expression and whether genes that are known to be induced by IFN-γ 
+or type I IFNs are differentially expressed in the cells from both groups of patients. While all monocyte 
+clusters were found to express IFNGR1 at similar levels, expression of IFNAR1 was low (Supplemental 
+Figure 4). Low expression of IFNAR1 may be due to ligand-mediated downregulation of the receptor, 
+as was recently reported for IFNGR1 in human monocytes (24). Expression of GBP1 —  which encodes 
+a member of the family of guanylate-binding proteins (GBPs), with functions in host defense (33, 34) — 
+was expressed at a higher level in CD16+ monocytes, and the expression of multiple ISGs was also higher 
+in the cells of ARDS patients (Figure 4). Treatment of human monocytes with IFN-β  was previously 
+shown to upregulate genes such as GBP1, IFITs, and IFI44L (35). Some of these IFN-target genes (GBP1, 
+IFITM1) were found to be preferentially upregulated in CD16 + monocytes. However, the expression of 
+GABARAP — which is an IFN-γ –activated gene and shown to be important for cellular distribution of 
+GBPs (36) and antimicrobial responses (36), or of LYN , another IFN-γ –induced gene (37) — was also 
+similar in the cells from both groups (Figure 4). Taken together, these data identify a molecular defect 
+in the expression of SOCS3 in circulating monocytes of ARDS patients, which our data suggest has 
+downstream consequences that include upregulation of multiple genes, primarily targets of type I IFNs.
+Differential monocyte gene expression identifies a predictive score to identify ARDS from bulk transcriptomic data. 
+The data shown above identify a preferential upregulation of type I IFN–regulated genes in the CD16 + 
+monocyte cluster, which comprises ~10% of all monocyte populations in the peripheral circulation of 
+humans. We next asked whether it was possible to identify a core gene signature set that distinguished the 
+transcript profile of the total monocyte population in ARDS patients as compared with that in patients with 
+sepsis only but at risk for ARDS. We identified DEGs in monocytes in our data set as candidates for gener-
+ating an ARDS risk score (Figure 5A and Supplemental Table 6). The weight of each gene was calculated 
+as logFC. In our scRNA-seq data, we identified 29 genes that were selectively differentially regulated in the 
+monocytes of ARDS patients compared to sepsis-only patients, with Bonferroni-corrected P < 0.01 in both 
+Figure 3. Monocyte clusters are identified in sepsis-only and sepsis+ARDS patients. (A) Monocyte clusters in combined patient samples (n = 4, sep-
+sis-only; n = 3, sepsis+ARDS) are identified by t-SNE distribution. The number in the parenthesis corresponds to the color-coded cell cluster. (B) A heatmap 
+of gene expression in the pooled monocyte clusters is associated with the corresponding cluster in A using the color-coded bar at the top. (C) Violin plots 
+demonstrate expression of the genes that identify each monocyte cluster. (D) Enriched biologic pathways for upregulated genes in sepsis+ARDS patients 
+are demonstrated using ClueGO biological processes. Each node represents a biological process, and the size of the nodes correspond to the enrichment 
+significance. Colors in the nodes correspond to the monocyte clusters in A. (E) The heatmap demonstrates monocyte transcription factor module expression 
+by patient group and monocyte cluster, with log2FC illustrated on the right side. Data shown represent results obtained from pooled samples in each group.
+8insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+Figure 4. Downregulation of SOCS3 
+expression in monocyte clusters 
+and increase in expression of 
+IFN-stimulated genes. Violin plots 
+of expression of selected genes in 
+the monocyte clusters are shown for 
+sepsis-only (n = 4) and sepsis+ARDS 
+(n = 3) patients. *P< 0.01, represent-
+ing genes significantly differentially 
+expressed between sepsis-only and 
+sepsis+ARDS patients within each 
+monocyte population, at Bonfer-
+roni-corrected P value in MAST but 
+not in Wilcoxon rank sum test; †P 
+< 0.01, representing significance at 
+Bonferroni-corrected P value in both 
+MAST and Wilcoxon rank sum test.
+
+9insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+Wilcoxon rank number test and MAST (38) and with logFC greater than 0.13 (Figure 5A). One of these 
+genes, RAB11A, is a small GTPase that inhibits neutrophil efferocytosis, and targeting this gene in macro-
+phages was shown to promote resolution of LPS-induced lung injury (39). Increased expression of RAB11A 
+in cells of ARDS patients, therefore, can be expected to result in increased accumulation of neutrophils in 
+the peripheral blood with potential for increased pulmonary infiltration. Related to this possibility, we also 
+identified increased expression of the gene ATP2B1, encoding a calcium pump (40), in the monocytes of 
+ARDS patients, the functional correlate of which would be increased cellular export of calcium with the 
+potential to impact neighboring cells, including endothelial cells. Increased calcium signaling in endothelial 
+cells can cause endothelial barrier disruption, which is a feature of ARDS (41). Additional genes of interest 
+that were expressed at a higher level in the cells of ARDS patients included SPARC, which promotes pro-
+cessing of procollagen to collagen (42), with lung fibrosis being a feature of ARDS. Our data suggest that 
+Figure 5. Differential gene expression in 
+monocytes can distinguish between sep -
+sis-only and sepsis+ARDS patients.  
+(A) Heatmap showing expression levels and 
+weights assigned to each of the 29 genes 
+that distinguish between patients with 
+sepsis only (n  = 8) and those with sep-
+sis+ARDS (n  = 26) in our scRNA-seq data as 
+compared with microarray gene expression 
+data of peripheral blood monocytes that 
+were publicly available in 2 data sets. Aster -
+isks indicate genes upregulated in both the 
+scRNA-seq data set and publicly available 
+data sets. (B  and C) Comparison between 
+groups using the ARDS risk score comprising 
+29 genes (B ) versus a random selection of 
+genes (C ). Box-and-whisker plots show the 
+median (bar) with IQR (box) and upper/low-
+er limit within 1.5 IQRs from the box range 
+(whiskers). The red dot indicates the mean 
+of the score values. In B , values of the box 
+plot for scores of sepsis-only patients are: 
+minimum = –0.23, lower = –0.19, middle = 
+–0.18, upper = –0.15, maximum = –0.15. For 
+sepsis+ARDS patients: minimum = –0.11, 
+lower = –0.09, middle = –0.08, upper = –0.07 , 
+maximum = –0.05. In C , values of the box 
+plot for scores of sepsis-only patients are: 
+minimum = –0.29, lower = –0.12, middle = 
+–0.01, upper = 0.11, maximum = 0.26. For 
+sepsis+ARDS patients: minimum = –0.26, 
+lower = –0.14, middle = –0.04, upper = 0.06, 
+maximum = 0.31. Two-tailed Student’s t  test 
+was applied.
+
+10insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+both fibroproliferation and monocyte-expressed SPARC may contribute to an increase in fibrosis in ARDS 
+patients. SPARC was recently identified as a marker of myeloid-derived suppressor cells (MDSCs) 
+(43), and interestingly, we detected increased expression of another gene, NRGN, that has been also 
+found to be expressed by MDSCs (Gabrilovich Condamine US patent 2018). MDSC expansion has 
+been associated with nosocomial infections in patients with sepsis (44). Increased expression of PDK4  
+in cells of the ARDS group may contribute to increased lactate levels in these patients, which has been 
+associated with increased risk for mortality (45).
+We next assessed the relative expression of these 29 genes in peripheral blood monocytes of sep-
+sis-only versus sepsis+ARDS patients using available data sets in the Gene Expression Omnibus (GEO) 
+database (https://www .ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE89953; https://www .ncbi.nlm.
+nih.gov/geo/query/acc.cgi?acc=GSE46955). The relevant available human data sets are summarized 
+in Supplemental Table 7. After combining these data sets, 8 sepsis patients with infection by Gram-neg-
+ative bacteria and 26 ARDS patients were included in the initial analysis. The data sets underwent indi-
+vidual-wise normalization and standardization across genes. Among the 15,555 genes whose expres-
+sion was available in both data sets, 17 upregulated genes among the 29 differentially expressed in the 
+monocytes of ARDS patients in our data were also upregulated in the cells of ARDS patients in the 
+bulk RNA expression data sets (Figure 5A and Supplemental Table 6). A significant difference was 
+observed between scores of the septic group versus the ARDS group (P  < 2.2 × 10 –16, Figure 5B). No 
+significant difference in expression was evident between scores when genes were randomly selected 
+from the groups in a sensitivity analysis (P  = 0.600, Figure 5C). Of note, due to the high stringency 
+set for this analysis with the application of both Wilcoxon rank sum test and MAST, and also a cutoff 
+of fold change to 0.1, SOCS3 and IFN-stimulated genes identified as being differentially expressed in 
+the monocytes between the 2 groups using MAST alone (Figure 4), a method tailored for analysis of 
+scRNA-seq data, were precluded in this 29-gene set. The schematic in Figure 6 depicts potential mech-
+anisms by which the DEGs identified in this analysis might impact ARDS.
+Discussion
+ARDS is a lethal clinical syndrome that occurs commonly in the ICU, although the pathogenesis in 
+humans is poorly understood. We hypothesized that utilization of single cell transcriptomics early in the 
+disease course of ARDS would lead to the identification of novel molecular signatures that characterize 
+ARDS. To the best of our knowledge, our study is the first to apply scRNA-seq technology to a cohort 
+of patients with pneumonia and sepsis who have advanced to ARDS and those with pneumonia and 
+sepsis only but who are at risk for ARDS and identify distinct molecular profiles in their peripheral blood 
+immune cells. In a prior study of this cohort comparing patients with a known risk factor for ARDS but 
+not meeting clinical Berlin criteria for the diagnosis of ARDS (18) to patients who developed ARDS, the 
+2 groups were indistinguishable by clinical and biomarker parameters (46). The present study shows that 
+ARDS and patients at risk for ARDS can be distinguished at the cellular and molecular levels using the 
+finer resolution afforded by scRNA-seq technology. The results of our analysis could form the basis for 
+biomarker discovery aimed at distinguishing ARDS from respiratory complications without ARDS.
+Our data advance prior bulk RNA-seq analyses comparing sepsis-only with sepsis+ARDS by being 
+able to distinguish between cellular composition and gene expression in cells from the 2 groups. At the 
+cellular abundance level, we have identified a reduced frequency of peripheral blood NK cells in ARDS 
+patients as compared with that in the other group. However, despite reduced frequency, the NK cells in the 
+ARDS group appeared to have a higher activation profile based on marked downregulation of IFNGR1 
+expression and also of multiple negative regulatory pathways that determine activation of transcription 
+factors such as NF-κB and of MAP kinases that promote inflammation. In our analysis, increased expres-
+sion of IFITM3 in NK cells of ARDS patients, which is primarily induced by type I IFNs as an antiviral 
+factor (47) and which inhibits cell proliferation (48), may explain the reduced frequency of the cells in this 
+group. Also, downregulation of IFNGR1 suggests an inability to regulate inflammatory pathways induced 
+by IFN-γ, as recently demonstrated for human monocytes (24).
+One distinct feature of cells from ARDS patients that we have identified is a heightened response to 
+IFNs. The overall analysis of DEGs in our study suggests differential upregulation of type I IFN–induced 
+pathways that include expression of transcripts for GBP family members ISGs and HLA. Increased expres-
+sion of HLA-DQb1 was previously described in an ARDS cohort, suggesting increased functional activation 
+11insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+of monocytes as antigen-presenting cells (49, 50). Circulating monocytes can also differentiate into DCs 
+when recruited to the lung (50). Whole blood microarray studies have previously identified neutrophil-re-
+lated genes to be differentially regulated in sepsis-associated ARDS (16), and pathway analysis identified 
+viral infection to be notably upregulated in ARDS. Furthermore, neutrophil ISG over- and underexpres-
+sion is associated with reduced survival in ARDS (51). Our data demonstrating activation of type I IFN–
+induced pathways support the importance of exaggerated type I IFN response in the development and 
+outcome of ARDS. Of note, tonic type I IFN is known to be important for immune homeostasis (52), but 
+unregulated signaling downstream may be detrimental, as suggested by our data. Along these lines, we 
+show deficient SOCS3 expression in the peripheral blood monocytes of ARDS patients. SOCS3 negatively 
+regulates signaling downstream of IL-6 and also type I and type II IFNs. Interestingly, SOCS3 deficiency 
+causes IL-6 to induce an IFN-γ–like response in monocytes via STAT1 activation (26). Our findings are 
+further supported by the finding that SOCS3 deficiency in Ly6C + myeloid cells enhances experimental 
+LPS-induced acute lung injury (53). Given that the genes GBP1, IFI44L, IFITM1, and ISG20 — found 
+to be differentially upregulated in the monocytes of ARDS patients, particularly in the CD16 + subset — 
+are known to be type I IFN inducible (35), it appears that SOCS3 deficiency in the monocytes of ARDS 
+patients renders them more responsive to circulating levels of type I IFNs than to increased IL-6–mediated 
+IFN-γ–like signaling. Similar expression of GBP2 (54), GABARAP (36), and LYN (55) in the monocytes of 
+the 2 groups of subjects, genes typically associated with IFN-γ signaling, suggests absence of enhanced 
+response to IFN-γ in the monocytes of ARDS patients. SOCS3 expression has been inversely associated 
+with the expression of multiple miRNAs in different cell types (56–58). In addition, epigenetic modification 
+of the SOCS3 gene involving promoter hypermethylation was also associated with suppression of SOCS3 
+expression, especially in cancer (59, 60). It would be interesting to determine in future studies the molecular 
+mechanisms that underlie low SOCS3 expression in the monocytes of ARDS patients. Taken together, we 
+propose a SOCS3lo signature in peripheral blood monocytes as a biomarker of ARDS.
+We identified 4 clusters of CD14 + monocytes and 1 cluster of CD16 + monocytes in our patient 
+cohort. The frequency of each monocyte cluster was not significantly different in ARDS. A third inter-
+mediate CD14 +CD16+ monocyte subset that has been described in the peripheral blood of humans 
+was not detected in our analysis. Monocytes are crucial regulators of immunity (61). Peripheral blood 
+monocytes have been validated to play an important role in LPS-induced lung injury in experimental 
+models. Along with resident alveolar macrophages and recruited alveolar monocytes, they may direct 
+neutrophil-mediated lung injury that characterizes ARDS development (62, 63). A prior study associ-
+ated recruited monocytes/immature macrophages in the BAL fluid of sepsis patients with ARDS with 
+Figure 6. Potential immune mechanisms contributing to the develop -
+ment of ARDS. (A) Monocyte subsets (particularly CD16 + monocytes) 
+downregulate SOCS3 expression, which promotes type I IFN signaling 
+through STAT and IRF pathways. Reduced SOCS3 levels may also mod-
+ulate IL -6 signaling. (B) NK cells have increased expression of canonical 
+activation signaling cascades including NF-κ B, MAPK, and IFN-stimulated 
+genes (IFITM3). (C) Monocytes with increased expression of RAB11A may 
+impair neutrophil efferocytosis, leading to persistent alveolar inflam-
+mation. (D) Increased ATP2B1 is involved in calcium efflux, which could 
+contribute to alveolar capillary leak and the development of noncardiogen-
+ic pulmonary edema. (E ) Increased PDK4 could contribute to lactic acidosis 
+through inhibition of pyruvate dehydrogenase. (F ) Monocytes with 
+increased SPARC and NRGN expression could be markers of myeloid-de -
+rived suppressor cells (MDSCs). SPARC is involved in collagen deposition, 
+which is observed in the fibroproliferative stage of ARDS.
+
+12insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+decreased survival (9). As presented in our data, increased expression of specific genes in peripheral 
+blood monocytes of ARDS patients may play an important role in multiple aspects of ARDS pathogene-
+sis, including endothelial cell leak and increased neutrophil recruitment to the lungs. In addition to iden-
+tifying a heightened type I IFN response, preferentially in the CD16 + subset, we detected upregulation 
+of platelet aggregation pathways in the CD74hiCD14+ monocyte cluster 2. Platelets are believed to play a 
+role in ARDS pathogenesis through their interaction with the immune system (64).
+Monocytes from sepsis+ARDS patients as a whole displayed differential expression of 29 genes 
+as compared with monocytes from the sepsis-only group. This differential expression profile may have 
+important functional ramifications in ARDS (Figure 6). One such gene upregulated in the cells of the 
+ARDS group is PDK4, which inhibits pyruvate dehydrogenase (65), thereby limiting entry of pyruvate 
+into the TCA cycle and causing increased production of lactate. Increased PDK4 expression in the mono-
+cytes of ARDS patients may underlie increased pulmonary and blood lactate levels in ARDS patients 
+(45, 66). We also detected higher expression of ATP2B1 in the monocytes of ARDS patients. ATP2B1 
+is a calcium transporter that was shown to couple ATP hydrolysis with the transport of calcium from 
+the cytoplasm to the extracellular space in endothelial cells, thereby maintaining intracellular calcium 
+homeostasis (40). Increased Ca 2+ signaling has been implicated in proinflammatory responses and bar-
+rier disruption in endothelial cells in ARDS (41), in which monocyte-expressed ATP2B1 may play an 
+important role. Our data also show increased expression of RAB11A that encodes a central recycling 
+endosome component (67) in the monocytes from ARDS patients. The same was true for RAB11FIP1 
+(RAB family interacting protein 1), a key effector molecule for RAB11A. RAB11A promotes cycling of 
+the metalloproteinase ADAM17 from the cytoplasm to the cell surface, which causes proteolytic cleav-
+age of CD36 from the cell surface. CD36 facilitates phagocytosis of apoptotic neutrophils, and it has 
+been shown that RAB11A tonically inhibits macrophage phagocytic functions important for removal 
+of apoptotic neutrophils (39). Interestingly, 17 of these genes in the 29-gene set differentially expressed 
+in the monocytes of ARDS patients in our data set were also found to be expressed at a higher level in 
+the PBMCs of ARDS patients in independent patient cohorts. Collectively, the gene expression profile 
+shows increased monocyte expression of RAB11A implicated in defective clearance of neutrophils and 
+an increase in ATP2B1 linked to vascular leak in ARDS.
+Although these data identify potentially novel mechanisms that underlie ARDS pathogenesis, there 
+are limitations. While the small sample size increases the opportunity for influence of confounding factors 
+due to the clinical characteristics of the patients and treatments that cannot be adequately controlled, prior 
+studies using this technology have drawn biologically relevant conclusions from similar patient numbers 
+(68, 69). In addition, we validated DEGs in our study across publicly available bulk RNA data sets gener-
+ated from microarray analysis of RNA isolated from monocytes of patients with sepsis only and with sep-
+sis+ARDS. Despite these limitations, the striking ability to differentiate between sepsis and ARDS using 
+a monocyte gene signature derived from our single cell data highlights the importance of studying periph-
+eral blood monocytes in ARDS, which could be useful for the generation of a diagnostic biomarker panel 
+for individuals at risk for developing ARDS. While caution must be used when comparing transcriptomic 
+profiles of circulating monocytes and alveolar macrophages to extrapolate mechanisms of pathogenesis 
+(70), results of a prior study have suggested the role of recruited monocytes in poor survival of ARDS 
+patients (9). Also, our ability to clearly differentiate between sepsis and ARDS using peripheral blood 
+samples has strengths in ease of sample accessibility. Future studies assessing single cell transcriptomics 
+of alveolar cell populations are clearly warranted, given prior demonstration of the prognostic utility of 
+studying alveolar myeloid populations (71, 72).
+Overall, our findings achieve a cell-specific resolution of transcriptomics not previously attempted 
+in ARDS that enrich the mechanistic understanding of genes associated with ARDS risk and mortality 
+(73). We identify increased type I IFN signaling in ARDS that may be caused by downregulation of 
+SOCS3 expression in the cells of ARDS patients that triggers a proinflammatory phenotype facilitated 
+by increased activation of IRF and STAT transcription factors. We highlight a SOCS3 lo phenotype of 
+monocytes as a potential biomarker of ARDS. In addition, we show elevated expression of multiple genes 
+in the monocytes of ARDS patients that, together, may play important roles in precipitating ARDS. In 
+addition, we show reduced frequency of NK cells and complete lack of IFNGR1 expression as additional 
+features of ARDS. These data add to observations in prior studies identifying a single nucleotide poly-
+morphism in MAP kinase kinase kinase 1 (MAP3K) correlated to ventilator-free days in ARDS (74) and 
+13insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+plasma angiopoietin-2 as a potential causal biomarker of sepsis-induced ARDS (75). While only patients 
+with pneumonia as an ARDS risk factor were studied, these findings have important implications in the 
+pathogenesis of ARDS overall, as well as in identifying potential pathways to therapeutically modify dis-
+ease course and reduce the burden of ARDS in the ICU. Future temporal studies of patient samples by 
+single cell transcriptomics that would include patients with various ARDS risk factors would help to more 
+completely characterize the immunopathology of ARDS.
+Methods
+All reagents and materials used in this study are listed in Supplemental Table 8.
+Study design and sample collection. Patient samples were selected from critically ill mechanically ventilated 
+patients aged > 18 years old in the University of Pittsburgh Medical Intensive Care Unit that were prospec-
+tively enrolled in the Acute Lung Injury Registry as described previously (46). Blood samples were obtained 
+at the time of enrollment, and patients were assigned to either at risk for ARDS with sepsis (sepsis only) and 
+3 who had ARDS with sepsis (sepsis+ARDS) meeting the Berlin criteria (18) based on a retrospective review 
+by a consensus committee of critical care physicians. Patients at risk for ARDS with sepsis caused by pneu-
+monia were selected in an attempt to reduce confounding signals from other sources of sepsis. Sepsis was 
+defined as organ dysfunction manifested by the need for mechanical ventilation in the setting of a dysreg-
+ulated immune response to presumed or proven infection (pneumonia) (76). Blood samples collected > 24 
+hours from the time of intubation were excluded. Patients were excluded if they were recipients of a trans-
+planted organ, had active malignancy, or received systemic immunosuppression or systemic glucocorticoids.
+PBMC isolation and cryopreservation. Peripheral blood was drawn into a tube with acid citrate dextrose 
+(ACD) and then transferred to a 50 mL Falcon tube. Blood was diluted approximately 1:1 with room 
+temperature sterile PBS-LPS tested. After layering Ficoll Paque PLUS, the samples were centrifuged at 
+450 g for 30 minutes at 25°C in a swinging-bucket rotor without braking. The mononuclear cell layer at the 
+interphase was transferred and washed 3 times with 15 mL PBS. PBMC were resuspended in cold freeze 
+medium containing 10% dimethyl sulfoxide, 40% FBS, and 50% X-VIVO15 medium and slowly cooled 
+to –80°C in a Nalgene Cryo 1°C freezing container. Samples were stored in liquid nitrogen. PBMCs were 
+thawed slowly in a 37°C water bath and transferred drop-wise to warm complete RPMI containing 10% 
+human AB serum and 0.05M 2-mercaptoethanol. PMBCs were spun down at 350 g for 7 minutes at 4°C 
+and gently resuspended in PBS with 0.04% BSA. As previously reported (77), our pilot studies comparing 
+fresh and cryopreserved cells from healthy controls closely matched each other in average gene expression; 
+therefore, only cryopreserved cells of all patients were used for scRNA-seq in this study.
+scRNA-seq and quality control. scRNA-seq was performed using 10× Genomics Single Cell 3′  solution, 
+version 2, according to the manufacturer’s instructions, with 7000 cells loaded for each sample (n  = 4 
+sepsis-only and n  = 3 sepsis+ARDS). Libraries were sequenced on the HiSeq Platform (Illumina) from 
+Novogene and raw BCL/fastq files were analyzed using Cell Ranger version 3.0.2 (10× Genomics). 
+Low-quality cells were removed if they expressed < 3000 genes/cell and had more than 20% mitochon-
+drial and 10% hemoglobin gene expression. After quality control, 24,806 cells with mean reads 50,419/
+cell remained for downstream bioinformatic analyses.
+Data processing and bioinformatic analysis. Samples were analyzed using Seurat (version 3.0, https://sati-
+jalab.org/seurat/) for batch correction and cell type identification (78). Alignment between samples was 
+achieved by identifying gene-to-gene correlation patterns that are conserved across data sets through canon-
+ical correlation analysis (CCA). The cells were then embedded in a shared low-dimensional space and nor-
+malized using nonlinear “warping” algorithms (78). We subsequently identified discrete cell populations by 
+a shared-nearest neighbor (SNN) graph–based clustering method. Differential gene expression analysis was 
+applied in each cell type, with 2 methods as reciprocal validation: Wilcoxon rank number test and MAST (38), 
+the former as the most commonly used and the latter customized for scRNA-seq data. Pathway enrichment 
+analysis was further conducted with ClueGO (79) based on GO biological process databases (04/09/2018).
+Functional analysis of  subpopulations in monocytes. Differential gene expression analysis was performed 
+in each of the monocyte clusters, and the log-transformed fold changes (log 2FC) were used to perform 
+hierarchical clustering between genes. Five sets of genes were identified and demonstrated different 
+expression patterns between monocytes from sepsis-only and sepsis+ARDS patients. Top DEGs in each 
+subcluster tested for enrichment of biological pathways with ClueGO. Gene regulatory networks were 
+analyzed by SCENIC (80) within monocytes.
+14insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+Validation in GEO bulk RNA data sets. An ARDS risk score was generated based on the findings from 
+our scRNA-seq data. Significant DEGs in monocytes were selected with Bonferroni-corrected P values less 
+than 0.01 in both Wilcoxon rank number test and MAST and an absolute value of log2FC greater than 0.1. 
+The weight for each gene was calculated as logFC divided by negative log 10 Bonferroni-corrected P value 
+in MAST. The available human monocyte data sets on GEO (GSE89953, GSE46955) were normalized to 
+distribution of zero-mean and 1 SD in each individual. Risk score was calculated as W × E, where W rep-
+resents the weight of each gene and E represents the normalized expression matrix. Risk scores are shown 
+in the box plots, stratified by disease status. In addition, sensitivity analysis was performed, with scores 
+generated using randomly selected gene sets of the same number with the same weights for 10 replicates to 
+reduce the potential bias in the data sets.
+Data availability. Raw scRNA-seq data (fastq files) and processed UMI matrices from our scRNA-seq 
+experiment are available on GEO (GSE151263). Two public human RNA microarray data sets can be 
+accessed from GEO (GSE89953, GSE46955).
+Statistics. Differential gene expression analysis was conducted between identified clusters to find 
+marker genes for each cell type using Wilcoxon rank sum test. Further differential analysis between 
+sepsis-only and sepsis+ARDS patients was applied within each cell type using 2 methods as reciprocal 
+validation: Wilcoxon rank number test and MAST. Bonferroni correction was used to adjust for multiple 
+testing, and the cutoff P  value of 0.01 after adjustment was set for all differential expression analysis. 
+Pathway enrichment analysis was conducted with ClueGO (79), which uses the Fisher exact test with 
+cutoff as Bonferroni-corrected P  < 0.01. GEO data set gene expression significance in Supplemental 
+Table 6 was performed using a Student’s t test with 2 tails.
+Study approval. Informed consent was obtained from all patients or surrogates enrolled in the Acute Lung 
+Injury Registry. The study was approved by the IRB of the University of Pittsburgh (IRB no. 19050099).
+Author contributions
+WC, AR, and PR conceived and designed the study. YJ, BRR, JC, and SD conducted the primary analysis 
+and interpreted data. JSL, GDK, RKM, and BJM participated in data analysis. YJ and BRR prepared the 
+first draft of the manuscript. All authors reviewed the draft for intellectual content and approved submis-
+sion of the final version of the manuscript.
+Acknowledgments
+This study was supported by grants HLP01114453 (PR, BJM, JSL), F32HL152497 and LRP HLHEPR8727 
+(BRR), and 2T32HL007563-31 (BRR) from the U.S. NIH. YJ was supported by the Tsinghua Educational 
+Foundation of North America (TEFNA) during her training at the University of Pittsburgh through the 
+Pitt-Tsinghua collaborative program. The authors thank Sarah Rapport for management of the Acute Lung 
+Injury Registry and assistance with patient consent.
+Address correspondence to: Prabir Ray, Division of Pulmonary, Allergy and Critical Care Medicine, Uni-
+versity of Pittsburgh, NW 628 UPMC Montefiore, 3459 Fifth Avenue, Pittsburgh, Pennsylvania 15213, 
+USA. Phone: 412.802.3192; Email: rayp@pitt.edu. Or to: Wei Chen, Division of Pulmonary Medicine, 
+UPMC Children’s Hospital of Pittsburgh, Room 9125, Rangos Research Building, 4401 Penn Avenue, 
+Pittsburgh, Pennsylvania 15224, USA. Phone: 412.692.6241; Email: wei.chen@chp.edu.
+ 1. Bellani G, et al. Epidemiology, Patterns of Care, and Mortality for Patients With Acute Respiratory Distress Syndrome in  
+Intensive Care Units in 50 Countries. JAMA. 2016;315(8):788–800.
+ 2. Fan E, Brodie D, Slutsky AS. Acute Respiratory Distress Syndrome: Advances in Diagnosis and Treatment. JAMA. 
+2018;319(7):698–710.
+ 3. Acute Respiratory Distress Syndrome Network, et al. Ventilation with lower tidal volumes as compared with traditional tidal 
+volumes for acute lung injury and the acute respiratory distress syndrome. N Engl J Med. 2000;342(18):1301–1308.
+ 4. National Heart, Lung, Blood Institute Acute Respiratory Distress Syndrome (ARDS) Clinical Trials Network, et al. Compari-
+son of two fluid-management strategies in acute lung injury. N Engl J Med. 2006;354(24):2564–2575.
+ 5. Guérin C, et al. Prone positioning in severe acute respiratory distress syndrome. N Engl J Med. 2013;368(23):2159–2168.
+ 6. Matthay MA, et al. Acute respiratory distress syndrome. Nat Rev Dis Primers. 2019;5(1):18.
+ 7. Ware LB, Matthay MA. The acute respiratory distress syndrome. N Engl J Med. 2000;342(18):1334–1349.
+ 8. Thompson BT, Chambers RC, Liu KD. Acute Respiratory Distress Syndrome. N Engl J Med. 2017;377(6):562–572.
+ 9. Rosseau S, et al. Phenotypic characterization of alveolar monocyte recruitment in acute respiratory distress syndrome.  
+15insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+Am J Physiol Lung Cell Mol Physiol. 2000;279(1):L25–L35.
+ 10. Aggarwal NR, King LS, D’Alessio FR. Diverse macrophage populations mediate acute lung inflammation and resolution.  
+Am J Physiol Lung Cell Mol Physiol. 2014;306(8):L709–L725.
+ 11. Zapol WM, Trelstad RL, Coffey JW , Tsai I, Salvador RA. Pulmonary fibrosis in severe acute respiratory failure. Am Rev Respir 
+Dis. 1979;119(4):547–554.
+ 12. Anderson WR, Thielen K. Correlative study of adult respiratory distress syndrome by light, scanning, and transmission electron 
+microscopy. Ultrastruct Pathol. 1992;16(6):615–628.
+ 13. Howrylak JA, et al. Discovery of the gene signature for acute lung injury in patients with sepsis. Physiol Genomics. 
+2009;37(2):133–139.
+ 14. Dolinay T, et al. Inflammasome-regulated cytokines are critical mediators of acute lung injury. Am J Respir Crit Care Med. 
+2012;185(11):1225–1234.
+ 15. Rogers AJ, et al. Association of Elevated Plasma Interleukin-18 Level With Increased Mortality in a Clinical Trial of Statin 
+Treatment for Acute Respiratory Distress Syndrome. Crit Care Med. 2019;47(8):1089–1096.
+ 16. Kangelaris KN, et al. Increased expression of neutrophil-related genes in patients with early sepsis-induced ARDS. Am J Physiol 
+Lung Cell Mol Physiol. 2015;308(11):L1102–L1113.
+ 17. Kan M, Shumyatcher M, Himes BE. Using omics approaches to understand pulmonary diseases. Respir Res. 2017;18(1):149.
+ 18. ARDS Definition Task Force, et al. Acute respiratory distress syndrome: the Berlin Definition. JAMA. 2012;307(23):2526–2533.
+ 19. Englert JA, et al. Whole blood RNA sequencing reveals a unique transcriptomic profile in patients with ARDS following  
+hematopoietic stem cell transplantation. Respir Res. 2019;20(1):15.
+ 20. Garten A, Schuster S, Penke M, Gorski T, de Giorgis T, Kiess W . Physiological and pathophysiological roles of NAMPT and 
+NAD metabolism. Nat Rev Endocrinol. 2015;11(9):535–546.
+ 21. Ogata-Suetsugu S, et al. Amphiregulin suppresses epithelial cell apoptosis in lipopolysaccharide-induced lung injury in mice. 
+Biochem Biophys Res Commun. 2017;484(2):422–428.
+ 22. Rajakariar R, et al. Hematopoietic prostaglandin D2 synthase controls the onset and resolution of acute inflammation through 
+PGD2 and 15-deoxyDelta12 14 PGJ2. Proc Natl Acad Sci USA. 2007;104(52):20979–20984.
+ 23. Chen Y , Perussia B, Campbell KS. Prostaglandin D2 suppresses human NK cell function via signaling through D prostanoid 
+receptor. J Immunol. 2007;179(5):2766–2773.
+ 24. Crisler WJ, Eshleman EM, Lenz LL. Ligand-induced IFNGR1 down-regulation calibrates myeloid cell IFNγ responsiveness. 
+Life Sci Alliance. 2019;2(5):e201900447.
+ 25. Pinilla-Vera M, et al. Full Spectrum of LPS Activation in Alveolar Macrophages of Healthy Volunteers by Whole Transcrip-
+tomic Profiling. PLoS One. 2016;11(7):e0159329.
+ 26. Croker BA, et al. SOCS3 negatively regulates IL-6 signaling in vivo. Nat Immunol. 2003;4(6):540–545.
+ 27. Qin H, Holdbrooks AT, Liu Y , Reynolds SL, Yanagisawa LL, Benveniste EN. SOCS3 deficiency promotes M1 macrophage 
+polarization and inflammation. J Immunol. 2012;189(7):3439–3448.
+ 28. Akhtar LN, et al. Suppressor of cytokine signaling 3 inhibits antiviral IFN-beta signaling to enhance HIV-1 replication in mac-
+rophages. J Immunol. 2010;185(4):2393–2404.
+ 29. Shankar-Hari M, Fan E, Ferguson ND. Acute respiratory distress syndrome (ARDS) phenotyping. Intensive Care Med. 
+2019;45(4):516–519.
+ 30. Bos LD, et al. Identification and validation of distinct biological phenotypes in patients with acute respiratory distress syndrome 
+by cluster analysis. Thorax. 2017;72(10):876–883.
+ 31. Fenner JE, et al. Suppressor of cytokine signaling 1 regulates the immune response to infection by a unique inhibition of type I 
+interferon activity. Nat Immunol. 2006;7(1):33–39.
+ 32. Alexander WS, et al. SOCS1 is a critical inhibitor of interferon gamma signaling and prevents the potentially fatal neonatal 
+actions of this cytokine. Cell. 1999;98(5):597–608.
+ 33. Lew DJ, Decker T, Strehlow I, Darnell JE. Overlapping elements in the guanylate-binding protein gene promoter mediate tran-
+scriptional induction by alpha and gamma interferons. Mol Cell Biol. 1991;11(1):182–191.
+ 34. Kim BH, Shenoy AR, Kumar P , Das R, Tiwari S, MacMicking JD. A family of IFN-γ-inducible 65-kD GTPases protects against 
+bacterial infection. Science. 2011;332(6030):717–721.
+ 35. Satoh J, Takitani M, Miyoshi J, Kino Y . RNA-Seq data analysis identifies the comprehensive profile ofin vivo interferon-β-stim-
+ulated genes in multiple sclerosis. Clin Exp Neuroimmunol. 2016;7(1):39–51.
+ 36. Sasai M, et al. Essential role for GABARAP autophagy proteins in interferon-inducible GTPase-mediated host defense. Nat 
+Immunol. 2017;18(8):899–910.
+ 37. Boulet I, et al. Lipopolysaccharide- and interferon-gamma-induced expression of hck and lyn tyrosine kinases in murine bone 
+marrow-derived macrophages. Oncogene. 1992;7(4):703–710.
+ 38. Finak G, et al. MAST: a flexible statistical framework for assessing transcriptional changes and characterizing heterogeneity in 
+single-cell RNA sequencing data. Genome Biol. 2015;16:278.
+ 39. Jiang C, et al. Inactivation of Rab11a GTPase in Macrophages Facilitates Phagocytosis of Apoptotic Neutrophils. J Immunol. 
+2017;198(4):1660–1672.
+ 40. Pande J, Mallhi KK, Sawh A, Szewczyk MM, Simpson F , Grover AK. Aortic smooth muscle and endothelial plasma mem-
+brane Ca2+ pump isoforms are inhibited differently by the extracellular inhibitor caloxin 1b1. Am J Physiol, Cell Physiol. 
+2006;290(5):C1341–C1349.
+ 41. Millar FR, Summers C, Griffiths MJ, Toshner MR, Proudfoot AG. The pulmonary endothelium in acute respiratory distress 
+syndrome: insights and therapeutic opportunities. Thorax. 2016;71(5):462–473.
+ 42. Rentz TJ, Poobalarahi F , Bornstein P , Sage EH, Bradshaw AD. SPARC regulates processing of procollagen I and collagen fibril-
+logenesis in dermal fibroblasts. J Biol Chem. 2007;282(30):22062–22071.
+ 43. Sangaletti S, et al. SPARC Is a New Myeloid-Derived Suppressor Cell Marker Licensing Suppressive Activities. Front Immunol. 
+2019;10:1369.
+ 44. Uhel F , et al. Early Expansion of Circulating Granulocytic Myeloid-derived Suppressor Cells Predicts Development of Nosoco-
+16insight.jci.org   https://doi.org/10.1172/jci.insight.135678
+RESEARCH ARTICLE
+mial Infections in Patients with Sepsis. Am J Respir Crit Care Med. 2017;196(3):315–327.
+ 45. Kamo T, et al. Prognostic values of the Berlin definition criteria, blood lactate level, and fibroproliferative changes on high- 
+resolution computed tomography in ARDS patients. BMC Pulm Med. 2019;19(1):37.
+ 46. Kitsios GD, et al. Host-Response Subphenotypes Offer Prognostic Enrichment in Patients With or at Risk for Acute Respiratory 
+Distress Syndrome. Crit Care Med. 2019;47(12):1724–1734.
+ 47. Everitt AR, et al. IFITM3 restricts the morbidity and mortality associated with influenza. Nature. 2012;484(7395):519–523.
+ 48. Hanna J, Bechtel P , Zhai Y , Youssef F , McLachlan K, Mandelboim O. Novel insights on human NK cells’ immunological 
+modalities revealed by gene expression profiling. J Immunol. 2004;173(11):6547–6563.
+ 49. Chen Y , Shi JX, Pan XF , Feng J, Zhao H. DNA microarray-based screening of differentially expressed genes related to acute 
+lung injury and functional analysis. Eur Rev Med Pharmacol Sci. 2013;17(8):1044–1050.
+ 50. Randolph GJ, Jakubzick C, Qu C. Antigen presentation by monocytes and monocyte-derived cells. Curr Opin Immunol. 
+2008;20(1):52–60.
+ 51. Nick JA, et al. Extremes of Interferon-Stimulated Gene Expression Associate with Worse Outcomes in the Acute Respiratory 
+Distress Syndrome. PLoS One. 2016;11(9):e0162490.
+ 52. Gough DJ, Messina NL, Clarke CJ, Johnstone RW , Levy DE. Constitutive type I interferon modulates homeostatic balance 
+through tonic signaling. Immunity. 2012;36(2):166–174.
+ 53. Jiang Z, Chen Z, Li L, Zhou W , Zhu L. Lack of SOCS3 increases LPS-induced murine acute lung injury through modulation 
+of Ly6C(+) macrophages. Respir Res. 2017;18(1):217.
+ 54. Messmer-Blust AF , Balasubramanian S, Gorbacheva VY , Jeyaratnam JA, Vestal DJ. The interferon-gamma-induced murine 
+guanylate-binding protein-2 inhibits rac activation during cell spreading on fibronectin and after platelet-derived growth factor 
+treatment: role for phosphatidylinositol 3-kinase. Mol Biol Cell. 2010;21(14):2514–2528.
+ 55. Boekhoudt GH, McGrath AG, Swisher JF , Feldman GM. Immune complexes suppress IFN-γ-induced responses in monocytes 
+by activating discrete members of the SRC kinase family. J Immunol. 2015;194(3):983–989.
+ 56. Qin Y , et al. MiR-125a Is a critical modulator for neutrophil development. PLoS Genet. 2017;13(10):e1007027.
+ 57. Rolls A, et al. Sleep disruption impairs haematopoietic stem cell transplantation in mice. Nat Commun. 2015;6:8516.
+ 58. Mohan R, et al. Differentially Expressed MicroRNA-483 Confers Distinct Functions in Pancreatic β- and α-Cells. J Biol Chem. 
+2015;290(32):19955–19966.
+ 59. He B, et al. SOCS-3 is frequently silenced by hypermethylation and suppresses cell growth in human lung cancer. Proc Natl  
+Acad Sci USA. 2003;100(24):14133–14138.
+ 60. Kim MH, et al. Suppressor of cytokine signaling (SOCS) genes are silenced by DNA hypermethylation and histone deacetyla-
+tion and regulate response to radiotherapy in cervical cancer cells. PLoS One. 2015;10(4):e0123133.
+ 61. Murray PJ. Immune regulation by monocytes. Semin Immunol. 2018;35:12–18.
+ 62. Auffray C, et al. Monitoring of blood vessels and tissues by a population of monocytes with patrolling behavior. Science. 
+2007;317(5838):666–670.
+ 63. Li XC, Miyasaka M, Issekutz TB. Blood monocyte migration to acute lung inflammation involves both CD11/CD18 and very 
+late activation antigen-4-dependent and independent pathways. J Immunol. 1998;161(11):6258–6264.
+ 64. Yadav H, Kor DJ. Platelets in the pathogenesis of acute respiratory distress syndrome. Am J Physiol Lung Cell Mol Physiol. 
+2015;309(9):L915–L923.
+ 65. Harris RA, Bowker-Kinley MM, Huang B, Wu P . Regulation of the activity of the pyruvate dehydrogenase complex. Adv 
+Enzyme Regul. 2002;42:249–259.
+ 66. De Backer D, Creteur J, Zhang H, Norrenberg M, Vincent JL. Lactate production by the lungs in acute lung injury. Am J Respir 
+Crit Care Med. 1997;156(4 Pt 1):1099–1104.
+ 67. Cox D, Lee DJ, Dale BM, Calafat J, Greenberg S. A Rab11-containing rapidly recycling compartment in macrophages that  
+promotes phagocytosis. Proc Natl Acad Sci USA. 2000;97(2):680–685.
+ 68. Xu Y , et al. Single-cell RNA sequencing identifies diverse roles of epithelial cells in idiopathic pulmonary fibrosis. JCI Insight. 
+2016;1(20):e90558.
+ 69. MacParland SA, et al. Single cell RNA sequencing of human liver reveals distinct intrahepatic macrophage populations.  
+Nat Commun. 2018;9(1):4383.
+ 70. Morrell ED, et al. Peripheral and Alveolar Cell Transcriptional Programs Are Distinct in Acute Respiratory Distress Syndrome. 
+Am J Respir Crit Care Med. 2018;197(4):528–532.
+ 71. Morrell ED, et al. Cytometry TOF identifies alveolar macrophage subtypes in acute respiratory distress syndrome. JCI Insight. 
+2018;3(10):99281.
+ 72. Morrell ED, et al. Alveolar Macrophage Transcriptional Programs Are Associated with Outcomes in Acute Respiratory Distress 
+Syndrome. Am J Respir Crit Care Med. 2019;200(6):732–741.
+ 73. Reilly JP , Christie JD, Meyer NJ. Fifty Years of Research in ARDS. Genomic Contributions and Opportunities. Am J Respir Crit 
+Care Med. 2017;196(9):1113–1121.
+ 74. Morrell ED, et al. Genetic Variation in MAP3K1 Associates with Ventilator-Free Days in Acute Respiratory Distress Syndrome. 
+Am J Respir Cell Mol Biol. 2018;58(1):117–125.
+ 75. Reilly JP , et al. Plasma angiopoietin-2 as a potential causal marker in sepsis-associated ARDS development: evidence from 
+Mendelian randomization and mediation analysis. Intensive Care Med. 2018;44(11):1849–1858.
+ 76. Singer M, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). JAMA. 2016;315(8):801–810.
+ 77. Zheng GX, et al. Massively parallel digital transcriptional profiling of single cells. Nat Commun. 2017;8:14049.
+ 78. Butler A, Hoffman P , Smibert P , Papalexi E, Satija R. Integrating single-cell transcriptomic data across different conditions, 
+technologies, and species. Nat Biotechnol. 2018;36(5):411–420.
+ 79. Bindea G, et al. ClueGO: a Cytoscape plug-in to decipher functionally grouped gene ontology and pathway annotation net-
+works. Bioinformatics. 2009;25(8):1091–1093.
+ 80. Aibar S, et al. SCENIC: single-cell regulatory network inference and clustering. Nat Methods. 2017;14(11):1083–1086.

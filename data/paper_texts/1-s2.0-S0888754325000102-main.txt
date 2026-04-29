@@ -1,0 +1,643 @@
+Genomics 117 (2025) 110994
+Available online 14 January 2025
+0888-7543/© 2025 The Authors. Published by Elsevier Inc. This is an open access article under the CC BY-NC license ( http://creativecommons.org/licenses/by-
+nc/4.0/).
+scRNA-seq reveals involvement of monocytes in immune response in 
+SLE patients
+Guoying Wang a, Huihui Tao a,*, Lingling Zhou a, Junning Zhang a,1, Wenjun Pu b,1,  
+Tiantian Xu a, Chunmei Wen a, Yali Peng a, Mengyao Wu a, Xuejia Zheng a, Yong Dai a,*
+a School of Medicine, Anhui University of Science and Technology, Huainan 232000, China
+b Clinical Medical Research Center, The Second Clinical Medical College, Jinan University (Shenzhen People’s Hospital), Shenzhen 518020, China
+ARTICLE INFO
+Keywords:
+SLE
+scRNA-seq
+Inflammatory factors;IRF1;PBMC
+ABSTRACT
+Background: Systemic Lupus Erythematosus (SLE) is a typical autoimmune disease characterized by a complex 
+pathogenesis and a strong genetic predisposition. The study of inflammatory response in SLE monocytes is not 
+very clear, and exploring the inflammatory factors of monocytes is beneficial to discover new diagnostic targets.
+Results: Using scRNA-seq technology, we obtained the quantitative changes in circulating immune cells and 
+various cellular immune metabolic profiles between SLE patients and healthy volunteers. A significant increase 
+in monocytes was observed in peripheral blood of SLE patients. Flow cytometry was employed to validate the 
+types and quantities of circulating immune cells in SLE, corroborating the scRNA-seq results. Monocyte highly 
+expressed IRF1 (interferon regulatory factor 1) in SLE. Previous research proves that IRF1 is widely involved in 
+immune regulation and inflammatory response, and can promote the transcription of a variety of pro- 
+inflammatory cytokines. Additionally, Inflammatory factors secreted by monocytes in serum were measured. 
+The results demonstrated a significant upregulation of IFN-γ, TNF-
+α , IL-2, IL-6, IL-8, IL-10, IL-1β in the sera of SLE 
+patients compared to healthy controls.
+Conclusion: Our results demonstrate upregulation of monocyte inflammation in circulating immune cells in SLE 
+patients and expands the current understanding of circulating immune cells in SLE.
+Our study provides a blueprint for future exploration of SLE monocytes, revealing the pathogenesis and inventing 
+new immunotherapies.
+1. Introduction
+Systemic lupus erythematosus (SLE) is an autoimmune disease 
+characterized by the overactivation of the immune system and the 
+abnormal deposition of antigen-antibody complexes [1,2 ], leading to 
+dysfunction in various tissues and organs such as the skin, joints, kid -
+neys, lungs, cardiovascular system, etc. The pathogenesis of SLE remains 
+unclear [3], and the disease course is prone to recurrence [4 ]. Studies 
+have shown that SLE is associated with genetic background, environ -
+mental factors, and estrogen levels [ 5], with incidence rates ranging 
+from 20 to 200 cases per 100,000 people. Higher incidence rates are 
+observed among African, Hispanic, and Asian populations [6
+]. Clini-
+cally, the male-to-female ratio of SLE patients is 1:9 [ 7], with a pre -
+dominance of female patients, particularly those of childbearing age [8]. 
+The complex pathogenesis of SLE is primarily linked to decreased 
+immune tolerance, immune complex deposition, antibody production, 
+activation of immune complexes in target tissues, and inflammatory 
+responses.
+Despite significant advancements in immunosuppressive therapies, 
+including glucocorticoids, cyclophosphamide (CYC), and mycopheno -
+late mofetil (MMF), the early diagnosis and treatment of SLE remain 
+challenging due to various factors.
+Single-cell RNA sequencing (scRNA-seq) is an unbiased analytical 
+method that directly examines gene expression at the single-cell level 
+[9], enabling the analysis of cellular heterogeneity, cell type definition, 
+cell state determination, and dynamic cell transitions [10 ]. This tech -
+nology holds significant potential in exploring the pathogenesis of 
+various human diseases [
+11,12]. Immune cells play a crucial role in 
+innate immune responses by producing various inflammatory factors 
+such as interferons (IFNs). Therefore, this study aims to investigate the 
+* Corresponding authors.
+E-mail addresses: 475433093@qq.com (H. Tao), daiyong22@aust.edu.cn (Y. Dai). 
+1 The authors contribute equally
+Contents lists available at ScienceDirect
+Genomics
+journal homepage: www.elsevier.com/locate/ygeno
+https://doi.org/10.1016/j.ygeno.2025.110994
+Received 16 August 2024; Received in revised form 5 January 2025; Accepted 8 January 2025  
+Genomics
+117 (2025) 110994
+2
+immune cell landscape, transcriptional differences, and immune 
+pathway alterations in the peripheral blood of SLE patients compared to 
+healthy volunteers using high-throughput scRNA-seq technology 
+[10,11]. Research has shown that monocyte activation is related to the 
+progression of SLE, but the specific mechanisms remain unclear [13]. 
+IRF1 is a transcription factor that plays a key role in regulating immune 
+responses, inflammatory responses, and IFN signaling pathways. Its 
+abnormal expression is closely related to the occurrence and progression 
+of SLE [14,15]]. We found that IRF1 was significantly upregulated in 
+monocytes.
+2. Materials and methods
+2.1. Peripheral blood sample collection
+Peripheral blood samples were collected from systemic lupus ery -
+thematosus (SLE) patients (age: 27 ± 6 years, female, n = 7, experi-
+mental group) and healthy volunteers (age: 26 ± 3 years, female, n = 6, 
+control group) at Shenzhen People’s Hospital. This study was approved 
+by the Medical Ethics Committee of Shenzhen People’s Hospital 
+(Approval No.LL-KY-2022058) and conducted in accordance with the 
+principles of the Declaration of Helsinki. All participants provided 
+written informed consent.
+Exclusion Criteria for SLE Patients: 
+• Presence of other autoimmune diseases.
+• HIV/AIDS or other immunodeficiency conditions.
+• History of high-dose glucocorticoids (≥1 mg/kg/day) or other 
+immunosuppressive agents.
+• Pregnancy.
+• SLE patients with SLEDAI score were all in the active stage, all are 
+active periods. (see Table 1 for details).
+2.2. Single-cell RNA sequences
+Isolation of PBMC samples, 10× genomics scRNA-seq library prep -
+aration, scRNA-seq data processing as described previously [16], batch 
+effect correction, cellular subtyping and annotation as well as pathway 
+enrichment analyses, cellular Phone DB as described in Xu et al. [17].
+2.3. Flow cytometry
+Fresh blood samples were collected from SLE patients (n = 6) and 
+healthy controls (n = 4) using EDTA anticoagulant tubes. The samples 
+were centrifuged at 500G/min, and the supernatant was discarded. The 
+remaining pellet was treated with erythrocyte lysis buffer to erythro -
+cyte, followed by centrifugation. The resulting pellet was resuspended 
+and counted. The blank control (without anti-bodies), homotypic con
+-
+trol (homotypic antibodies), and sample tubes were incubated with 
+target antibodies CD19 (BioLegend 302,207), CD3 (BioLegend 
+317,305), CD4 (BioLegend 300,529), CD8 (BioLegend 344,713), and 
+CD66B+ (BioLegend 305,517). percp-cy5.5 (560,525, BD, USA), MS 
+anti-cd11b PE (557,397, BD, USA), and APC rat anti-mouse f4/80 
+(566,787, BD, USA) at 4 
+◦C for 30 min. After staining, the samples were 
+washed with PBS and transferred to flow cytometry tubes for analysis 
+using a Canon II (BD) flow cytometer. Voltage adjustments were made 
+using unstained controls, and compensation was adjusted with single- 
+stained controls. Data were recorded and analyzed using FlowJo soft
+-
+ware (Version 10.00).
+2.4. Chemiluminescence assay for cytokine detection
+Peripheral blood from SLE patients and healthy volunteers was 
+centrifuged at 4 ◦C and 3000 g for 20 min to collect the supernatant. 
+According to the instructions of the assay kits (K15049D, K0082088, 
+MSD), detection antibodies, wash solution, and read buffer were pre
+-
+pared. Standards, controls, and samples (50 μ L each) were added to the 
+wells and incubated at room temperature with shaking at 700 rpm for 1 
+h. Subsequently, 25–50 μ L of detection antibody was added and incu -
+bated under the same conditions. Wells were washed three times with 
+150 
+μ L of wash buffer, and read buffer was added before measurement. 
+The absorbance of each well was detected using the MSD platform. MSD 
+DISCOVERY WORKBENCH analysis software (Version 4.0) was used to 
+quantify multiple inflammatory cytokines, including TNF-
+α , IL-6, and IL- 
+1β, in each sample.
+2.5. Statistical analysis
+All statistical analyses were performed using R software (version 
+4.0.2). P-values were calculated using the Wilcoxon test. In the inter -
+pretation of results, a two-tailed P-value less than 0.05 was considered 
+statistically significant. The P-values are represented as follows: *P <
+0.05; **P < 0.01; ***P < 0.001; ns: P > 0.05.In addition, a HolmBon-
+ferroni multiple comparisons adjustment was applied to the calculation 
+of all diversity and sharing metrics in order to avoid a statistically sig -
+nificant difference between groups as a result of the error rate of 
+occurrence (FDR).
+3. Results
+3.1. Result 1: Single-cell landscape of peripheral blood in SLE
+Using the 10×Genomics platform, we performed scRNA-seq analysis 
+on peripheral blood samples from 7 SLE patients (SLE group) and 6 
+healthy volunteers (NC group). We captured 38,201 cells from the NC 
+group and 33,728 cells from the SLE group. Dimensionality reduction 
+was performed using PCA, and unbiased clustering of cells was con -
+ducted based on the SNN clustering algorithm. The cell subpopulations 
+obtained through clustering analysis were annotated using the singleR 
+package. These cells were ultimately identified and categorized into 
+different immune cell types, including CD4+T, CD8+ T, CD4+ CD8+ T, 
+ProT, NK, Monocytes, DCs, Plasma B, B, and Mgk cells, totaling 10 
+subpopulations (
+Fig. 1A).
+To validate the annotation of cell subpopulations, we performed 
+bidirectional hierarchical clustering of genes and samples, analyzing the 
+expression heatmap of annotated marker genes in each cell subpopula-
+tion (Fig. 1C). Marker genes for each cell group are shown in Fig. 1D-E, 
+with MAL used to identify CD4 + CD8 + T cells, CCL5 for CD8 + T cells, 
+AQP3 for CD4+ T cells, UGHM for B cells, CD68 for Monocytes, KLRF1 
+for NK cells, MKI67 for ProT cells, FCER1A for DCs, and MZB1 for 
+Plasma B cells. These markers were significantly upregulated in their 
+respective subpopulations and weakly expressed in other cell groups.
+Additionally, we compared the proportions of immune cells between 
+the two groups (Fig. 1B). Compared to the NC group, the SLE group 
+exhibited a decrease in the proportion of B cells and CD4 + CD8+ T cells, 
+while the proportions of DCs, Monocytes, Plasma B, and ProT cells 
+increased. Notably, the differences in the numbers of Monocytes and 
+ProT cells were the most pronounced.
+Table 1 
+Clinical features of SLE patients.
+Characteristics SLE patients (n = 7)
+Sex (M/F) 0/7
+SLEDAI average score 10.3
+Disease activity>10 7/7
+Anemia 2/7
+Low complement 2/7 (C3)
+Fever 3/7
+Increasing ds-DNA 6/7
+Arthritis 7/7
+Hematuria 2/7
+Albuminuria 4/7
+G. Wang et al.                                                                                                                                                                                                                                   
+Genomics
+117 (2025) 110994
+3
+Fig. 1. Cluster identification of circulating immune cells in SLE patients. (A) SLE and NC-PBMC cell clustering analysis UMAP plots identified 10 cell types. (B) 
+Percentage of various cell types of SLE-PBMC and NC-PBMC. (C) Normalized expression heatmap of marker genes for each cell type, each column represents a single 
+cell and each row represents a gene. (D) Five marker genes used to identify cell taxa, Percent Expressed is represented by circles (0 to 100) respectively, the larger the 
+circle indicates the higher the degree of expression, Average Expressed is represented by the color shade, the darker the color (  1 to 2), the higher the degree of 
+expression, it can be concluded from the graph that the genes highly expressed by a variety of immune cells. (E) UMAP plot of typical cellular markers used to identify 
+cellular taxa, with color shades indicating the degree of expression.
+G. Wang et al.                                                                                                                                                                                                                                   
+Genomics
+117 (2025) 110994
+4
+To understand the functional states of different cell subpopulations 
+in the SLE group, we analyzed the differential genes between the SLE 
+group and the NC group. The results showed that B cells highly 
+expressed HBB, HB2A, and HBA1, while HLA-DQA2 and S100A8 were 
+significantly upregulated in DCs. Monocytes exhibited high expression 
+of DEFA3, HBB, and MT2 A (Fig. 2A). An organized energy metabolism 
+is essential for normal immune function, and disorders of energy 
+metabolism are increasingly recognized as an important factor in the 
+pathogenesis of SLE. To better understand the functional states of dif
+-
+ferential genes expressed in various cells between the SLE and NC groups 
+and the metabolic and immune-related signaling pathways they involve, 
+we performed KEGG enrichment analysis on the DEGs between the SLE 
+and NC groups (Fig. 2B-C).
+3.2. Result 2: Analysis of differential gene pathway enrichment in SLE- 
+PBMC and NC-PBMC
+The results indicated that compared to the NC group, DEGs in 
+monocytes from the SLE group were significantly enriched in metabolic 
+and immune related pathways, including Riboflavin metabolism, 
+Fig. 2. Differential Gene Expression and Pathway Enrichment Analysis in SLE-PBMC. (A) Upregulated and Downregulated DEGs in SLE-PBMC and NC-PBMC Li-
+braries. (B) Enrichment Analysis of Metabolic Pathways for DEGs in SLE-PBMC and NC-PBMC Libraries.(KEGG pathway enrichment analysis of metabolic pathways 
+for DEGs between SLE and NC groups. Rich factor are represented by colors and size of circle). (C) Enrichment Analysis of Immune Response Related Pathways for 
+DEGs in SLE-PBMC and NC-PBMC Libraries (KEGG) (P < 0.05). P-values are represented by colors, with all P-values less than 0.05. Red indicates a smaller P-value, 
+representing more significant enrichment, while white indicates that DEGs in this cell type are not enriched in the pathway.
+G. Wang et al.                                                                                                                                                                                                                                   
+Genomics
+117 (2025) 110994
+5
+Pentose phosphate pathway, Porphyrin and chlorophyll metabolism, 
+Nicotinate and nicotinamide metabolism, Arginine and proline meta -
+bolism, Sphingolipid metabolism, Arachidonic acid metabolism, Com -
+plement, Angiogenesis, TNF- α signaling via NF-κB, and Inflammatory 
+response.
+In ProT cells, DEGs were mainly involved in pathways such as 
+Glutathione metabolism, Oxidative phosphorylation, Glycolysis/Gluco-
+neogenesis, Fructose and mannose metabolism, Alanine, aspartate and 
+glutamate metabolism, E2F targets, G2M checkpoint, Myc targets V1, 
+Myc targets V2, and Oxidative phosphorylation.
+Additionally, DEGs in DCs from the SLE group were significantly 
+enriched in metabolism related pathways, including Metabolism of xe -
+nobiotics by cytochrome P450, Drug metabolism cytochrome P450, 
+Pentose phosphate pathway, Starch and sucrose metabolism, Steroid 
+hormone biosynthesis, Other glycan degradation, Glycosaminoglycan 
+degradation, Glycosphingolipid biosynthesis ganglio series, Ascorbate 
+and aldarate metabolism, Histidine metabolism, Nitrogen metabolism, 
+and Glycosphingolipid biosynthesis globo and isoglobo series.
+3.3. Result 3: Comparative enrichment levels of monocyte inflammatory 
+response pathways in SLE
+To investigate the differential gene expression in monocytes between 
+SLE-PBMC and NC-PBMC, we performed an analysis of gene expression 
+in monocytes from the SLE and NC groups. The upregulated and 
+downregulated DEGs are shown in Fig. 3A. In the SLE group, monocytes 
+exhibited significantly higher expression levels of IRF1, IFITM3, 
+S100A9, CCL4, and CXCL8 compared to the NC group. Conversely, HLA- 
+Fig. 3. Differential Gene Expression and Pathway Enrichment Analysis in Monocytes from SLE-PBMC. (A) Volcano plot showing the upregulated and downregulated 
+DEGs in monocytes from SLE-PBMC and NC-PBMC. (B) GO term analysis of biological processes for DEGs in monocytes from SLE-PBMC and NC-PBMC scRNA-seq 
+libraries (p < 0.05). (C) GO term analysis of molecular functions for DEGs in monocytes from SLE-PBMC and NC-PBMC scRNA-seq libraries (p < 0.05). (D) KEGG 
+pathway analysis of DEGs in monocytes from SLE-PBMC and NC-PBMC scRNA-seq libraries (p < 0.05).
+G. Wang et al.                                                                                                                                                                                                                                   
+Genomics
+117 (2025) 110994
+6
+DRB5, HLA-OQB1, and TMEM176B were downregulated, and HBB and 
+HBA2 were uniquely expressed in SLE monocytes (Fig. 3A).To better 
+understand the functional states of monocytes, we performed KEGG 
+metabolic pathway analysis(Fig. 3D) and GO analysis(Fig. 3B-C) on the 
+DEGs in monocytes from the SLE and NC groups. Monocytes in the SLE 
+group showed significant enrichment in immune response-related 
+pathways, including Toll-like receptor signaling pathway, chemokine 
+signaling pathway, and cytokine-cytokine receptor interaction. Func
+-
+tional analysis of monocytes indicated a prominent role for protein 
+binding (
+Fig. 3C), suggesting that monocytes may promote SLE patho -
+genesis through interactions with other immune cells via chemokines.
+As shown in Supplementary figure, monocytes from the SLE group 
+exhibited significant enrichment in the inflammatory response, IL2- 
+STAT5 signaling, IL6-JAK-STAT3 signaling, and TNF-
+α signaling via 
+NF-κB pathways compared to the NC group. These findings indicate that 
+the inflammatory response is markedly enhanced in monocytes of the 
+SLE group.
+Supplementary figure: Half-violin plot showing the comparative 
+enrichment of immune response, IL2, IL6, Complement and TNF-
+α 
+related pathways in monocytes from SLE-PBMC and NC-PBMC (p <
+0.05).
+3.4. Result 4: Flow cytometry validation of changes in cell proportions 
+and upregulation of inflammatory cytokines in serum from SLE
+We collected peripheral blood from SLE patients (SLE group) and 
+healthy volunteers (NC group) and used flow cytometry to detect the 
+quantities of various immune cells in the peripheral blood of the SLE and 
+NC groups. The cells were analyzed using FlowJo (Treestar, Ashland, 
+OR, USA). As shown in Fig. 4B, there was a significant increase in 
+monocytes and B cells in the SLE group compared to the NC group, 
+consistent with the results in Fig. 1.
+Pathways associated with the immune response are significantly 
+enriched in monocytes, and to further inflammation, we examined in -
+flammatory factors secreted by monocytes in a variety of serum. We 
+performed cytokine assays on the serum of PBMCs from SLE patients and 
+healthy volunteers. Monocytes secrete inflammatory cytokines, 
+including IFN-γ, TNF-
+α , IL-2, IL-6, IL-8, IL-10, and IL-1β, with 
+Fig. 3. (continued).
+G. Wang et al.                                                                                                                                                                                                                                   
+Genomics
+117 (2025) 110994
+7
+Fig. 4. Flow cytometry and measurement of inflammatory factors. (A-B): B, T, CD4 + T, CD8 + T, Myeliods, Monocytes, Neutrophils in SLE and NC groups, Pe-
+ripheral blood single nucleated cells (PBMCs) were isolated from SLE patients and healthy controls and analyzed by flow cytometry.CD19 + (B cells), CD3-CD14+
+(monocytes), CD3 + CD4+ (CD4 + T cells), CD3 + CD8+ (CD8 + T cells), CD3-CD66B+ (Neutrophils) Frequencies of B cells, T cells, CD4+ T cells, CD8+ T cells, 
+Myeliods cells, Monocytes cells, and Neutrophils cell subpopulations in SLE patients and healthy controls, expressed as mean + SEM. (C): Inflammatory cytokine 
+levels in PBMC serum of SLE patients and healthy volunteers.
+G. Wang et al.                                                                                                                                                                                                                                   
+Genomics
+117 (2025) 110994
+8
+particularly significant increases in IFN-γ and IL-8.
+3.5. Result 5: Communication and interaction between monocytes and 
+other cells in SLE patients
+In this study, we utilized Cell Chat to analyze various immune cells, 
+revealing differences in ligand and receptor expression across different 
+cell types. Fig. 5
+A and B present circular diagrams illustrating the in -
+teractions between signaling pathways among various immune cells. 
+Monocytes exhibit a higher number of net interactions compared to 
+interaction strength when engaging with other cells. We analyzed the 
+incoming and outgoing signaling pathways of different cell types in both 
+SLE and NC groups (
+Fig. 5C). The results indicate that TNF, BAFF, MIF, 
+RESISTIN, GALECTIN, and ANNEXIN signaling pathways in monocytes 
+show significant differences between the two groups. Subsequently, we 
+conducted a comparative analysis of autocrine and paracrine in
+-
+teractions among various immune cells in SLE-PBMC and NC-PBMC. As 
+shown in Fig. 5C, both autocrine and paracrine interaction pathways are 
+significantly enriched in the SLE group compared to the NC group. 
+Furthermore, we categorized the interactions between monocytes and 
+other cells into two communication modes: outbound ligand-receptor 
+pairs and inbound ligand-receptor signaling, primarily characterized 
+by CCL, MIF, and LTA signaling pathways (Supplementary 5 A).
+4. Discussion
+Systemic lupus erythematosus (SLE) is an autoimmune disease that 
+affects multiple organs and systems. The early symptoms are often 
+inconspicuous, and the timing of diagnosis significantly influences pa -
+tient prognosis [18]. Therefore, identifying early diagnostic targets is a 
+primary focus of current research [5]. The pathogenesis is related to 
+increased apoptosis and defects in apoptotic body uptake. Studies have 
+shown that the apoptosis rate of peripheral blood mononuclear cells 
+(PBMCs) in active SLE patients is 30 %. A comprehensive survey of 
+circulating immune cells in SLE is still incomplete [19]. Thus, studying 
+the types and states of circulating immune cells in SLE patients is crucial 
+for understanding the disease mechanism and identifying early diag
+-
+nostic targets [ 10].We analyzed differentially expressed genes (DEGs) 
+and enriched pathways in circulating immune cells of SLE patients 
+compared to healthy volunteers. It is generally believed that monocytes 
+are the effector cells responsible for the inflammation of tissues associ
+-
+ated with the disease, and are able to sense the central node of the pro- 
+inflammatory environment. In monocytes, the expression levels of IRF1, 
+IFITM3, S100A9, CCL4, and CXCL8 were significantly upregulated. 
+IRF1, a member of the transcription factor family regulating host de
+-
+fense, acts as an intracellular mediator of interferon, and its functional 
+and gene expression abnormalities are closely related to the pathogen
+-
+esis of SLE. CCL4 and CXCL8 play essential roles in immune cell 
+chemotaxis. CCL4/macrophage inflammatory protein-1β and CXCL8 are 
+among the chemokines upregulated in SLE-associated autoimmune he
+-
+molytic anemia and primary autoimmune hemolytic anemia. CCL4 is 
+associated with the psychological health of lupus patients, and CXCL8 
+levels are elevated in the serum and cerebrospinal fluid (CSF) of 
+neuropsychiatric SLE patients, serving as a marker for diagnosing CNS 
+involvement in SLE.
+According to result 2, we learned that multiple metabolic pathways 
+are altered in SLE patients, including lipids, cholesterol, and glutamine, 
+and that immune cells in SLE patients usually exhibit a significant in -
+crease in glycolysis and upregulation of glutamine metabolic pathways, 
+which provide energy for immune cell activation, and that this meta
+-
+bolic reprogramming promotes inflammatory responses [ 20,21]. Lipid 
+metabolism is significantly altered, as evidenced by elevated levels of 
+low-density lipoprotein (LDL) and total cholesterol with concomitant 
+decreases in high-density lipoprotein (HDL) levels [22 ]. Our study 
+provides a metabolic map for further exploration of the interaction be -
+tween metabolic disorders and immune regulation in the future to 
+modulate metabolic therapy for SLE.
+Different cell types can promote the proliferation of autoimmune 
+diseases through different signaling pathways. Additionally, the regu -
+lation of signal transduction and cellular communication between cell 
+subpopulations is a key process in inflammation and immunity [ 23]. 
+Disease onset is often associated with certain cellular interactions; thus, 
+we analyzed the differences in cell interactions in the SLE group. Our 
+study found that TNF, BAFF, MIF, RESISTIN, GALECTIN, and ANNEXIN 
+pathways in monocytes had higher interaction intensity in the SLE group 
+than in the NC group. BAFF, a B-cell activating factor, suggests that SLE 
+monocytes might participate in B-cell activation through cell in
+-
+teractions, promoting immune responses. BAFF signaling also interacts 
+with toll-like receptor-mediated signals, enhancing immune responses. 
+TNF, an inflammatory mediator, may play a significant role in the sus
+-
+tained inflammatory response in affected organs [ 24]. TNF plays an 
+inflammatory role in SLE organ disease and is closely related to disease 
+activity [25]. MIF (macrophage migration inhibitory factor) is a cyto -
+kine associated with the pathogenesis of autoimmune inflammatory 
+diseases [
+26], regulating glucocorticoid-mediated immunosuppression 
+and cell survival signaling. Targeting MIF for treating autoimmune 
+diseases has entered early clinical trials [27]. The GALECTIN signaling 
+pathway accelerates the progression of autoimmune diseases to a certain 
+extent and also affects the activation of the MAPK/ERK signaling 
+pathway [28].
+IRF1 plays a pivotal role in activating the type I interferon (IFN) 
+pathway, which in turn promotes the secretion of various inflammatory 
+cytokines, leading to immune system overactivation [29
+]. In this study, 
+we observed significantly elevated expression levels of IRF1 in mono -
+cytes from patients with systemic lupus erythematosus (SLE), alongside 
+a marked enrichment of inflammation-related pathways in these cells. 
+To further investigate, we measured several inflammatory factors, 
+including IFN-γ, TNF- α , and IL-6, which are secreted by monocytes and 
+found to be significantly upregulated in the serum of SLE patients. These 
+cytokines play crucial roles in both inflammation and apoptosis [
+30].
+IFN-γ activates several signaling pathways, including STAT1/STAT3 
+and NF-κB, thereby promoting the transcription of pro-inflammatory 
+cytokines such as IFN-γ, IL-6, IL-8, and MCP-1 [31]. Additionally, SLE 
+is associated with an imbalance between effector and regulatory CD4+T 
+cells, which is tightly regulated by IL-2. This regulatory function of IL-2 
+is often impaired in SLE patients, leading to immune dysregulation [32]. 
+Furthermore, IL-10 may be involved in B cell hyperactivity and the 
+production of autoantibodies in SLE [33
+]. IL-1β is implicated in both 
+acute and chronic inflammation in SLE, contributing to vascular endo -
+thelial injury, joint inflammation, and damage to other organs, and may 
+also lead to lupus nephritis [ 34]. TNF-α , primarily produced by mac -
+rophages, lymphocytes, mast cells, eosinophils, and natural killer (NK) 
+cells, plays a central role in immune suppression and inflammation [
+35]. 
+Elevated serum levels of TNF-α in SLE patients are associated with dis-
+ease activity and a range of systemic manifestations, including cardio -
+vascular diseases and lupus nephritis. IL-6 plays a critical role in SLE by 
+promoting immune cell activation, proliferation, differentiation, and 
+cytokine secretion [
+36]. It works synergistically with IL-1β and TNF-α to 
+enhance inflammatory responses. IL-6, IL-10, and TNF- α have been 
+identified as potential biomarkers for assessing disease activity and 
+severity in SLE [37]. Overall, IRF1 is closely associated with the onset 
+and progression of SLE. Inhibition of IRF1 expression or its downstream 
+signaling pathways may represent a promising therapeutic strategy for 
+SLE [38]. By further elucidating the mechanisms underlying IRF1’s role 
+in SLE, targeting the interferon signaling pathway could reduce the 
+immune system’s attack on self-tissues, potentially alleviating clinical 
+symptoms and offering a novel approach for the treatment of SLE and 
+other autoimmune diseases [29].
+5. Limitations of study and next steps
+Due to the challenges in sample collection, the sample size in this 
+G. Wang et al.                                                                                                                                                                                                                                   
+Genomics
+117 (2025) 110994
+9
+Fig. 5. Differences in communication between monocytes and other cells in SLE and NC. (A-B): Significant associations between 10 interacting immune cells (CD4+
+T, CD8 + T, CD4+ CD8+ T, ProT, NK, Monocyte, DCs, PlasmaB, B, Mgk), different colors represent different cell populations. (C) Comparison of the differences in the 
+strength of interactions between immune cells of the SLE and NC groups through different pathways; this figure shows the intercellular communication network 
+formed through afferent and efferent communication patterns. (D) Comparison of the strength of autocrine and paracrine interactions of six signaling pathways in 
+SLE and NC immune cells.
+G. Wang et al.                                                                                                                                                                                                                                   
+Genomics
+117 (2025) 110994
+10
+study was limited, which consequently restricted the generalizability of 
+the results. Furthermore, the inherent heterogeneity among systemic 
+lupus erythematosus (SLE) patients significantly impacts scRNA-seq 
+outcomes. Different SLE patients may present with distinct immune 
+cell subpopulations or variations in the proportions of specific cell types, 
+such as T cells, B cells, and monocytes, which can influence the results of 
+cell clustering and identification [39,40].
+Moreover, scRNA-seq in population-based cohorts is limited by both 
+technical and logistical challenges, including low throughput and high 
+cost. Therefore, the advancement of single-cell sequencing technologies 
+across disciplines is crucial. Despite these challenges, the greatest hurdle 
+remains translating RNA-seq findings into clinical applications [10,41]. 
+While existing RNA-seq datasets offer a valuable framework for defining 
+immune cell populations in the peripheral blood of SLE patients, they 
+primarily serve as a starting point for addressing a wide range of addi
+-
+tional questions related to disease mechanisms and clinical outcomes 
+[
+11]. Due to various factors, we were unable to complete the knockdown 
+of IRF1 in mononuclear cells to assess its impact on inflammatory cy -
+tokines. This aspect has been addressed based on previous studies [42], 
+and further investigations are warranted in future research. It is hoped 
+that scientists will work together to achieve breakthrough scientific 
+research results in the treatment and early diagnosis of systemic lupus 
+erythematosus.
+CRediT authorship contribution statement
+Guoying Wang: Writing – original draft, Methodology, Investiga -
+tion, Data curation. Huihui Tao: Methodology, Funding acquisition, 
+Data curation. Lingling Zhou: Supervision, Software. Junning Zhang: 
+Writing – review & editing, Writing – original draft, Conceptualization. 
+Wenjun Pu: Writing – review & editing, Validation, Conceptualization. 
+Tiantian Xu: Methodology, Data curation. Chunmei Wen: Formal 
+analysis, Data curation. Yali Peng: Investigation. Mengyao Wu: Soft-
+ware. Xuejia Zheng: Resources. Yong Dai: Supervision, Funding 
+acquisition.
+Declaration of competing interest
+The authors declare that they have no known competing financial 
+interests or personal relationships that could have appeared to influence 
+the work reported in this paper.
+Data availability
+Data will be made available on request.
+Appendix A. Supplementary data
+Supplementary data to this article can be found online at https://doi. 
+org/10.1016/j.ygeno.2025.110994.
+References
+[1] M.E. Munroe, et al., Proinflammatory adaptive cytokine and shed tumor necrosis 
+factor receptor levels are elevated preceding systemic lupus erythematosus disease 
+flare, Arthritis Rheumatol. 66 (7) (2014) 1888–1899.
+[2] Y. Fan, Y.J. Hao, Z.L. Zhang, Systemic lupus erythematosus: year in review 2019, 
+Chin. Med. J. (Engl) 133 (18) (2020) 2189–2196.
+[3] F.N.C. Kalayci, S. Ozen, Possible role of Dysbiosis of the gut microbiome in SLE, 
+Curr. Rheumatol. Rep. 25 (12) (2023) 247–258.
+[4] D. Rigante, S. Esposito, Infections and systemic lupus erythematosus: binding or 
+sparring partners? Int. J. Mol. Sci. 16 (8) (2015) 17331–17343.
+[5] L. Durcan, T. O’Dwyer, M. Petri, Management strategies and future directions for 
+systemic lupus erythematosus in adults, Lancet 393 (10188) (2019) 2332–2343.
+[6] A.T. Borchers, et al., Surviving the butterfly and the wolf: mortality trends in 
+systemic lupus erythematosus, Autoimmun. Rev. 3 (6) (2004) 423–453.
+[7] W. Jiang, et al., Sex differences in monocyte activation in systemic lupus 
+erythematosus (SLE), PloS One 9 (12) (2014) e114589.
+[8] Q. Mu, H. Zhang, X.M. Luo, SLE: another autoimmune disorder influenced by 
+microbes and diet? Front. Immunol. 6 (2015) 608.
+[9] H.M. Kang, et al., Multiplexed droplet single-cell RNA-sequencing using natural 
+genetic variation, Nat. Biotechnol. 36 (1) (2018) 89–94.
+[10] Y. Li, et al., Combined proteomics and single cell RNA-sequencing analysis to 
+identify biomarkers of disease diagnosis and disease exacerbation for systemic 
+lupus erythematosus, Front. Immunol. 13 (2022) 969509.
+[11] Z. Liu, et al., Single-cell transcriptional profiling reveals aberrant gene expression 
+patterns and cell states in autoimmune diseases, Mol. Immunol. 165 (2024) 68–81.
+[12] R.K. Perez, et al., Single-cell RNA-seq reveals cell type-specific molecular and 
+genetic associations to lupus, Science 376 (6589) (2022) eabf1970.
+[13] A.G. Ferret´e-Bonastre, et al., Disease activity drives divergent epigenetic and 
+transcriptomic reprogramming of monocyte subpopulations in systemic lupus 
+erythematosus, Ann. Rheum. Dis. 83 (7) (2024) 865–878.
+[14] A. Wang, et al., IFIH1/IRF1/STAT1 promotes sepsis associated inflammatory lung 
+injury via activating macrophage M1 polarization, Int. Immunopharmacol. 114 
+(2023) 109478.
+[15] J. Liu, C.C. Berthier, J.M. Kahlenberg, Enhanced Inflammasome activity in 
+systemic lupus erythematosus is mediated via type I interferon-induced up- 
+regulation of interferon regulatory factor 1, Arthritis Rheumatol. 69 (9) (2017) 
+1840–1849.
+[16] H. Zhu, et al., Human PBMC scRNA-seq-based aging clocks reveal ribosome to 
+inflammation balance as a single-cell aging hallmark and super longevity, Sci. Adv. 
+9 (26) (2023) eabq7599.
+[17] M. Terekhova, et al., Single-cell atlas of healthy human blood unveils age-related 
+loss of NKG2C(+)GZMB(  )CD8(+) memory T cells and accumulation of type 2 
+memory T cells, Immunity 56 (12) (2023) 2836–2854.e9.
+[18] V. Strand, et al., Long-term impact of Belimumab on health-related quality of life 
+and fatigue in patients with systemic lupus erythematosus: six years of treatment, 
+Arthritis Care Res. (Hoboken) 71 (6) (2019) 829–838.
+[19] M.A. Honardoost, et al., Systematic immune cell dysregulation and molecular 
+subtypes revealed by single-cell RNA-seq of subjects with type 1 diabetes, Genome 
+Med. 16 (1) (2024) 45.
+[20] J.Q. Hu, et al., Targeting abnormal lipid metabolism of T cells for systemic lupus 
+erythematosus treatment, Biomed. Pharmacother. 165 (2023) 115198.
+[21] J. Tian, et al., Global epidemiology of systemic lupus erythematosus: a 
+comprehensive systematic analysis and modelling study, Ann. Rheum. Dis. 82 (3) 
+(2023) 351–356.
+[22] S. Cao, et al., Abnormal energy metabolism in the pathogenesis of systemic lupus 
+erythematosus, Int. Immunopharmacol. 134 (2024) 112149.
+[23] Q. Liang, et al., Single-nuclei RNA-seq on human retinal tissue provides improved 
+transcriptome profiling, Nat. Commun. 10 (1) (2019) 5743.
+[24] S. Pasquereau, A. Kumar, G. Herbein, Targeting TNF and TNF receptor pathway in 
+HIV-1 infection: from immune activation to viral reservoirs, Viruses 9 (4) (2017).
+[25] H. Mahto, et al., TNF-
+α promoter polymorphisms (G-238A and G-308A) are 
+associated with susceptibility to systemic lupus erythematosus (SLE) and P. 
+Falciparum malaria: a study in malaria endemic area, Sci. Rep. 9 (1) (2019) 11752.
+[26] I. Kang, R. Bucala, The immunobiology of MIF: function, genetics and prospects for 
+precision medicine, Nat. Rev. Rheumatol. 15 (7) (2019) 427–437.
+[27] U. De la Cruz-Mosso, et al., MIF promotes a differential Th1/Th2/Th17 
+inflammatory response in human primary cell cultures: predominance of Th17 
+cytokine profile in PBMC from healthy subjects and increase of IL-6 and TNF-
+α in 
+PBMC from active SLE patients, Cell. Immunol. 324 (2018) 42–49.
+[28] E. Der, et al., Single cell RNA sequencing to dissect the molecular heterogeneity in 
+lupus nephritis, JCI Insight 2 (9) (2017).
+[29] J. Chen, et al., HDAC1 potentiates CD4 + T cell activation by inhibiting miR-124 
+and promoting IRF1 in systemic lupus erythematosus, Cell. Immunol. 362 (2021) 
+104284.
+[30] A. El-Gohary, et al., Serum and urinary interferon-gamma-inducible protein 10 in 
+lupus nephritis, J. Clin. Lab. Anal. 30 (6) (2016) 1135–1138.
+[31] A. Billiau, P. Matthys, Interferon-gamma: a historical perspective, Cytokine Growth 
+Factor Rev. 20 (2) (2009) 97–113.
+[32] E.J. Kunkel, E.C. Butcher, Chemokines and the tissue-specific migration of 
+lymphocytes, Immunity 16 (1) (2002) 1–4.
+[33] T.A. Gottschalk, E. Tsantikos, M.L. Hibbs, Pathogenic inflammation and its 
+therapeutic targeting in systemic lupus erythematosus, Front. Immunol. 6 (2015) 
+550.
+[34] E. Voronov, et al., IL-1 beta-deficient mice are resistant to induction of 
+experimental SLE, Eur. Cytokine Netw. 17 (2) (2006) 109–116.
+[35] H. Idborg, et al., TNF-
+α and plasma albumin as biomarkers of disease activity in 
+systemic lupus erythematosus, Lupus Sci. Med. 5 (1) (2018) e000260.
+[36] H. Idborg, V. Oke, Cytokines as biomarkers in systemic lupus erythematosus: value 
+for diagnosis and drug therapy, Int. J. Mol. Sci. 22 (21) (2021).
+[37] V. Erazo-Martínez, G.J. Tob ´on, C.A. Ca ˜nas, Circulating and skin biopsy-present 
+cytokines related to the pathogenesis of cutaneous lupus erythematosus, 
+Autoimmun. Rev. 22 (2) (2023) 103262.
+[38] Y.T. Leung, et al., Prolactin activates IRF1 and leads to altered balance of histone 
+acetylation: implications for systemic lupus erythematosus, Mod. Rheumatol. 30 
+(3) (2020) 532–543.
+[39] D. Nehar-Belaid, et al., Mapping systemic lupus erythematosus heterogeneity at the 
+single-cell level, Nat. Immunol. 21 (9) (2020) 1094–1106.
+G. Wang et al.                                                                                                                                                                                                                                   
+Genomics
+117 (2025) 110994
+11
+[40] C. Guo, et al., Single-cell transcriptome profiling and chromatin accessibility reveal 
+an exhausted regulatory CD4+ T cell subset in systemic lupus erythematosus, Cell 
+Rep. 41 (6) (2022) 111606.
+[41] Y. Ghodke-Puranik, et al., Single-cell expression quantitative trait loci (eQTL) 
+analysis of SLE-risk loci in lupus patient monocytes, Arthritis Res. Ther. 23 (1) 
+(2021) 290.
+[42] F. Geng, et al., Chaperone- and PTM-mediated activation of IRF1 tames radiation- 
+induced cell death and the inflammatory response, Cell. Mol. Immunol. 21 (8) 
+(2024) 856–872.
+G. Wang et al.                                                                                                                                                                                                                                   

@@ -1,0 +1,1084 @@
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+Available online 29 March 2023
+0925-4439/© 2023 Published by Elsevier B.V. This article is made available under the Elsevier license ( http://www.elsevier.com/open-access/userlicense/1.0/).
+Single cell RNA-seq resolution revealed CCR1
++
+/SELL
++
+/XAF
++
+CD14 
+monocytes mediated vascular endothelial cell injuries in Kawasaki disease 
+and COVID-19 
+Xiaoliang Liu
+a
+, Tingting Luo
+b , c
+, Zhenxin Fan
+d
+, Jiawen Li
+a
+, Yue Zhang
+a
+, Guoyan Lu
+a
+, 
+Mingyi Lv
+d
+, Sha Lin
+a
+, Ziwen Cai
+e
+, Jinbao Zhang
+f
+, Kaiyu Zhou
+a
+, Junling Guo
+g
+, Yimin Hua
+a , *
+, 
+Yaoyao Zhang
+b , **
+, Yifei Li
+a , * 
+a
+Key Laboratory of Birth Defects and Related Diseases of Women and Children of MOE, Department of Pediatrics, West China Second University Hospital, Sichuan 
+University, Chengdu, Sichuan 610041, China 
+b
+Key Laboratory of Birth Defects and Related Diseases of Women and Children of MOE, Reproductive Centre, Department of Obstetrics and Gynecology, West China 
+Second University Hospital, Sichuan University, Chengdu, Sichuan 610041, China 
+c
+Institute of Animal Genetics and Breeding, College of Animal Science and Technology, Sichuan Agricultural University, Chengdu, Sichuan 611130, China 
+d
+Key Laboratory of Bioresources and Eco-Environment (MOE), College of Life Sciences, Sichuan University, Chengdu, Sichuan 610065, China 
+e
+Department of Cardiovascular Surgery, Union Hospital, Tongji Medical College, Huazhong University of Science and Technology, Wuhan, China 
+f
+Department of Cardiovascular Surgery, General Hospital of Western Theater Command, Chengdu, Sichuan 610083, China 
+g
+BMI Center for Biomass Materials and Nanointerfaces, College of Biomass Science and Engineering, Sichuan University, Chengdu, Sichuan 610065, China   
+ARTICLE INFO  
+Keywords: 
+Kawasaki disease 
+COVID-19 
+Endothelial cell 
+Vasculitis 
+scRNA-seq 
+ABSTRACT  
+Introduction: The COVID-19 pandemic provide the opportunities to explore the numerous similarities in clinical 
+symptoms with Kawasaki disease (KD), including severe vasculitis. Despite this, the underlying mechanisms of 
+vascular injury in both KD and COVID-19 remain elusive. To identify these mechanisms, this study employs 
+single-cell RNA sequencing to explore the molecular mechanisms of immune responses in vasculitis, and validate 
+the results through in vitro experiments. 
+Method: The single-cell RNA sequencing (scRNA-seq) analysis of peripheral blood mononuclear cells (PBMCs) 
+was carried out to investigate the molecular mechanisms of immune responses in vasculitis in KD and COVID-19. 
+The analysis was performed on PBMCs from six children diagnosed with complete KD, three age-matched KD 
+healthy controls (KHC), six COVID-19 patients (COV), three influenza patients (FLU), and four healthy controls 
+(CHC). The results from the scRNA-seq analysis were validated through flow cytometry and immunofluorescence 
+experiments on additional human samples. Subsequently, monocyte adhesion assays, immunofluorescence, and 
+quantitative polymerase chain reaction (qPCR) were used to analyze the damages to endothelial cells post- 
+interaction with monocytes in HUVEC and THP1 cultures. 
+Results: The scRNA-seq analysis revealed the potential cellular types involved and the alterations in genetic 
+transcriptions in the inflammatory responses. The findings indicated that while the immune cell compositions 
+had been altered in KD and COV patients, and the ratio of CD14 + monocytes were both elevated in KD and COV. 
+While the CD14 + monocytes share a large scale of same differentiated expressed geens between KD and COV. 
+The differential activation of CD14 and CD16 monocytes was found to respond to both endothelial and epithelial 
+dysfunctions. Furthermore, SELL + /CCR1 + /XAF1 + CD14 monocytes were seen to enhance the adhesion and 
+damage to endothelial cells. The results also showed that different types of B cells were involved in both KD and 
+COV, while only the activation of T cells was recorded in KD. 
+Conclusion: In conclusion, our study demonstrated the role of the innate immune response in the regulation of 
+endothelial dysfunction in both KD and COVID-19. Additionally, our findings indicate that the adaptive im -
+munity activation differs between KD and COVID-19. Our results demonstrate that monocytes in COVID-19 
+* Corresponding authors at: Key Laboratory of Birth Defects and Related Diseases of Women and Children of MOE, Department of Pediatrics, West China Second 
+University Hospital, Sichuan University, 20 3rd Section, Renmin S.Rd., Chengdu, Sichuan 610041, China. 
+** Correspondence to: Y. Zhang, Key Laboratory of Birth Defects and Related Diseases of Women and Children of MOE, Reproductive Centre, Department of 
+Obstetrics and Gynecology, West China Second University Hospital, Sichuan University, 20 3rd Section, Renmin S.Rd., Chengdu, Sichuan 610041, China. 
+E-mail addresses: Nathan_hua@163.com (Y. Hua), yaoyaozhang@scu.edu.cn (Y. Zhang), liyfwcsh@scu.edu.cn (Y. Li).  
+Contents lists available at ScienceDirect 
+BBA - Molecular Basis of Disease 
+journal homepage: www.else vier.com/loc ate/bbadis 
+https://doi.org/10.1016/j.bbadis.2023.166707 
+Received 4 September 2022; Received in revised form 10 February 2023; Accepted 23 March 2023   
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+2
+exhibit adhesion to both endothelial cells and alveolar epithelial cells, thus providing insight into the mecha -
+nisms and shared phenotypes between KD and COVID-19.   
+1. Introduction 
+The coronavirus disease 2019 (COVID-19) underlines a pandemic for 
+more than two years. Since the initial outbreak in late 2019, COVID-19 
+has been considered the most dominant healthy challenge across the 
+world [1] . Cardiovascular complications have been reported to be 
+associated with increased mortality and worsening hospital outcomes 
+[2] . The infection between SARS-Cov-2 and host cells relies on several 
+receptors binding with Spike glycoprotein (S protein), including 
+angiotensin-converting enzyme 2 (ACE2) [3] . Previous research 
+demonstrated that the S protein would cause endothelial dysfunction by 
+generating redox stress and impaired mitochondrial hemostasis, which 
+revealed COVID-19 as a kind of vasculitis [4] . Moreover, Multisystem 
+inflammatory syndrome in children (MIS-C) has been identified among 
+pediatric patients of COVID-19, which is closely similar to Kawasaki 
+disease (KD), sharing a large number of clinical characteristics, indi -
+cating significantly elevated mortality [5,6] . MIS-C is also known as 
+pediatric inflammatory syndrome temporally associated with SARS- 
+CoV-2. MIS-C, a rare but severe condition in children, arises days to 
+weeks after the initial infection [7] . Notably, cardiovascular involve -
+ment is documented in most MIS-C patients [8] . 
+On the other hand, KD has become the primary threat to induce in -
+flammatory vasculitis as the most commonly required cardiovascular 
+disease [9] . Generally, severe inflammatory activities could be identi -
+fied in KD patients, significantly associated with coronary artery injuries 
+[10] . However, the molecular mechanisms of KD-inducing coronary 
+artery lesions are still unknown. In recent research, COVID-19 has also 
+been recognized as an untypical type of vasculitis. Although a series of 
+studies were devoted to revealing the molecular responses during KD- 
+related coronary artery injuries, no solid evidence could be provided 
+in the absence of any similar clinical diseases serving as a reference. 
+However, the identification of KD-like clinical phenomenon in COVID- 
+19 was required to be explored. Thus, it is critical to identify the 
+mechanisms of vascular injuries related to inflammation response, 
+which are shared by COVID-19 and KD, providing novel insights for 
+protecting patients from COVID-19 and KD. During vasculitis, the 
+interaction between peripheral blood mononuclear cells (PBMCs) and 
+vessel endothelial cells contributes to coronary artery injuries [11] . 
+Herein, to investigate the etiological immunological responses in KD, 
+we conducted research based on single-cell RNA sequencing (scRNA- 
+seq) to demonstrate the shared changes in PBMCs in mediating the 
+endothelial cell injuries in the coronary artery of KD and COVID-19. 
+Besides, we also involved the scRNA-seq data of PBMCs from influ -
+enza patients in distinguishing any unrelated potential molecular 
+mechanisms. Also, laboratory experiments were completed to validate 
+the results from scRNA-seq. 
+2. Materials and methods 
+2.1. Patients and sample collection 
+Six children were diagnosed as complete KD, following the American 
+Heart Association's recommendation criteria. Three age-matched vol -
+unteers were enrolled as KD healthy control (KHC) were collected. Pa -
+tients with cardiovascular malformation, autoimmune disease before KD 
+onset, monoclonal antibody therapy, or other blood diseases were 
+excluded. Parents or guardians of the participants have provided their 
+informed consent to participate in this study. The Ethics Committee 
+approved the study of West China Second Hospital, China. The pub -
+lished data on scRNA-seq of PBMCs of 6 COVID-19 patients (COV) 
+(GSE150728) [12] , 3 influenza patients (FLU) (GSE149689) [13] and 4 
+related healthy control ones (CHC) (GSE150728) [12] had been re- 
+analyzed. 
+2.2. Single-cell collection and scRNA-seq 
+Peripheral blood samples (2 mL each sample) were collected from 
+the nine subjects. The single-cell suspensions of scRNA-seq samples were 
+converted to barcoded scRNA-seq libraries using the Chromium Single 
+Cell 5
+′
+Library, Gel Bead and Multiplex Kit, and Chip Kit (10x Genomics). 
+The Chromium Single Cell 5
+′
+v2 Reagent (10x Genomics) kit was used to 
+prepare single-cell RNA libraries according to the manufacturer's in -
+structions. The Cellranger [14] software (v4.0.0) was initially used to 
+process the sequencing data. 
+2.3. Quality control and cell filtering 
+The doublets were identified using scrublet [15] (version 0.2.3). The 
+UMI count matrix was converted to Seurat objects using the R package 
+Seurat v4 [16] . All samples with fewer than 500 and > 5000 cells were 
+removed. Cells with > 1000 UMIs and fewer than 15,000 UMIs and cells 
+with fewer than 20 % of reads from mitochondrial genes were preserved. 
+2.4. Single-cell preprocessing and annotation 
+The data were normalized using the “ NormalizeData ” function and 
+further scaled using the “ ScaleData ” function of the Seurat package. 
+Cells were clustered and annotated with Azimuth, which uses high- 
+quality reference data sets to map new scRNA-seq data quickly. In this 
+process, the batch effect was removed, and UMAP, PCA, FindNeighbors, 
+and FindClusters were calculated for the matrix using Azimuth. The 
+annotation cell type result was verified according to the canonical 
+marker genes. Calculate_auc function from Augur [17] was used to 
+prioritize cell types by comparing KD and COV to their controls 
+separately. 
+2.5. Pseudo-bulk expression analysis 
+To generate the pseudo-bulk expression matrix, we used the filtered 
+matrix from all of our scRNA-seq samples and publicly available scRNA- 
+seq experiments we used before. DEGs were identified using DESeq2 
+[18] as those with a cut-off adjusted p value of 0.05 and absolute log2 
+fold change > 1. Then normalized pseudo-bulk expression matrix by 
+using PCA from FactoMineR [19] . Umap was performed or further 
+UMAP dimensionality reduction. 
+2.6. Calculate module scores for gene sets expression programs 
+AddModuleScore from Seurat was performed to calculate the 
+average expression levels of each cell type or group on a single cell level, 
+subtracted by the aggregated expression of control gene sets. 
+2.7. Single-cell level differential gene expression analysis 
+Seurat FindMarkers function with default parameters was used to 
+identify differentially expressed genes between the groups of the same 
+cell type. Differentially expressed genes were required to average log2 
+fold change > 0.25, Compared with the average expression in the other 
+groups. Moreover, DEGs were filtered using the adjusted p -value 
+( < 0.05). 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+3
+2.8. Visualization of gene expression 
+VlnPlot, FeaturePlot, and Dotplot were performed to compare 
+interested gene expression in each cell type or group. 
+2.9. Gene ontology analysis 
+GO biological process and pathway enrichment analyses were per -
+formed using enrichGO and compareCluster from clusterProfiler [20] (R 
+package, version 3.14.3), which supports statistical analysis and visu -
+alization of functional profiles for genes and gene clusters. And the re -
+sults were visualized with the ggplot2 (R package, version 3.3.5). 
+2.10. Cell culture 
+The human endothelial cell line HUVEC cultured in Dulbecco's 
+Modified Eagle's Medium (Gibco, Thermo Fisher Scientific, Inc., Wal -
+tham, MA, USA) and human monocyte cell line THP1 cultured in 1640 
+medium (Gibco, Thermo Fisher Scientific) with 10 % fetal bovine serum 
+(Gibco, Thermo Fisher Scientific), 100 mg/ml penicillin and 100 mg/ml 
+streptomycin (Gibco, Thermo Fisher Scientific), all cells were main -
+tained at 37 
+◦
+C, 5 % CO
+2 
+atmosphere. 
+2.11. Cell transfection 
+THP1 cells were seeded in a TC-untreated 6-well plate, and siRNA 
+was transfected into cells using RNAiMAX reagent (Thermo Fisher Sci -
+entific) according to the manufacturer's instructions. siRNA sequences 
+are listed in Supplementary Table 1. 
+2.12. RNA extraction and RT-qPCR 
+Total RNA was extracted from the cells using a NucleoZOL reagent 
+(MACHEREY-NAGEL Inc.) according to the manufacturer's instructions. 
+Reverse transcription was performed with PrimeScript ™ RT reagent Kit 
+with gDNA Eraser (Takara Biomedical Technology Co, Ltd). The gene 
+expression was detected with TB Green ™ Premix Ex Taq ™ II (Tli RNa -
+seH Plus, Takara Biomedical Technology Co, Ltd) and CFX96 Real-Time 
+Detection system (BIO-RAD), and all these results were normalized to 
+the expression of 18S. Primers used in this article are listed in Supple -
+mentary Table 2. The relative fold change of expression was measured 
+using the 2   ΔΔ Ct method where Δ Ct = Ct (detected gene) – Ct (control 
+gene) and Ct indicated the threshold cycle number. Sequences of primers 
+are listed in Supplementary Table 2. 
+2.13. Monocyte adhesion assay 
+Gene-silenced THP-1 cells were labeled with Calcein AM (Thermo 
+Fisher Scientific) and incubated on top of a monolayer of HUVECs for 1 
+h. Nonadherent cells were washed three times with PBS buffer. Mono -
+cyte adhesion was photographed using an Olympus inverted fluores -
+cence microscopy. 
+2.14. Flow cytometry 
+Peripheral blood was drawn from patients prior to drug therapy. 
+PBMCs were isolated by Human Peripheral Blood Mononuclear Cell 
+Isolation Kit (Solarbio, cat # P8680). All flow cytometry was performed 
+on a BD FACSCelesta ™ Flow Cytometer (BD Biosciences, San Jose, CA) 
+and analyzed with FlowJo (Tree Star, Ashland, OR). Most Abs for FACS 
+were purchased from BD biosciences except the Lamin B1 from Pro -
+teintech (3C10G12, Wuhan, China). The following antibodies from BD 
+biosciences were used: BV421 anti-CD14 (M φ P9; BD), PE anti-CD16 
+(B73.1; BD), BB700 anti-TLR4 (TF901,BD), APC anti-CCR1(53504, 
+BD), BV605 anti-SELL (DREG-56, BD). PBMCs were washed using cell 
+staining buffer (Biolegend, cat # 420401) and subjected to staining with 
+surface antibodies (1:50 dilution). Intracellular staining of Lamin B1 was 
+performed with anti-Lamin B1 mAb (1:50 dilution) and Foxp3/Tran -
+scription Factor Staining Buffer Set (Biolegend) according to the man -
+ufacturer's instructions. All antibodies were matched with their correct 
+fluorescent-conjugated isotype control. 
+2.15. Immunofluorescence 
+Cell smear of PBMCs was made by centrifugation at 2000 × g for 10 
+min with UNIVERSAL 320 (Germany, Hettic). Nuclei were visualized 
+with 4
+′
+,6
+′
+-diamidino-phenylindole (DAPI, 1:5000, Invitrogen). Cell 
+smears fixated in 4 % PFA were blocked in blocking buffer (PBS con -
+taining 1 % BSA, 0.1 % Triton X-100, 5 % goat serum) for 1 h at room 
+temperature, followed by incubation with rabbit anti-Dysferlin (1:200, 
+Abcam, cat # ab124684), rabbit anti-XAF1 (1:200, Abcam cat #ab2254) 
+antibodies and mouse anti-CD14 (1:200, Abcam cat #ab181470) diluted 
+in PBS containing 1 % BSA, 5 % goat serum at 4
+◦
+C overnight. Slides were 
+washed in PBS and incubated with donkey anti-rabbit and donkey anti- 
+mouse AlexaFluor 488 or 555 as secondary antibody (1:200, Invitrogen) 
+in PBS for 2 h at room temperature. Slides were washed in PBS. Nuclei 
+were stained with 4
+′
+-6-diamidino-2-phenylindole (DAPI; Thermo Fisher 
+Scientific). Confocal imaging was performed with an Olympus FV3000 
+confocal laser scanning microscope and FV3000 software (Olympus). 
+Image processing and analysis were carried out using ImageJ version 
+1.51 software. Quantitative data were obtained by measuring the 
+number of cells with double positive fluorescence of CD14(membrane) 
+and DYSF (membrane) / XAF1 (nuclei). 
+2.16. Statistical analyses 
+All statistical analyses were performed using R (4.1.0). The Wilcoxon 
+rank-sum test tested the means of medians for continuous variables in 2 
+independent groups. Furthermore, the p -value was adjusted by Bonfer -
+roni post hoc test for multiple groups comparison. The Chi-square test 
+tested proportions for categorical variables, and Fisher exact test was 
+performed when the expected value was small. Differences were 
+considered to be significant when P < 0.05 (*), P < 0.01 (**), P < 0.001 
+(***), and P < 0.0001 (****). 
+3. Results 
+3.1. Immune cell composition differs in KD and COVID-19 patients 
+ScRNA-seq technology of PBMCs with high accuracy and specificity 
+has been involved to identify the potential participated cellular types 
+and altered genetic transcriptions in inflammatory responses. 6 children 
+were diagnosed as completed KD without intravenous immunoglobin 
+(IVIG) resistance during treatment. And 3 age-matched healthy 
+Table 1 
+The demographic and clinical characteristics of patients in this study.  
+KD group Age(years)/ 
+sex 
+Complete KD Treatment CALs Prognosis 
+Patient 1 3.2/F Yes IVIG(2 g/kg) No Alive 
+Patient 2 3.5/F Yes IVIG(2 g/kg) No Alive 
+Patient 3 3.0/F Yes IVIG(2 g/kg) No Alive 
+Patient 4 3.2/M Yes IVIG(2 g/kg) No Alive 
+Patient 5 3.6/M Yes IVIG(2 g/kg) Yes Alive 
+Patient 6 3.3/M Yes IVIG(2 g/kg) No Alive  
+KHC group 
+Case 1 3.5/F N/A None No Alive 
+Case 2 3.6/F N/A None No Alive 
+Case 3 3.2/M N/A None No Alive 
+KD, Kawasaki disease; KHC, KD healthy control; IVIG, intravenous 
+immunoglobulin. 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+4
+(caption on next page) 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+5
+volunteers were enrolled as KD control. The essential features of 
+included patients were presented in Table 1 . After filtering the data with 
+stringent high quality, we obtained scRNA-seq data of 30,576 cells from 
+6 KD children (KD) and 25,178 cells from the healthy controls for KD 
+(KHC). The published data on scRNA-seq of PBMCs of 6 COVID-19 pa -
+tients (GSE150728), 3 influenza patients (GSE149689), and 4 related 
+healthy control ones (GSE150728) had been re-analyzed. Among them, 
+20,464 cells were from COVID-19 patients (COV), 7842 cells were from 
+the influenza patients (FLU), and 11,848 cells were from the healthy 
+adults (CHC). To explore the differential immune responses in KD and 
+COVID-19, we analyzed the scRNA-seq data from KD patients in our 
+center and published scRNA-seq data of COVID-19 and FLU mentioned 
+above. The flow chart is presented in Fig. 1 A. Using Uniform Manifold 
+Approximation and Projection (UMAP), 16 clusters of immune cells 
+were identified according to the canonical marker gene ( Fig. 1 B). Innate 
+immune cells were classified into classical monocyte (LYZ, CD14
+hi
+, 
+FCGR3A
+ 
+), non-classical monocyte (LYZ, FCGR3A
+hi
+), intermediate 
+monocyte (CD14hi, FCGR3A
++
+), NK cell (GNLY, NKG7), myeloid DC 
+(CD1C), and pDC (CLEC4C) dendritic cells. T cells (CD3E) were classi -
+fied into nine classes, including naive CD4 T cell (CD4), naive CD8 T cell 
+(CD8A, CCR7), CD8 cytotoxic lymphocyte (CD8 CTL; CD8A, GZMA), 
+Treg (SELL), effector memory CD8 T cell (CD8 TEM, GZMB, PRF1), 
+MAIT (TRAV1-2), γδ T cell (TRGV9, TRDV2), proliferative T lymphocyte 
+(MKI67), and NKT cell (NKG7). B cells (CD79A) were classified into 
+naive B cell (MS4A1, CCR7, SELL), memory B cell (MS4A1), and plasma 
+cell (MZB1) ( Fig. 1 B). 
+Then we measured cell composition among KD, KHC, COV, FLU, and 
+CHC. UMAP projection demonstrated the immune cell distribution 
+among different patients of KD, KHC, COV, CHC, and FLU ( Fig. 1 D). 
+Then we quantified the cell composition among the five groups ( Fig. 1 E). 
+Among all the comparisons, we presented the boxplots on the fraction of 
+specific cell types. Interestingly, a higher percentage of CD14 classic 
+monocytes were both observed in KD ( P < 0.05) and COV (P < 0.05) 
+( Fig. 1 E), which was the only cellular type of monocytes that we 
+recorded in the similar changing direction in cell fraction between KD 
+and COV compared to controls. Besides, Intermediate monocytes were 
+recorded only in KD by either percentage or number quantified. How -
+ever, there were no significant changes among the 5 groups compared to 
+CD16 non-classic monocytes ( Fig. 1 E). And no other similar changes 
+have been identified between KD and COV. The proportions of inter -
+mediate B cells were markedly reduced in KD and COV. There were no 
+differences in the comparison in naïve B cells among the five groups. A 
+significantly elevated proportion had been recorded in plasmablasts. 
+Among all kinds of T cells, KD patients demonstrated a significant 
+reduction in CD4 TCM and CD8 TEM ( p < 0.05). While only COV pa -
+tients presented a decreased fraction of NK cells. And both COV and FLU 
+patients presented a similar lower level of MAIT cellular proportion 
+compared to CHC, while the was no significant difference between KD 
+and KHC individuals. So that, according to the cell faction analysis, we 
+found only a few types of immune cells shared similar trends in faction 
+changes, especially in classic monocytes and intermediate B cells. Most 
+of the cell types revealed differential changes between KD and COV 
+individuals. 
+The UMAP projection of these DEGs revealed five distinct subgroups, 
+separated by diseases (Supplementary Fig. 1A). To further prioritize the 
+cell types most responsive to both KD and COV, we calculated the 
+numbers of differentiated expressed genes (DEGs, p adjusted value cut- 
+off of 0.05) among all annotated cellular types between subgroups and 
+their equivalent healthy controls ( Fig. 1 F). The composition of cellular- 
+specific DEGs to all identified DEGs among KD, COV, and FLU groups 
+had been assessed. We ranked the cell types based on the identified DEGs 
+of KD patients ( Fig. 1 F). There were notably more DEGs in multiple cell 
+types of monocytes and B cells than T cells. Intermediate monocyte, 
+naïve B, intermediate B, and naïve CD8 T cells enriched in more DEGs in 
+KD individuals, while NK, CD4 TCM, and plasmablast demonstrated 
+more DEGs in COV individuals. Classic monocyte, non-classic monocyte, 
+and CD8 TCM presented similar DEGs between KD and COV patients. 
+CD14 monocytes demonstrated the highest fraction of DEGs in KD and 
+COV ( Fig. 1 F). As the fraction of classic monocytes elevated in KD and 
+COV groups, it suggested that the monocyte might be involved in the 
+shared biological molecular regulation in responding to immunological 
+attacks. Although the intermediate B cells demonstrated a lower pro -
+portion, fewer DEGs were identified compared to Classic monocytes. 
+To further prioritize the cell types most responsive to KD and Sars- 
+CoV-2 infection, we applied Augur algothrim to our scRNA-seq data. 
+We found that intermediate monocyte and Treg cells had the highest 
+scores comparing KD and KHC (area under the curve (AUC) > 0.9). In 
+contrast, intermediate monocyte and Treg may be the least affected cell 
+types in COV compared to that in CHC (AUC < 0.6) ( Fig. 1 E). Comparing 
+the KD and COV groups, we found that all the cell types presented a 
+higher score (AUC > 0.8) than COV, while γδ T cell, plasmablasts, naïve 
+B cell, and classic monocyte were the highest scores in COV compared to 
+CHC. Moreover, cell-cell communication between immune cells was 
+presented, revealing that monocyte function was critical in KD (Sup -
+plementary Fig. 1A-B) and COV (Supplementary Fig. 1C
+–
+D). 
+3.2. Shared expression features in monocytes between KD and COVID-19 
+UMAP projection demonstrated the subtypes of monocyte distribu -
+tion among different patients of KD, KHC, COV, CHC, and FLU ( Fig. 2 A). 
+Then we presented the dot plots of specific genes of classic, intermedi -
+ate, and non-classic monocytes ( Fig. 2 B), revealing that separating CD14 
+classic monocytes and CD16 non-classic monocytes was the rationale. To 
+identify the shared genes between KD and COV, which might be 
+involved in the biological process of vascular endothelial injuries, Venn 
+plots were established to demonstrate the share DEGs among KD, COV, 
+and FLU. Moreover, we identified over half of the up-regulated DEGs in 
+CD14 classic monocyte of KD (143/236, 60.59 %), which were largely 
+shared with COV, not FLU ( Fig. 2 C, right panel). However, the up- 
+regulated DEGs of CD16 monocyte revealed a similarity between COV 
+and FLU, with more up-regulated DEGs, were identified (153 DEGs Vs. 
+37 DEGs) ( Fig. 2 C). Moreover, only 67 DEGs had been recorded in CD16 
+non-classic monocytes of KD, which suggested the CD16 monocytes 
+participated little in KD. 
+To further explore whether the activated monocytes contribute to 
+vascular injuries. We applied a score profile of the shared up-regulated 
+DEGs of CD14 monocytes between KD and COV. It showed high 
+expression in KD and COV, which was easily distinguished FLU 
+( Fig. 2 D). Then we examined the profile of interferon (IFN) and inter -
+feron signature metric (ISM), which were significantly up-regulated in 
+Fig. 1. Immune cell composition differs in KD and COVID-19 patients. A. Flow chart of research settings. B. Integrated UMAP graph of 95,908 cells derived from our 
+study, color-coded by cell types. Among the identified cells, 30,576 cells from 6 KD children, 25,178 cells from 3 KHC, 20,464 from 6 COV (GSE150728, covid_555_1, 
+covid_555_2, covid_557, covid_558, covid_559, and covid_561), 7842 cells were from 3 FLU (GSE149689, Flu 1 scRNA-seq, Flu 2 scRNA-seq, and Flu 3 scRNA-seq) 
+and 11,848 cells were from 4 CHC (GSE150728, HIP002, HIP023, HIP043, and HIP044). C. Dot plot showing the expression level of canonical cell markers used to 
+assign cell identities. The color scale indicates the expression levels and the size of dots is proportional to the fraction of cells. D. UMAP projection of the five enrolled 
+groups. E. Fraction of immune cells in the sequenced cells among different groups. Box plots show the median, interquartile range (IQR), and the whiskers corre -
+sponding to the highest and lowest points within 1.5 times of IQR. F. The fraction of DEGs of 12 cell types among KD, COV, and FLU groups. The fraction of DEGs was 
+calculated as the DEGs in a cell type to total DEGs of all kinds of cell types in a specific disease. The classic monocytes of KD and COV demonstrate higher fractions 
+among all cell types. G. Prioritizing the most affected cell types in response to KD or COV by ranking the AUC scores derived from Augur algorithm. * p < 0.05, ** p <
+0.01, *** p < 0.001, **** p < 0.0001, Wilcoxon rank-sum test, adjusted for Bonferroni post hoc test, had been applied. 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+6
+Fig. 2. Shared Expression Features in Monocytes between KD and COVID-19. A. UMAP projection of monocytes among the five enrolled groups. B. Dot plot showing 
+the expression level of canonical cell markers used to assign cell identities. The color scale indicates the expression levels, and the size of dots is proportional to the 
+fraction of cells. C. Venn maps for the overlaps of up-regulated genes among KD, COV, and FLU in classic monocytes and non-classic monocytes. D. Profile score of 
+143 co-up-regulated genes between KD and COV using AddModuleScore. E. Profile scores of IFN and ISM in classic monocytes among five groups. F. Profile scores of 
+M1 and M2 macrophages in classic monocytes among five groups. The M1 score was formulated with the genes of CCL3 , CCL5 , IL1b , IL6 , TNF , CD80 , and CCR2 . While 
+M2 score was formulated with the genes of ARG1 , CD163 , MRC1 , and TGFB1 . G. Dot plot showing the expression level of IL-1b signaling. H. Go terms enrichment 
+analyses were performed on up-regulated DEGs of classic and non-classic monocytes, respectively. * p < 0.05, ** p < 0.01, *** p < 0.001, **** p < 0.0001, Wilcoxon 
+rank-sum test, adjusted for Bonferroni post hoc test, had been applied. 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+7
+(caption on next page) 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+8
+KD compared to KHC and COV compared to both FLU and CHC ( Fig. 2 E). 
+Previous research proved that IFN help recruits monocytes and mediate 
+monocytes' adhesion to endothelial cells, which indicates that the acti -
+vation of IFN pathways of monocytes might contribute to vascular in -
+juries. After that, the M1 macrophage and M2 macrophage profiles were 
+assessed. The CD14 monocytes of FLU presented a higher expression 
+profile of M1 macrophage (markers for M1 annotation: CCL3, CCL5, 
+IL1B, IL6, TNF, CD80, iNOS, and CCR2). In comparison, the CD14 
+monocytes from KD and COV revealed a higher expression profile of M2 
+macrophage (markers for M1 annotation: ARG1, CD163, MRC1, TGFB1, 
+and Ym1; Fig. 2 F), which was related to endothelial dysfunction. Be -
+sides, the profile of IL-1b signaling had been studied, which was re -
+ported to be related to KD. We found that only a few genes' expression 
+could be targeted in KD and FLU, and nearly no positive gene could be 
+identified in COV ( Fig. 2 G), suggesting the IL-1b signaling is irrespon -
+sible for the share vascular lesions between KD and COV. Then, Go terms 
+enrichment analyses were performed on up-regulated DEGs of CD14 and 
+CD16 monocytes, respectively. For CD14 monocytes, more genes 
+involved in “ type I interferon ” and “ response to virus ” pathways 
+demonstrated up-regulation in KD and COV patients. Furthermore, the 
+terms “ RNA catabolic process ” and “ protein targeting to ER ” were up- 
+regulated enriched in FLU (Fig. H, left panel). For CD16 monocytes, 
+“ response to interferon-gamma ” was identified both in KD and COV. 
+While “ type I interferon ” was only recorded in COV (Fig. H, right panel). 
+3.3. The differential activation of CD14 and CD16 monocytes responding 
+to endothelial and epithelial dysfunction 
+The different biological roles of CD14 and CD16 monocytes have 
+been well established. The CD14 monocyte showed excellent ability to 
+adhere to vascular endothelial cells. After crossing the vascular barrier, 
+CD14 monocytes could be differentiated into CD16 monocytes, 
+demonstrating the potential of binding to alveolar epithelial cells and 
+inducing pulmonary inflammation. According to this, we summarized 
+the profile of molecules that mediate adhesion between monocytes with 
+vascular endothelium or alveolar epithelium. Interestingly, we identi -
+fied the CD14 monocytes in KD, and COV revealed a significantly 
+increased expression of endothelial profile ( Fig. 3 A-B). 
+Conversely, the CD16 monocytes in KD and FLU demonstrated a 
+higher expression of the epithelial profile, with no significant change in 
+KD ( Fig. 3 C-D). So, such data proved that the activation of the endo -
+thelial profile mediated the adhesion between CD14 monocytes and 
+vascular endothelial cells in KD and COV, inducing endothelial 
+dysfunction. Moreover, the elevation of the epithelial profile mediated 
+the adhesion between CD16 monocytes and alveolar epithelial cells in 
+COV and FLU. This explains the various clinical phenotypes among KD, 
+COV, and FLU, which emphasize the mechanisms of COV participating 
+in both severe cardiovascular complications and respiratory distress. To 
+further investigate the differential role of monocytes among KD, COV, 
+and FLU, single-cell trajectory analysis of monocyte was performed 
+based on Monocle (Supplementary Fig. 2). We established the monocle 
+into three cell states CD14 monocytes, intermediate monocytes, and 
+CD16 monocytes. Compared to control groups, all three disease groups 
+showed significantly different trajectories. In KD individuals, more 
+CD14 monocytes remained, while KHC presented a standard process 
+from classic to the non-classic transition of monocytes (Supplementary 
+Fig. 2A-B). A complex trajectory process had been identified for COV 
+patients, which consisted of the differential roles of monocytes in 
+COVID-19 in mediating vasculitis and lung injuries (Supplementary 
+Fig. 2C
+–
+D). However, in the analysis of FLU, significant separation was 
+identified between FLU patients and healthy controls, which revealed a 
+linear cellular function of monocytes in the pathophysiological process 
+of FLU (Supplementary Fig. 2C
+–
+D). 
+To validate such a result, we applied immune staining to the coro -
+nary artery section between the healthy donor and KD patients who 
+received coronary artery bypass graft due to huge coronary artery 
+aneurysm and thrombus embolization. The number of γ H2AX + endo -
+thelial cells (CHD5 + ) was much higher in KD ( Fig. 3 E), indicating the 
+existence of endothelial injuries in KD. We selected the five most 
+enriched genes for further analysis among the genes in the CD14- 
+endothelial profile. SELL, CCR1, DYSF, LMNB1, and XAF1 were most 
+expressed in CD14 monocytes of KD and COV and failed to be identified 
+in FLU ( Fig. 3 F). CCR1 and SELL participated in the interaction between 
+monocytes and endothelial cells. And LMNB1 was involved in the 
+cellular trafficking of monocyte in the endothelial barrier. While DYSF 
+and XAF1 had been proven to regulate adhered cell damages and 
+apoptosis. UMAP projection demonstrated the expression of the five 
+selected genes among five groups and a higher positive cell fraction in 
+monocytes than in other cell types ( Fig. 3 G). Then we isolated the 
+positive cells of triple positive in SELL/CCR1/XAF1 ( Fig. 3 H), SELL + / 
+CCR1 + /DYSF + (Supplementary Fig. 3A), and SELL + /CCR1 + /LMNB1 +
+(Supplementary Fig. 3B), respectively. The CD14 monocytes with triple 
+positive genes of SELL + /CCR1 + /XAF1 + demonstrated significantly 
+higher proportion in KD and COV, compared to KHC and, FLU, CHC, 
+respectively. Although KD enriched a high proportion of SELL + / 
+CCR1 + /LMNB1 + triple-positive CD14 monocytes, COV did not present 
+an enrichment in such a subtype of monocytes. Besides, the SELL + / 
+CCR1 + /LMNB1 + triple-positive monocytes would also be enriched in 
+KHC. So, the SELL + /CCR1 + /XAF1 + CD14 monocytes were highly 
+suspected of mediating the injuries of endothelial cells between KD and 
+COV. 
+3.4. SELL + /CCR1 + /XAF1 + CD14 monocytes enhanced the adhesion 
+and damage to endothelial cells 
+Blood samples were collected from several individuals of KD, COV, 
+FLU, and healthy control. PBMCs were isolated using Ficoll-Paque PLUS 
+(GE Healthcare Biosciences AB). Flow cytometry has been applied to 
+measure the fluorescence intensity of SELL, CCR1, and LMNB1. Conju -
+gated anti-human CD14 and CD16 were stained to distinguish CD14 
+classic monocytes. Moreover, KD presented more fractions of SELL, 
+CCR1, and LMNB1, with significantly higher median fluorescence in -
+tensity ( Fig. 4 A). For DYSF and XAF1, we stained CD14, and particular 
+molecules after enriched monocytes were purified by negative magnetic 
+sorting. The numbers of co-positive cells of CD14 and DYSF or XAF1 
+were also higher in KD and COV samples ( Fig. 4 B-C). 
+As we have identified, the interplays between monocytes and 
+endothelial cells would be a pivotal mediator to induce coronary artery 
+injuries, and it was considered that both highly expressed genes in KD 
+and COVID-19 patients, CCR1, DYSF, SELL, LMNB1, and XAF1 would be 
+responsible for the injuries which were inherited from the interplays 
+between monocytes and endothelial cells. Two steps should be included 
+in the damaging process, which are adhesion and inflammation 
+response. Accordingly, the cellular adhesion between monocytes and 
+endothelial cells and the inflammation responses of endothelial cells 
+were measured after the silence of CCR1, DYSF, SELL, LMNB1, and 
+Fig. 3. The differential activation of CD14 and CD16 monocytes responding to endothelial and epithelial dysfunction. The profile scores of molecules mediating the 
+interplays of classic monocytes with vascular endothelial cells (A-B) and non-classic monocytes with alveolar epithelial cells (C
+–
+D). E. Immunostaining for CDH5 and 
+γ H2AX in coronary artery cryo-section between KD patient and healthy donor, indicating endothelial injuries in KD. F. Expression level of CCR1 , DYSF , SELL , LMNB1, 
+and XAF1 in CD14 classical monocytes among five groups. G. UMAP projection of CCR1 , DYSF , SELL , LMNB1, and XAF1 positive cells, respectively . H. UMAP 
+projection of CCR1 , SELL and XAF1 triple positive monocytes among five groups. *p < 0.05, **p < 0.01, ***p < 0.001, ****p < 0.0001, Wilcoxon rank-sum test, 
+adjusted for Bonferroni post hoc test, had been applied. 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+9
+(caption on next page) 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+10
+XAF1, respectively. Also, the DNA damage, which was tightly associated 
+with endothelium injuries, had been presented by rH2AX staining. Then 
+HUVECs and THP-1 were co-cultured to explore whether inhibition of 
+the genes mediating adhesion of monocytes and endothelial cells could 
+attenuate the injuries of the endothelium. THP-1 had been coated with 
+calcein AM and transfected siRNAs of CCR1, DYSF, SELL, LMNB1, and 
+XAF1, respectively, before co-culture. Notably, the inhibition of CCR1, 
+SELL, and XAF1 could reduce monocyte adhesion to endothelial cells 
+( Fig. 4 D-E). qPCRs were applied to measure the expression of IL6 and 
+TNF- α . Furthermore, the inhibition of CCR1, SELL, and LMNB1 would 
+reduce the expression of IL6 in HUVECs ( Fig. 4 F upper panel). And all of 
+the inhibitions could attenuate the expression of TNF-a ( Fig. 4 F middle 
+panel). Immuno-staining presented a lower ratio of γ H2AX + positive 
+HUVECs after SELL, LMNB1, and XAF1 inhibition ( Fig. 4 F lower panel). 
+Additionally, SELL, CCR1, and XAF1 were inhibited by siRNA in 
+THP-1 cells at the same, which then were co-cultured with HUVEC to 
+address the endothelial injuries mediated by monocytes. The inhibition 
+of SELL, CCR1, and XAF1 in THP-1 significantly reduced the adhesion 
+between monocytes and endothelial cells ( Fig. 4 G). Besides, the 
+collaborated inhibition of SELL, CCR1, and XAF1 in THP-1 decreased the 
+expression of IL6 and TNF- α in HUVECs after co-culture ( Fig. 4 H). Also, 
+it reduced the damages of HUVECs with a lower ratio of rH2AX + cells 
+straining ( Fig. 4 H). 
+3.5. Differential types of B cells participated in KD and COVID-19 
+UMAP projection demonstrated the subtypes of B cell distribution 
+among different patients of KD, KHC, COV, CHC, and FLU ( Fig. 5 A). 
+Then we calculated the proportion of different subtypes of B cells 
+( Fig. 5 B). In the faction analysis, nearly no memory B cells could be 
+identified in COV patients. Instead, the proportion of plasmablast 
+significantly increased and took over half the cell counts of total B cells. 
+In FLU and KD individuals, a high fraction of naïve B cells had been 
+identified, while the memory B cells also showed an apparent reduction 
+in KD. UMAP projection demonstrated the marker genes of B cells 
+among five enrolled groups ( Fig. 5 C). Afterward, we used a heatmap to 
+demonstrate the gene expression of B cell receptors (BCR) in naïve B 
+cells, intermediate B cells, and plasmablasts among KD, COV, and FLU 
+patients ( Fig. 5 D). According to the results, naïve and intermediate B 
+cells highly expressed BCR-associated genes, while plasmablasts of COV 
+highly expressed another part of BCR-related genes. In consist with the 
+proportion of subtypes of B cells, naïve and intermediate B cells domi -
+nated participated in KD, while plasmablasts were mainly involved in 
+COVID-19. After that, top Go terms enrichments were drawn based on 
+the DEGs among plasmablasts ( Fig. 5 E), naïve B cells ( Fig. 5 F), and in -
+termediate B cells ( Fig. 5 G). “ Viral transcription ” was only enriched in 
+FLU among three types of B cells. However, only COV demonstrated the 
+enrichment of “ response to virus ” in plasmablasts and “ defense response 
+to virus ” in intermediate B cells. Notably, “ type I interferon signaling 
+pathways ” were enriched in KD and COV among three subtypes of B 
+cells. Then we presented the violin plots of five representative genes, 
+including BST2, PTPN6, PSMB8, XAF1, and IFITM2 ( Fig. 5 H). BST2, 
+PSMB8, and XAF1 were mainly expressed in KD and COV, while PTPN6 
+and IFITM2 were only enriched in KD. Besides, the representative gene 
+expressions among particular subtypes of B cells were presented in 
+Supplementary Fig. 4. 
+3.6. Activation of T cells in KD 
+UMAP projection demonstrated the subtypes of T cell distribution 
+among different patients of KD, KHC, COV, CHC, and FLU ( Fig. 6 A). 
+Then we calculated the proportion of different subtypes of T cells 
+( Fig. 6 B). In the faction analysis, the proportion of NK cells significantly 
+dropped in COV, while it mildly increased in KD. On the other hand, CD4 
+TCM revealed a significant elevation in COV, which remained stable in 
+KD patients. Besides, the proportion of CD8 TEM changed in FLU, while 
+no apparent alternation in KD and COV groups. UMAP projection 
+demonstrated the marker genes of T cells among five enrolled groups 
+( Fig. 6 C). After that, we used a heatmap to demonstrate the gene 
+expression of T cell receptors (TCR) in NK cells, CD8 TEM, and CD4 TCM 
+among KD, COV, and FLU patients ( Fig. 6 D). According to the results, 
+the NK cells in KD highly expressed most TCR-associated genes, while a 
+small part of TCR genes was activated in COV. Besides, CD8 TEM of KD 
+highly expressed half of the TCR-related genes, and all the representa -
+tive genes were harmful in CD8 TEM of COV. However, in the analysis of 
+CD4 TCM, only a few TCR genes were activated in KD, and almost 
+negative results were identified in COV and FLU. So, the activation of NK 
+cells and CD8 TEM were mainly involved in KD. After that, top Go terms 
+enrichments were drawn based on the DEGs among CD4 TCM ( Fig. 6 E), 
+CD8 TEM ( Fig. 6 F), and NK cells ( Fig. 6 G). “ Viral transcription ” could 
+also be enriched in CD4 TCM and NK cells of FLU. 
+Interestingly, the term “ response to virus ” was identified in CD8 TEM 
+of KD and COV. As interleukin and NF-kappaB were critical in 
+myocardial injuries, we found only KD patients enriched “ cellular 
+response to interleukin-1 ” in CD8 TEM and “ NK-kappaB transcription 
+factor activity ” in NK cells. Then we presented the violin plots of four 
+representative genes of the term “ cellular response to interleukin-1, ” 
+including GBP1, PSMB9, PSMB8, and CCL2 in CD8 TEM ( Fig. 5 H). 
+Compared to the control group, all the representative genes were mainly 
+expressed in KD. However, in the analysis of “ NK-kappaB transcription 
+factor activity ” in NK cells, CX3CR1 was highly expressed in COV, while 
+S100A8, S100A9, and S100A12 were only enriched in KD. Besides, the 
+representative gene expressions of the term “ cellular response to inter -
+leukin-1 ” among particular subtypes of T cells were presented in Sup -
+plementary Fig. 5. 
+4. Discussion 
+Although a series of efforts had been made to explore the molecular 
+mechanisms of KD and optimal therapeutic strategies in dealing with KD 
+[21 – 23] , some of the essential issues remained challenging [24] . Pres -
+ently, KD has ranked the top acquired cardiac disease in most developed 
+and developing countries. Nearly 10 % of infected children might suffer 
+coronary artery injuries without optimal treatment. Some parts of the 
+small coronary artery aneurysm (CAA) would recover in one year. 
+However, most of the medium to significant size CAA would remain for 
+life long time. With the rapid accumulation of related evidence, the 
+potential damage of endothelial cells in coronary arteries yields a sig -
+nificant risk in the onset of coronary artery diseases in older age. So, it 
+was critical to underline how the coronary artery lesion (CAL) devel -
+oped. The establishment of the current therapeutic strategy targets the 
+prevention of dominant CAL in the acute phase. Significant activation of 
+immune responses was believed to be significantly associated with the 
+Fig. 4. SELL + /CCR1 + /XAF1 + CD14 monocytes enhanced the adhesion and damages to endothelial cells. A. Flow cytometry identified the higher percentages and 
+median fluorescence intensity of SELL, CCR1, and LMNB1 in KD and COV. B. Immunostaining for CD14 and DYSF, XAF1 in isolated PBMCs. C. The ratio of DYSF 
+positive CD14 monocytes in total classic monocytes among KD, COV, FLU, and healthy donors. And the median fluorescence intensity of XAF1 in CD14 monocytes 
+among KD, FLU, and healthy donors. D-E. THP-1 had been stained with Calcein AM and transfected siRNAs of CCR1 , DYSF , SELL , LMNB1 , and XAF1 before co-culture 
+with HUVECs. Then the numbers of adhesion THP-1 with HUVECs were counted by every 20 × field view. F. The expressions of TNFa and IL6 in HUVECs, and the 
+ratio of γ H2AX
++
+cells in HUVECs after co-cultured with THP-1, which had been transfected with siRNAs of CCR1 , DYSF , SELL , LMNB1 , and XAF1 . G. The inhibition of 
+SELL , CCR1 and XAF1 together in THP-1 significantly reduced the adhesion between monocytes and endothelial cells. H. Collaborated inhibiton of SELL , CCR1 and 
+XAF1 in THP-1 decreased the expression of IL6 and TNF- α in HUVECs with lower ratio of rH2AX + cells after co-culture with THP-1. *p < 0.05, **p < 0.01, ***p <
+0.001, ****p < 0.0001, Two-way analysis of variance with Bonferroni post hoc test was performed to analyze data. Bar, 100 μ m. 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+11
+(caption on next page) 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+12
+development of CAL. So, IVIG and some monoclonal antibodies of in -
+terleukins and TNF- α inhibit over-activated immune activities efficiently 
+[25] . An overt immune reaction is considered the dominant clinical 
+feature of KD in the acute phase [26] , which could help elucidate the 
+disease's etiology and pathogenesis [27,28] . According to this, further 
+understanding of the cellular signature of immune cells in KD is 
+required. Encouragingly, the present study first demonstrated the dif -
+ferential activation of CD14 and CD16 monocytes responded to endo -
+thelial and epithelial dysfunction as SELL + /CCR1 + /XAF1 + CD14 
+monocytes enhanced the adhesion and damage to endothelial cells. 
+However, the related immunological studies led to controversial 
+results. Bulk transcriptome analyses had been performed in a couple of 
+studies [29,30] , and severe limitations existed due to the unsatisfied 
+resolution of low-throughput screening assays. With the new technology 
+of scRNA-seq, researchers could dissect the complex immune responses 
+in a large scale of immunological diseases. Two studies have reported 
+single immune cell signatures of KD based on scRNA-seq. Geng et al. 
+reported the scRNA-seq data on isolated monocytes in KD, and they 
+identified the altered monocyte subsets and found that the CD14 
+monocytes presented poorly differentiated capability [31] . This pio -
+neering study provided an essential understanding of innate immunity 
+reaction in the acute phase of KD. However, it needed to have elucidated 
+the changes in adaptive immunity reaction. Moreover, the most recent 
+study from Wang et al. performed scRNA-seq on all immune cells and 
+demonstrated the alternation in innate and adaptive immunity reactions 
+[32] . Besides, Wang et al. also study the DEGs before and after IVIG 
+administration. In consist with the results from Geng et al., monocytes 
+were identified as the most altered cells with the most DEGs. Moreover, 
+they also found that total B cells substantially decreased after therapy, 
+and the plasma B cells increased, while CD8 T cells decreased in acute 
+KD. This study provided the single-cell landscape of both innate and 
+adaptive immune responses and insights into KD's pathogenesis and 
+therapy. According to our results, similar findings had been identified 
+with previous research. The poorly differentiated ability of CD14 
+monocyte to CD16 monocyte had been observed in KD. And the per -
+centage of memory B cells decreased, while naïve B cells increased 
+during the acute phase of KD. Moreover, we revealed the activation of T 
+cells in KD. However, the previous studies demonstrated the landscape, 
+both of them failed to demonstrate the molecular mechanism of CAL in 
+KD, and no validation experiment had been performed. 
+With the epidemic COVID-19 since early 2020, MIS-C was recog -
+nized as a severe complication among SARS-Cov-2 infected children. 
+This threatening syndrome shared several clinical features with KD, and 
+coronary artery dilation could also be observed in MIS-C patients. 
+However, it also presented some different clinical characteristics 
+compared to KD. In recent research, Consiglio et al. compared the 
+immunopathology among MIS-C, KD, and healthy controls [33] . Cyto -
+kine storm, T cell subsets, expression of interleukins, and biomarkers 
+associated with arterial damages varied among the three groups. Beyond 
+the further understanding of MIS-C, the newly published evidence 
+demonstrated that COVID-19 should be considered a particular type of 
+vasculitis [34 – 39] . So, either MIS-C or COVID-19 presented a similar 
+vasculitis or arterial injuries compared to KD. According to this, it pro -
+vided an excellent chance to underline the molecular sharing mecha -
+nisms between COVID-19 and KD, which could help elucidate the 
+potential reasons for CAL. We first enrolled the scRNA-seq data from KD, 
+COVID-19, and influenza in this study. The data on influenza was used as 
+a negative control to exclude the unrelated DEGs with CAL. 
+Based on the comparison strategies, we first identified the monocytes 
+involved in the process of arterial damage. Moreover, we found that the 
+CD14 monocytes mainly interacted with arterial endothelial cells, while 
+the CD16 monocytes preferred to adhere to alveolar epithelial cells. 
+Then we retrieved the reported potential genes mediating the interac -
+tion between monocytes and endothelial or epithelial cells. The mono -
+cytes from COV patients presented bidirectional features in interacting 
+with endothelial cells by CD14 monocytes and epithelial cells by CD16 
+monocytes. KD individuals only presented the high profile score of CD14 
+monocytes, and FLU cases only presented the high profile score of CD16 
+monocytes. Then we selected the top potential DEGs shared by KD and 
+COV but excluded by FLU for further analysis. SELL and CCR1 were 
+considered involved in the adhesion between CD14 monocytes and 
+endothelial cells [40 – 45] . Moreover, we also demonstrated that SELL + / 
+CCR1 + /XAF1 + CD14 monocytes enhanced the adhesion and damage to 
+endothelial cells. LMNB1 was thought to help CD14 monocyte traf -
+ficking from the endothelial barrier. And XAF1 and DYSF induced the 
+interacted cells damages [46 – 51] . Notably, the profile of IL-1 β signaling 
+and IL-8 was related to KD [52,53] ; however, our findings suggest that 
+IL-1 β signaling and IL-8 are irresponsible for the share vascular lesions 
+between KD and COV as only a few genes' expression was found to be 
+targeted in KD and FLU and near no positive gene could be identified in 
+COV. According to our results, we used a series of human samples and in 
+vitro experiments to validate the findings from scRNA-seq and our hy -
+pothesis. And finally proved, the triple positive of CCR1/SELL/XAF1 
+mediated the arterial endothelial injuries in KD and COVID-19, 
+providing convincing therapeutic targets for such diseases. 
+Among the analysis of T cells, we identified the top Go terms 
+enrichment in responses to the virus, which brought us great interest. A 
+Koran research announced that KD's prevalence significantly dropped 
+after the COVID-19 outbreak [54] . Furthermore, they referred to this 
+change as the broad application of the facial mask, which highlighted 
+the risk factor of KD in virus infections. Our research only identified 
+several viral infections signaling in T cells among KD individuals. 
+However, the association between viral infection and KD still needs 
+further validation. 
+Besides, there were two limitations in the research. First, the coro -
+nary artery sample of the COVID-19 patient was missing. Secondly, the 
+number of enrolled patients needed to be increased, which resulted in 
+some variation in data calculation. 
+5. Conclusion 
+In summary, our study highlights the innate immune response in 
+regulating endothelial dysfunction in KD and COVID-19. Moreover, we 
+also demonstrated the differential adaptive immunity activation be -
+tween KD and COVID-19. In addition, the monocytes in COVID-19 
+demonstrated adhesion activity to endothelial cells and alveolar 
+epithelial cells, which elucidates the mechanisms and phenotypes 
+shared by KD and COVID-19. Furthermore, we identified the potentials 
+of CCR1, SELL, and XAF1 as therapeutic targets both for KD and COVID- 
+19. 
+Funding 
+Yifei Li was funded by National Natural Science Foundation of China 
+(81700360), Central Government Funds of Guiding Local Scientific and 
+Technological Development for Sichuan Province (2021ZYD0105) and 
+the Technology Project of Sichuan Province of China (2020YFS0102). 
+Yimin Hua was funded the National Science Foundation of China 
+Fig. 5. Differential types of B cells participated in KD and COVID-19. A. UMAP projection demonstrated the subtypes of B cells distribution among different patients 
+of KD, KHC, COV, CHC and FLU. B. The proportion of different subtypes of B cells. C. UMAP projection demonstrated the marker genes of B cells among five enrolled 
+groups. D. Heatmap of the gene expression of BCRs in naïve B cell, intermediate B cells, and plasmablasts among KD, COV, and FLU patients. Bubble diagram of top 
+Go terms enrichments had been drawn based on the DEGs among plasmablasts (E), naïve B cells (F), and intermediate B cells (G). H. Violin plots of five representative 
+genes, including BST2 , PTPN6 , PSMB8 , XAF1, and IFITM2. 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+13
+(caption on next page) 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+14
+(82070324), the Sichuan-Chongqing Major Technology Project of 
+Sichuan Province of China (2021YFQ0061). 
+CRediT authorship contribution statement 
+Yifei Li, Yimin Hua and Yaoyao Zhang conceptualized the study; 
+Yaoyao Zhang and Yifei Li designed the experiments; Xiaoliang Liu, Yue 
+Zhang, Jiawen Li, Peng Yue, and Lei Liu performed sample collection 
+and experiments; Tingting Luo, Zhenxin Fan, Guoyan Lu, Mingyi Lv, 
+Kaiyu Zhou and Sha Lin analyzed scRNA-seq data; Ziwen Cai and Jinbao 
+Zhang help to harvest the cardiac samples. Xiaoliang Liu, Yifei Li and 
+Yimin Hua wrote or edited the manuscript. 
+Declaration of competing interest 
+The authors declare no competing interests. 
+Data availability 
+The data that support the findings of this study are available from the 
+corresponding author upon reasonable request as another research is 
+being conducted. The scRNA-seq data of KD was deposited in GSA 
+database ( https://ngdc.cncb.ac.cn/gsa-human/HRA001959 ). 
+Appendix A. Supplementary data 
+Supplementary data to this article can be found online at https://doi. 
+org/10.1016/j.bbadis.2023.166707 . 
+References 
+[1] J. Li, S. Lai, G.F. Gao, W. Shi, The emergence, genomic diversity and global spread 
+of SARS-CoV-2, Nature 600 (7889) (2021) 408 – 418 . 
+[2] D.M. Sardinha, C.A.F. de S ´a, Y.C. Rodrigues, Freitas J. Dos Santos, K. Brodeur, Do 
+Socorro pompeu de loiola R, Lima KVB, de Paula souza EGRJ, Lima L: 
+characteristics and outcomes of severe COVID-19 in hospitalized patients with 
+cardiovascular diseases in the amazonian region of Brazil: a retrospective cohort, 
+Sci. Rep. 12 (1) (2022) 18472 . 
+[3] C. Planchais, A. Reyes-Ruiz, R. Lacombe, A. Zarantonello, M. Lecerf, M. Revel, L. 
+T. Roumenina, B.P. Atanasov, H. Mouquet, J.D. Dimitrov, Evolutionary trajectory 
+of receptor binding specificity and promiscuity of the spike protein of SARS-CoV-2, 
+Protein Sci. 31 (11) (2022), e4447 . 
+[4] S.W. Xu, I. Ilyas, J.P. Weng, Endothelial dysfunction in COVID-19: an overview of 
+evidence, biomarkers, mechanisms and potential therapies, Acta Pharmacol. Sin. 
+(2022) 1 – 15 . 
+[5] J.M. Patel, Multisystem inflammatory syndrome in children (MIS-C), Curr. Allergy 
+Asthma Rep. 22 (5) (2022) 53 – 60 . 
+[6] P. Keshavarz, F. Yazdanpanah, S. Azhdari, H. Kavandi, P. Nikeghbal, A. Bazyar, 
+F. Rafiee, S.F. Nejati, F.E. Sadabad, N. Rezaei, Coronavirus disease 2019 (COVID- 
+19): a systematic review of 133 children that presented with Kawasaki-like 
+multisystem inflammatory syndrome, J. Med. Virol. 93 (9) (2021) 5458 – 5473 . 
+[7] L.R. Feldstein, E.B. Rose, S.M. Horwitz, J.P. Collins, M.M. Newhams, M.B.F. Son, J. 
+W. Newburger, L.C. Kleinman, S.M. Heidemann, A.A. Martin, et al., Multisystem 
+inflammatory syndrome in U.S. children and adolescents, N. Engl. J. Med. 383 (4) 
+(2020) 334 – 346 . 
+[8] Z. Belhadjer, M. M ´eot, F. Bajolle, D. Khraiche, A. Legendre, S. Abakka, J. Auriau, 
+M. Grimaud, M. Oualha, M. Beghetti, et al., Acute heart failure in multisystem 
+inflammatory syndrome in children in the context of global SARS-CoV-2 pandemic, 
+Circulation 142 (5) (2020) 429 – 436 . 
+[9] B.W. McCrindle, A.H. Rowley, J.W. Newburger, J.C. Burns, A.F. Bolger, M. Gewitz, 
+A.L. Baker, M.A. Jackson, M. Takahashi, P.B. Shah, et al., Diagnosis, treatment, and 
+long-term management of Kawasaki disease: a scientific statement for health 
+professionals from the American Heart Association, Circulation 135 (17) (2017) 
+e927 – e999 . 
+[10] R. Fukazawa, J. Kobayashi, M. Ayusawa, H. Hamada, T. Kimura, JCS/JSCS 2020 
+guideline on diagnosis and Management of Cardiovascular Sequelae in Kawasaki 
+disease, Circ. J. 84 (8) (2020) 1348 – 1407 . 
+[11] J. Qin, Y. Zheng, Y. Ding, C. Huang, M. Hou, M. Li, G. Qian, H. Lv, Co-culture of 
+peripheral blood mononuclear cell (PBMC) and human coronary artery endothelial 
+cell (HCAEC) reveals the important role of autophagy implicated in Kawasaki 
+disease, Transl. Pediatr. 10 (12) (2021) 3140 – 3150 . 
+[12] A.J. Wilk, A. Rustagi, N.Q. Zhao, J. Roque, G.J. Martínez-Col ´on, J.L. McKechnie, G. 
+T. Ivison, T. Ranganath, R. Vergara, T. Hollis, et al., A single-cell atlas of the 
+peripheral immune response in patients with severe COVID-19, Nat. Med. 26 (7) 
+(2020) 1070 – 1076 . 
+[13] J.S. Lee, S. Park, H.W. Jeong, J.Y. Ahn, S.J. Choi, H. Lee, B. Choi, S.K. Nam, M. Sa, 
+J.S. Kwon, et al., Immunophenotyping of COVID-19 and influenza highlights the 
+role of type I interferons in development of severe COVID-19, Sci. Immunol. 5 (49) 
+(2020) . 
+[14] P.A. Ewels, A. Peltzer, S. Fillinger, H. Patel, J. Alneberg, A. Wilm, M.U. Garcia, 
+P. Di Tommaso, S. Nahnsen, The nf-core framework for community-curated 
+bioinformatics pipelines, Nat. Biotechnol. 38 (3) (2020) 276 – 278 . 
+[15] S.L. Wolock, R. Lopez, A.M. Klein, Scrublet: computational identification of cell 
+doublets in single-cell transcriptomic data, Cell Syst. 8 (4) (2019) 281 – 291.e289 . 
+[16] A. Butler, P. Hoffman, P. Smibert, E. Papalexi, R. Satija, Integrating single-cell 
+transcriptomic data across different conditions, technologies, and species, Nat. 
+Biotechnol. 36 (5) (2018) 411 – 420 . 
+[17] J. Huddleston, J. Hadfield, T.R. Sibley, J. Lee, K. Fay, M. Ilcisin, E. Harkins, 
+T. Bedford, R.A. Neher, E.B. Hodcroft, Augur: a bioinformatics toolkit for 
+phylogenetic analyses of human pathogens, J.Open Source Softw. 6 (57) (2021) . 
+[18] M.I. Love, W. Huber, S. Anders, Moderated estimation of fold change and 
+dispersion for RNA-seq data with DESeq2, Genome Biol. 15 (12) (2014) 550 . 
+[19] S. L ˆe, J. Josse, F. Husson, FactoMineR: an R package for multivariate analysis, 
+J. Stat. Softw. 25 (1) (2008) 1 – 18 . 
+[20] G. Yu, L.G. Wang, Y. Han, Q.Y. He, clusterProfiler: an R package for comparing 
+biological themes among gene clusters, Omics 16 (5) (2012) 284 – 287 . 
+[21] X. Zheng, J. Li, P. Yue, L. Liu, J. Li, K. Zhou, Y. Hua, Y. Li, Is there an association 
+between intravenous immunoglobulin resistance and coronary artery lesion in 
+Kawasaki disease?-current evidence based on a meta-analysis, PLoS One 16 (3) 
+(2021), e0248812 . 
+[22] X. Zheng, Y. Li, P. Yue, F. Ma, Y. Zhang, G. Wu, Diagnostic significance of 
+circulating miRNAs in Kawasaki disease in China: current evidence based on a 
+meta-analysis, Medicine (Baltimore) 100 (6) (2021), e24174 . 
+[23] X. Zheng, Y. Zhang, L. Liu, P. Yue, C. Wang, K. Zhou, Y. Hua, G. Wu, Y. Li, N- 
+terminal pro-brain natriuretic peptide as a biomarker for predicting coronary 
+artery lesion of Kawasaki disease, Sci. Rep. 10 (1) (2020) 5130 . 
+[24] Y. Qi, J. Xu, Z. Lin, Y. Tao, F. Zheng, Y. Wang, Y. Sun, S. Fu, W. Wang, C. Xie, et al., 
+The network of pro-inflammatory factors CD147, DcR3, and IL33 in the 
+development of Kawasaki disease, J. Inflamm. Res. 14 (2021) 6043 – 6053 . 
+[25] T. Matsubara, T. Ichiyama, S. Furukawa, Immunological profile of peripheral blood 
+lymphocytes and monocytes/macrophages in Kawasaki disease, Clin. Exp. 
+Immunol. 141 (3) (2005) 381 – 387 . 
+[26] Y. Ding, G. Li, L.J. Xiong, W. Yin, J. Liu, F. Liu, R.G. Wang, K. Xia, S.L. Zhang, 
+L. Zhao, Profiles of responses of immunological factors to different subtypes of 
+Kawasaki disease, BMC Musculoskelet. Disord. 16 (2015) 315 . 
+[27] A.H. Rowley, Kawasaki disease: novel insights into etiology and genetic 
+susceptibility, Annu. Rev. Med. 62 (2011) 69 – 77 . 
+[28] M. Noval Rivas, M. Arditi, Kawasaki disease: pathophysiology and insights from 
+mouse models, Nat. Rev. Rheumatol. 16 (7) (2020) 391 – 405 . 
+[29] S.J. Popper, C. Shimizu, H. Shike, J.T. Kanegaye, J.W. Newburger, R.P. Sundel, P. 
+O. Brown, J.C. Burns, D.A. Relman, Gene-expression patterns reveal underlying 
+biological processes in Kawasaki disease, Genome Biol. 8 (12) (2007) R261 . 
+[30] L.T. Hoang, C. Shimizu, L. Ling, A.N. Naim, C.C. Khor, A.H. Tremoulet, V. Wright, 
+M. Levin, M.L. Hibberd, J.C. Burns, Global gene expression profiling identifies new 
+therapeutic targets in acute Kawasaki disease, Genome Med. 6 (11) (2014) 541 . 
+[31] Z. Geng, Y. Tao, F. Zheng, L. Wu, Y. Wang, Y. Wang, Y. Sun, S. Fu, W. Wang, C. Xie, 
+et al., Altered monocyte subsets in Kawasaki disease revealed by single-cell RNA- 
+sequencing, J. Inflamm. Res. 14 (2021) 885 – 896 . 
+[32] Z. Wang, L. Xie, G. Ding, S. Song, L. Chen, G. Li, M. Xia, D. Han, Y. Zheng, J. Liu, et 
+al., Single-cell RNA sequencing of peripheral blood mononuclear cells from acute 
+Kawasaki disease patients, Nat. Commun. 12 (1) (2021) 5444 . 
+[33] C.R. Consiglio, N. Cotugno, F. Sardh, C. Pou, D. Amodio, L. Rodriguez, Z. Tan, 
+S. Zicari, A. Ruggiero, G.R. Pascucci, et al., The immunology of multisystem 
+inflammatory syndrome in children with COVID-19, Cell 183 (4) (2020) 968 – 981. 
+e967 . 
+[34] L.A. Teuwen, V. Geldhof, A. Pasut, P. Carmeliet, COVID-19: the vasculature 
+unleashed, Nat. Rev. Immunol. 20 (7) (2020) 389 – 391 . 
+[35] M. Legrand, S. Bell, L. Forni, M. Joannidis, J.L. Koyner, K. Liu, V. Cantaluppi, 
+Pathophysiology of COVID-19-associated acute kidney injury, Nat. Rev. Nephrol. 
+17 (11) (2021) 751 – 764 . 
+[36] T.M. Delorey, C.G.K. Ziegler, G. Heimberg, R. Normand, Y. Yang, Å. Segerstolpe, 
+D. Abbondanza, S.J. Fleming, A. Subramanian, D.T. Montoro, et al., COVID-19 
+tissue atlases reveal SARS-CoV-2 pathology and cellular targets, Nature 595 (7865) 
+(2021) 107 – 113 . 
+Fig. 6. Activation of T cells in KD. A. UMAP projection demonstrated the subtypes of T cell distribution among different patients of KD, KHC, COV, CHC, and FLU. B. 
+The proportion of different subtypes of T cells. C. UMAP projection demonstrated the marker genes of T cells among five enrolled groups. D. The heatmap of the gene 
+expression of TCRs in NK cell, CD8 TEM, and CD4 TCM among KD, COV, and FLU patients. Bubble diagram of top Go terms enrichments had been drawn based on the 
+DEGs among CD4 TCM (E), CD8 TEM (F), and NK cells (G). H. Violin plots of four representative genes of the term “ cellular response to interleukin-1 ” including 
+GBP1 , PSMB9 , PSMB8, and CCL2 in CD8 TEM. I. Violin plots of four representative genes of “ NK-kappaB transcription factor activity ” in NK cells, CX3CR1 were 
+highly expressed in COV, while S100A8 , S100A9, and S100A12 were only enriched in KD. 
+X. Liu et al.                                                                                                                                                                                                                                      
+BBA - Molecular Basis of Disease 1869 (2023) 166707
+15
+[37] J.D. Domizio, M.F. Gulen, F. Saidoune, V.V. Thacker, A. Yatim, K. Sharma, T. Nass, 
+E. Guenova, M. Schaller, C. Conrad, et al., The cGAS-STING pathway drives type I 
+IFN immunopathology in COVID-19, Nature 603 (7899) (2022) 145 – 151 . 
+[38] C. Junqueira, 
+ˆ
+A. Crespo, S. Ranjbar, L.B. de Lacerda, M. Lewandrowski, J. Ingber, 
+B. Parry, S. Ravid, S. Clark, M.R. Schrimpf, et al., Fc γ R-mediated SARS-CoV-2 
+infection of monocytes activates inflammation, Nature 606 (7914) (2022) 
+576 – 584 . 
+[39] M. Ackermann, S.E. Verleden, M. Kuehnel, A. Haverich, T. Welte, F. Laenger, 
+A. Vanstapel, C. Werlein, H. Stark, A. Tzankov, et al., Pulmonary vascular 
+endothelialitis, thrombosis, and angiogenesis in COVID-19, N. Engl. J. Med. 383 
+(2) (2020) 120 – 128 . 
+[40] A. Ivetic, H.L. Hoskins Green, S.J. Hart, L-selectin: a major regulator of leukocyte 
+adhesion,migration and signaling, Front. Immunol. 10 (2019) 1068 . 
+[41] H. Xu, J. Chen, Y. Wang, Y. Wu, Y. Liang, SELL and IFI44 as potential biomarkers of 
+Sj ¨ogren's syndrome and their correlation with immune cell infiltration, Genes 
+Genet. Syst. 96 (2) (2021) 71 – 80 . 
+[42] B.N. Gjurich, P.L. Taghavie-Moghadam, K. Ley, E.V. Galkina, L-selectin deficiency 
+decreases aortic B1a and breg subsets and promotes atherosclerosis, Thromb. 
+Haemost. 112 (4) (2014) 803 – 811 . 
+[43] O. Herbin, A.G. Regelmann, B. Ramkhelawon, E.G. Weinstein, K.J. Moore, 
+K. Alexandropoulos, Monocyte adhesion and plaque recruitment during 
+atherosclerosis development is regulated by the adapter protein chat-H/SHEP1, 
+Arterioscler. Thromb. Vasc. Biol. 36 (9) (2016) 1791 – 1801 . 
+[44] H. Nakano, Y. Kirino, M. Takeno, K. Higashitani, H. Nagai, R. Yoshimi, 
+Y. Yamaguchi, I. Kato, I. Aoki, H. Nakajima, GWAS-identified CCR1 and IL10 loci 
+contribute to M1 macrophage-predominant inflammation in Behçet's disease, 
+Arthritis Res. Ther. 20 (1) (2018) 124 . 
+[45] N. Kawanaka, M. Yamamura, T. Aita, Y. Morita, A. Okamoto, M. Kawashima, 
+M. Iwahashi, A. Ueno, Y. Ohmoto, H. Makino, CD14 + , CD16 + blood monocytes 
+and joint inflammation in rheumatoid arthritis, Arthritis Rheum. 46 (10) (2002) 
+2578 – 2586 . 
+[46] X. Zhang, D. He, Y. Xiang, C. Wang, B. Liang, B. Li, D. Qi, Q. Deng, H. Yu, Z. Lu, et 
+al., DYSF promotes monocyte activation in atherosclerotic cardiovascular disease 
+as a DNA methylation-driven gene, Transl. Res. 247 (2022) 19 – 38 . 
+[47] J. Qing, W. Song, L. Tian, S.B. Samuel, Y. Li, Potential small molecules for therapy 
+of lupus nephritis based on genetic effect and immune infiltration, Biomed. Res. 
+Int. 2022 (2022), 2259164 . 
+[48] D.W. Leaman, M. Chawla-Sarkar, K. Vyas, M. Reheman, K. Tamai, S. Toji, E. 
+C. Borden, Identification of X-linked inhibitor of apoptosis-associated factor-1 as an 
+interferon-stimulated gene that augments TRAIL Apo2L-induced apoptosis, J. Biol. 
+Chem. 277 (32) (2002) 28504 – 28511 . 
+[49] C. Evangelisti, I. Rusciano, S. Mongiorgi, G. Ramazzotti, G. Lattanzi, L. Manzoli, 
+L. Cocco, S. Ratti, The wide and growing range of Lamin B-related diseases: from 
+laminopathies to cancer, Cell. Mol. Life Sci. 79 (2) (2022) 126 . 
+[50] A. Reilly, J. Philip Creamer, S. Stewart, M.C. Stolla, Y. Wang, J. Du, R. Wellington, 
+S. Busch, E.H. Estey, P.S. Becker, et al., Lamin B1 deletion in myeloid neoplasms 
+causes nuclear anomaly and altered hematopoietic stem cell function, Cell Stem 
+Cell 29 (4) (2022) 577 – 592.e578 . 
+[51] J. Li, Z. Sun, Y. Cui, L. Qin, F. Wu, Y. Li, N. Du, X. Li, Knockdown of LMNB1 inhibits 
+the proliferation of lung adenocarcinoma cells by inducing DNA damage and cell 
+senescence, Front. Oncol. 12 (2022), 913740 . 
+[52] C.Y. Lin, C.C. Lin, B. Hwang, B. Chiang, Serial changes of serum interleukin-6, 
+interleukin-8, and tumor necrosis factor alpha among patients with Kawasaki 
+disease, J. Pediatr. 121 (6) (1992) 924 – 926 . 
+[53] G. Armaroli, E. Verweyen, C. Pretzer, K. Kessel, K. Hirono, F. Ichida, M. Okabe, D. 
+A. Cabral, D. Foell, K.L. Brown, et al., Monocyte-derived interleukin-1 β as the 
+driver of S100A12-induced sterile inflammatory activation of human coronary 
+artery endothelial cells: implications for the pathogenesis of Kawasaki disease, 
+Arthritis Rheumatol. 71 (5) (2019) 792 – 804 (Hoboken, NJ) . 
+[54] J.M. Kang, Y.E. Kim, K. Huh, J. Hong, D.W. Kim, M.Y. Kim, S.Y. Jung, J.H. Kim, 
+J. Jung, J.G. Ahn, Reduction in Kawasaki disease after nonpharmaceutical 
+interventions in the COVID-19 era: a nationwide observational study in Korea, 
+Circulation 143 (25) (2021) 2508 – 2510 . 
+X. Liu et al.                                                                                                                                                                                                                                      

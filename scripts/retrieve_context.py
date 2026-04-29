@@ -60,6 +60,30 @@ def expand_biological_query(query: str) -> str:
     return f"{query} cell type identity function biology marker genes"
 
 
+def retrieve_context_points(query: str, hf_token: str, limit: int = 5) -> list[dict]:
+    expanded_query = expand_biological_query(query)
+    query_embedding = get_embedding(expanded_query, hf_token)
+
+    client = QdrantClient(url="http://localhost:6333")
+    results = client.query_points(
+        collection_name="paper_chunks",
+        query=query_embedding,
+        limit=limit,
+    )
+
+    output = []
+    for point in results.points:
+        payload = point.payload or {}
+        output.append(
+            {
+                "score": point.score,
+                "source_pdf": payload.get("source_pdf", "unknown"),
+                "text": payload.get("text", ""),
+            }
+        )
+    return output
+
+
 def main() -> None:
     args = parse_args()
 
@@ -70,23 +94,13 @@ def main() -> None:
     query = args.query
     expanded_query = expand_biological_query(query)
     print(f"Expanded query: {expanded_query}")
-    query_embedding = get_embedding(expanded_query, hf_token)
+    results = retrieve_context_points(query, hf_token, limit=5)
 
-    client = QdrantClient(url="http://localhost:6333")
-    results = client.query_points(
-        collection_name="paper_chunks",
-        query=query_embedding,
-        limit=5,
-    )
-
-    for point in results.points:
-        payload = point.payload or {}
-        source_pdf = payload.get("source_pdf", "unknown")
-        text = payload.get("text", "")
+    for item in results:
         print("---")
-        print(f"Score: {point.score}")
-        print(f"Source: {source_pdf}")
-        print(f"Text: {text}")
+        print(f"Score: {item['score']}")
+        print(f"Source: {item['source_pdf']}")
+        print(f"Text: {item['text']}")
         print("---")
 
 
