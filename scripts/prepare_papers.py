@@ -4,8 +4,11 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import os
 from pathlib import Path
+from uuid import NAMESPACE_URL, uuid5
 
 from pypdf import PdfReader
+from qdrant_client import QdrantClient
+from qdrant_client.http import models
 import requests
 
 
@@ -68,6 +71,11 @@ def parse_args() -> argparse.Namespace:
         default=12,
         help="Number of worker threads for embedding generation (default: 12).",
     )
+    parser.add_argument(
+        "--upload-qdrant",
+        action="store_true",
+        help="Upload chunk embeddings to Qdrant.",
+    )
     return parser.parse_args()
 
 
@@ -80,9 +88,52 @@ def embed_chunk(chunk_id: int, text: str, hf_token: str) -> tuple[int, list[floa
     return chunk_id, embedding
 
 
+def ensure_qdrant_collection(
+    client: QdrantClient, collection_name: str, vector_size: int
+) -> None:
+    collections = client.get_collections().collections
+    existing_names = {collection.name for collection in collections}
+    if collection_name in existing_names:
+        return
+
+    client.create_collection(
+        collection_name=collection_name,
+        vectors_config=models.VectorParams(
+            size=vector_size,
+            distance=models.Distance.COSINE,
+        ),
+    )
+
+
+def upload_chunks_to_qdrant(
+    client: QdrantClient,
+    collection_name: str,
+    source_pdf: str,
+    chunks: list[dict],
+) -> None:
+    points = []
+    for chunk in chunks:
+        point_id = str(uuid5(NAMESPACE_URL, f"{source_pdf}:{chunk['chunk_id']}"))
+        points.append(
+            models.PointStruct(
+                id=point_id,
+                vector=chunk["embedding"],
+                payload={
+                    "source_pdf": source_pdf,
+                    "chunk_id": chunk["chunk_id"],
+                    "text": chunk["text"],
+                },
+            )
+        )
+
+    if points:
+        client.upsert(collection_name=collection_name, points=points)
+
+
 def main() -> None:
     args = parse_args()
     workers = args.workers
+    upload_qdrant = args.upload_qdrant
     if workers < 1:
         raise ValueError("--workers must be at least 1.")
 
@@ -98,6 +149,12 @@ def main() -> None:
     if not pdf_files:
         print("No PDF files found in papers/")
         return
+
+    qdrant_client = None
+    qdrant_collection_name = "paper_chunks"
+    qdrant_collection_ready = False
+    if upload_qdrant:
+        qdrant_client = QdrantClient(url="http://localhost:6333")
 
     text_output_dir.mkdir(parents=True, exist_ok=True)
     chunks_output_dir.mkdir(parents=True, exist_ok=True)
@@ -134,6 +191,23 @@ def main() -> None:
             if embedding is None:
                 raise RuntimeError(f"Missing embedding for chunk_id {idx}.")
             chunks.append({"chunk_id": idx, "text": chunk, "embedding": embedding})
+
+        if upload_qdrant and chunks and qdrant_client is not None:
+            if not qdrant_collection_ready:
+                vector_size = len(chunks[0]["embedding"])
+                ensure_qdrant_collection(
+                    client=qdrant_client,
+                    collection_name=qdrant_collection_name,
+                    vector_size=vector_size,
+                )
+                qdrant_collection_ready = True
+
+            upload_chunks_to_qdrant(
+                client=qdrant_client,
+                collection_name=qdrant_collection_name,
+                source_pdf=pdf_path.name,
+                chunks=chunks,
+            )
 
         chunk_payload = {"source_pdf": pdf_path.name, "chunks": chunks}
 
