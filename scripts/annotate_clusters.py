@@ -5,7 +5,7 @@ from pathlib import Path
 import requests
 
 HF_URL = "https://router.huggingface.co/v1/chat/completions"
-MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
+MODEL_NAME = os.getenv("HF_MODEL", "meta-llama/Llama-3.1-8B-Instruct")
 INPUT_PATH = Path("data/cluster_markers.json")
 OUTPUT_PATH = Path("data/annotations.json")
 
@@ -55,12 +55,12 @@ def build_messages(cluster_id: str, genes: list[str]) -> list[dict]:
     return [{"role": "user", "content": prompt}]
 
 
-def call_hf_chat(token: str, messages: list[dict]) -> str:
+def call_hf_chat(token: str, messages: list[dict], temperature: float = 0.2) -> str:
     payload = {
         "model": MODEL_NAME,
         "messages": messages,
         "max_tokens": 400,
-        "temperature": 0.2,
+        "temperature": temperature,
     }
 
     response = requests.post(
@@ -123,6 +123,49 @@ def parse_model_json(raw_text: str, cluster_id: str, input_genes: list[str]) -> 
     return parsed
 
 
+def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
+    warnings: list[str] = []
+    existing_warning = annotation.get("warning", "")
+    if isinstance(existing_warning, str) and existing_warning.strip():
+        warnings.append(existing_warning.strip())
+
+    confidence_value = annotation.get("confidence", 0.0)
+    try:
+        confidence = float(confidence_value)
+    except (TypeError, ValueError):
+        confidence = 0.0
+        annotation["confidence"] = confidence
+
+    if confidence < 0.5:
+        warnings.append("Low confidence prediction.")
+
+    marker_evidence = annotation.get("marker_evidence")
+    if not isinstance(marker_evidence, dict):
+        marker_evidence = {}
+        annotation["marker_evidence"] = marker_evidence
+
+    # Extra safety check: keep only evidence genes present in the input list.
+    allowed_genes = {gene.strip() for gene in input_genes if gene.strip()}
+    filtered_evidence = {}
+    for gene_name, evidence_text in marker_evidence.items():
+        if gene_name in allowed_genes:
+            filtered_evidence[gene_name] = evidence_text
+    annotation["marker_evidence"] = filtered_evidence
+
+    if not filtered_evidence:
+        warnings.append("No marker evidence provided.")
+
+    predicted_cell_type = str(annotation.get("predicted_cell_type", "")).strip().lower()
+    if predicted_cell_type == "unknown":
+        warnings.append("Model could not confidently assign a cell type.")
+
+    # Preserve order while removing duplicates.
+    unique_warnings = list(dict.fromkeys(warnings))
+    annotation["warning"] = " ".join(unique_warnings)
+
+    return annotation
+
+
 def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
     annotations = []
 
@@ -146,12 +189,28 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
             )
             continue
 
-        try:
-            messages = build_messages(cluster_id, genes)
-            raw_output = call_hf_chat(token, messages)
-            parsed_output = parse_model_json(raw_output, cluster_id, genes)
-            annotations.append(parsed_output)
-        except (requests.RequestException, ValueError, KeyError, IndexError) as exc:
+        last_exception: Exception | None = None
+        messages = build_messages(cluster_id, genes)
+
+        for attempt in range(1, 4):
+            try:
+                temperature = 0.1 + (0.1 * attempt)  # 0.2, 0.3, 0.4
+                raw_output = call_hf_chat(token, messages, temperature=temperature)
+                parsed_output = parse_model_json(raw_output, cluster_id, genes)
+                parsed_output = validate_annotation(parsed_output, genes)
+
+                if not parsed_output.get("marker_evidence"):
+                    raise ValueError("marker_evidence is empty")
+
+                annotations.append(parsed_output)
+                last_exception = None
+                break
+            except (requests.RequestException, ValueError, KeyError, IndexError) as exc:
+                last_exception = exc
+                if attempt < 3:
+                    print(f"Retrying cluster {cluster_id} (attempt {attempt + 1})...")
+
+        if last_exception is not None:
             annotations.append(
                 {
                     "cluster": cluster_id,
@@ -161,7 +220,7 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
                     "alternative_cell_types": [],
                     "warning": "Model call or JSON parsing failed; output is a fallback.",
                     "marker_evidence": {},
-                    "error": str(exc),
+                    "error": str(last_exception),
                 }
             )
 
@@ -178,6 +237,8 @@ def main() -> None:
     token = os.getenv("HF_TOKEN")
     if not token:
         raise ValueError("HF_TOKEN is not set")
+
+    print(f"Using model: {MODEL_NAME}")
 
     clusters = load_clusters(INPUT_PATH)
     annotations = annotate_clusters(clusters, token)

@@ -39,6 +39,14 @@ This project uses the Hugging Face Inference API with:
 $env:HF_TOKEN="your_hf_token_here"
 ```
 
+Optional model selection:
+
+```powershell
+$env:HF_MODEL="meta-llama/Llama-3.1-70B-Instruct"
+```
+
+If `HF_MODEL` is not set, the default is `meta-llama/Llama-3.1-8B-Instruct`.
+
 ## Current Pipeline
 
 `marker CSV` -> `parse_markers.py` -> `cluster_markers.json` -> `annotate_clusters.py` -> `annotations.json`
@@ -68,3 +76,18 @@ python scripts/annotate_clusters.py
 - Qdrant (vector DB)
 - n8n (automation/workflow orchestration)
 - Web app interface
+
+## Future Model Comparison
+
+The current prototype uses the Hugging Face Inference API with `meta-llama/Llama-3.1-8B-Instruct`.
+
+Future versions will support multiple LLM backends/models. The goal is to compare annotation quality across models for different datasets and cell types.
+
+Candidate future models may include:
+
+- `meta-llama/Llama-3.1-8B-Instruct`
+- `meta-llama/Llama-3.1-70B-Instruct`
+- `Qwen/Qwen2.5-7B-Instruct-1M`
+- `Mistral-Nemo-Instruct-2407` (or another Mistral instruct model available through Hugging Face)
+
+Model choice should eventually be configurable instead of hard-coded.
