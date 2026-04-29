@@ -166,6 +166,38 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
     return annotation
 
 
+def calibrate_confidence(annotation: dict, input_genes: list[str]) -> float:
+    confidence_value = annotation.get("confidence", 0.0)
+    try:
+        confidence = float(confidence_value)
+    except (TypeError, ValueError):
+        confidence = 0.0
+
+    marker_evidence = annotation.get("marker_evidence", {})
+    if isinstance(marker_evidence, dict) and len(marker_evidence) >= 4:
+        confidence += 0.1
+
+    reasoning = str(annotation.get("reasoning", ""))
+    reasoning_lower = reasoning.lower()
+    mentioned_markers = 0
+    for gene in input_genes:
+        gene_clean = gene.strip()
+        if gene_clean and gene_clean.lower() in reasoning_lower:
+            mentioned_markers += 1
+    if mentioned_markers >= 2:
+        confidence += 0.1
+
+    warning = str(annotation.get("warning", "")).strip()
+    if warning:
+        confidence -= 0.1
+
+    alternatives = annotation.get("alternative_cell_types", [])
+    if isinstance(alternatives, list) and alternatives:
+        confidence -= 0.05
+
+    return max(0.0, min(1.0, confidence))
+
+
 def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
     annotations = []
 
@@ -198,6 +230,7 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
                 raw_output = call_hf_chat(token, messages, temperature=temperature)
                 parsed_output = parse_model_json(raw_output, cluster_id, genes)
                 parsed_output = validate_annotation(parsed_output, genes)
+                parsed_output["confidence"] = calibrate_confidence(parsed_output, genes)
 
                 if not parsed_output.get("marker_evidence"):
                     raise ValueError("marker_evidence is empty")
