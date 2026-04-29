@@ -7,6 +7,7 @@ __pycache__/
 huggingface_token.txt
 Presentation/
 Notes/
+data/uploaded_markers.csv
 
 # Generated data artifacts
 data/annotations.json
