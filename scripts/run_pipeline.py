@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 
 from annotate_clusters import annotate_clusters, save_annotations
+from generate_report import main as generate_report_main
 from parse_markers import group_top_markers, load_markers
 
 
@@ -32,6 +33,8 @@ def main() -> None:
     print("Annotating clusters...")
     annotations = annotate_clusters(clusters, token)
     save_annotations(annotations_path, annotations)
+    generate_report_main()
+    print("Report generation complete: reports/annotation_report.md")
 
     print("Pipeline complete.")
 

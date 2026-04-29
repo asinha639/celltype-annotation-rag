@@ -12,14 +12,14 @@
 **Confidence:** 0.95
 
 ### Reasoning
-Strongly prefer B cell due to presence of MS4A1 and CD79A.
+Strong markers for B cell (MS4A1, CD79A) with no conflicting markers.
 
 ### Marker evidence
-- MS4A1: Strongly supports B cell identity.
-- CD79A: Strongly supports B cell identity.
-- CD74: Not specific to B cells, but present.
-- HLA-DRA: Not specific to B cells, but present.
-- CD37: Not specific to B cells, but present.
+- MS4A1: Strong marker for B cell
+- CD79A: Strong marker for B cell
+- CD74: Common marker in various immune cells
+- HLA-DRA: Common marker in various immune cells
+- CD37: Common marker in various immune cells
 
 ### Alternative cell types
 - None
@@ -30,14 +30,14 @@ Strongly prefer B cell due to presence of MS4A1 and CD79A.
 **Confidence:** 0.90
 
 ### Reasoning
-Marker genes NKG7, GNLY, PRF1, CTSW, and TRAC are strongly associated with cytotoxic T cells.
+Based on the presence of NKG7, GNLY, PRF1, CTSW, and TRAC, this cluster is likely cytotoxic T cells.
 
 ### Marker evidence
-- NKG7: Strongly associated with cytotoxic T cells.
-- GNLY: Strongly associated with cytotoxic T cells.
-- PRF1: Strongly associated with cytotoxic T cells.
-- CTSW: Strongly associated with cytotoxic T cells.
-- TRAC: Strongly associated with cytotoxic T cells.
+- NKG7: Strongly supports cytotoxic T cell or NK cell
+- GNLY: Supports cytotoxic T cell or NK cell
+- PRF1: Supports cytotoxic T cell or NK cell
+- CTSW: Supports cytotoxic T cell or NK cell
+- TRAC: Supports cytotoxic T cell or NK cell
 
 ### Alternative cell types
 - NK cell
@@ -48,14 +48,14 @@ Marker genes NKG7, GNLY, PRF1, CTSW, and TRAC are strongly associated with cytot
 **Confidence:** 0.90
 
 ### Reasoning
-The presence of LYZ, FCN1, CTSS, S100A8, and S100A9 in the marker genes suggests classical monocyte. However, the absence of strong neutrophil markers means we do not overcall neutrophils.
+The cluster is annotated as classical monocyte due to the presence of LYZ, FCN1, CTSS, S100A8, and S100A9, which are strong markers for this cell type.
 
 ### Marker evidence
-- LYZ: strongly supports classical monocyte
-- FCN1: supports classical monocyte
-- CTSS: supports classical monocyte
-- S100A8: supports classical monocyte
-- S100A9: supports classical monocyte
+- LYZ: strong marker for classical monocyte
+- FCN1: strong marker for classical monocyte
+- CTSS: strong marker for classical monocyte
+- S100A8: strong marker for classical monocyte
+- S100A9: strong marker for classical monocyte
 
 ### Alternative cell types
 - neutrophil
