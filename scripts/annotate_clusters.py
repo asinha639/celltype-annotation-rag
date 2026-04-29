@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 import requests
-from retrieve_context import retrieve_context_points
+from retrieve_context import filter_retrieved_chunks, retrieve_context_points
 
 HF_URL = "https://router.huggingface.co/v1/chat/completions"
 MODEL_NAME = os.getenv("HF_MODEL", "meta-llama/Llama-3.1-8B-Instruct")
@@ -246,8 +246,11 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
             print(f"Literature retrieval failed for cluster {cluster_id}: {exc}")
             retrieved = []
 
-        literature_texts = [item.get("text", "").strip() for item in retrieved if item.get("text")]
-        literature_context = "\n\n".join(literature_texts[:5])
+        filtered_retrieved = filter_retrieved_chunks(retrieved)
+        literature_texts = [
+            item.get("text", "").strip() for item in filtered_retrieved if item.get("text")
+        ]
+        literature_context = "\n\n".join(literature_texts[:3])
         messages = build_messages(cluster_id, genes, literature_context)
 
         for attempt in range(1, 4):

@@ -1,113 +1,54 @@
-# Cell-Type Annotation RAG Starter
+# AI-Assisted Cell Type Annotation for scRNA-seq
 
-A beginner-friendly project for annotating cell clusters from marker-gene CSV input using a Python pipeline.
+This project is a local Python pipeline for annotating single-cell RNA-seq clusters using marker genes, LLM reasoning, and retrieval-augmented context from research papers.
 
-## Stack
+## Features
 
-- Python
-- Hugging Face Inference API
-- Requests
+- Marker-based cluster annotation
+- LLM reasoning with Llama 3.1 via Hugging Face
+- RAG over scientific PDF chunks
+- Parallel embedding generation for paper chunks
+- Qdrant vector database integration
 
-## Model
+## Pipeline Overview
 
-This project uses the Hugging Face Inference API with:
-
-- `meta-llama/Llama-3.1-8B-Instruct`
-
-## Current Status
-
-- The pipeline is currently Python-based.
-- It does **not** depend on n8n yet.
-- n8n is planned as a future workflow orchestration layer.
+`marker CSV -> parsing -> cluster JSON -> embeddings -> Qdrant -> retrieval -> LLM -> annotations`
 
 ## Project Structure
 
-- `scripts/parse_markers.py`
-- `scripts/annotate_clusters.py`
-- `data/example_markers.csv`
-- `data/cluster_markers.json` (generated)
-- `data/annotations.json` (generated)
+- `data/` - inputs and generated outputs (`cluster_markers.json`, `annotations.json`, chunk files)
+- `scripts/` - pipeline scripts (`parse_markers.py`, `prepare_papers.py`, `retrieve_context.py`, `annotate_clusters.py`)
+- `papers/` - research PDFs for RAG ingestion
+- `docker-compose.yml` - local services (Qdrant)
+- `requirements.txt` - Python dependencies
 
-## Prerequisites
+## Setup
 
-1. Python 3.10+
-2. A Hugging Face token with Inference API access
+1. Set your Hugging Face token:
+   - PowerShell: `$env:HF_TOKEN="your_token_here"`
+2. Start local infrastructure:
+   - `docker compose up -d`
+3. Install Python dependencies:
+   - `pip install -r requirements.txt`
 
-## Setup (PowerShell)
+## Usage
 
-```powershell
-$env:HF_TOKEN="your_hf_token_here"
-```
+- Run main annotation pipeline:
+  - `python scripts/parse_markers.py`
+  - `python scripts/annotate_clusters.py`
+- Prepare papers and build chunk embeddings:
+  - `python scripts/prepare_papers.py --workers 12 --upload-qdrant`
+- Retrieve context for a query:
+  - `python scripts/retrieve_context.py --query "PBMC monocyte marker genes LYZ FCN1 S100A8 S100A9"`
 
-Optional model selection:
+## Current Status
 
-```powershell
-$env:HF_MODEL="meta-llama/Llama-3.1-70B-Instruct"
-```
+- Working local prototype
+- Supports RAG-based annotation with paper chunk retrieval from Qdrant
 
-If `HF_MODEL` is not set, the default is `meta-llama/Llama-3.1-8B-Instruct`.
+## Future Work
 
-## Current Pipeline
-
-`marker CSV` -> `parse_markers.py` -> `cluster_markers.json` -> `annotate_clusters.py` -> `annotations.json`
-
-## Run (PowerShell)
-
-1. Parse markers:
-
-```powershell
-python scripts/parse_markers.py
-```
-
-Optional:
-
-```powershell
-python scripts/parse_markers.py --input data/example_markers.csv --output data/cluster_markers.json --top-n 5
-```
-
-2. Annotate clusters:
-
-```powershell
-python scripts/annotate_clusters.py
-```
-
-## RAG Preparation
-
-The `papers/` folder will later store uploaded research PDFs.
-
-`scripts/prepare_papers.py` is the first step toward PDF ingestion and currently scans `papers/` for PDF files.
-
-## Future Architecture
-
-- Qdrant (vector DB)
-- n8n (automation/workflow orchestration)
-- Web app interface
-
-## Future Model Comparison
-
-The current prototype uses the Hugging Face Inference API with `meta-llama/Llama-3.1-8B-Instruct`.
-
-Future versions will support multiple LLM backends/models. The goal is to compare annotation quality across models for different datasets and cell types.
-
-Candidate future models may include:
-
-- `meta-llama/Llama-3.1-8B-Instruct`
-- `meta-llama/Llama-3.1-70B-Instruct`
-- `Qwen/Qwen2.5-7B-Instruct-1M`
-- `Mistral-Nemo-Instruct-2407` (or another Mistral instruct model available through Hugging Face)
-
-Model choice should eventually be configurable instead of hard-coded.
-
-## Evaluation Plan
-
-We will eventually compare multiple Hugging Face models on the same marker inputs.
-
-Outputs will be compared by:
-
-- predicted cell type
-- confidence
-- warning frequency
-- marker evidence quality
-- agreement with expert/known labels
-
-This evaluation will support future manuscript figures and tables.
+- n8n integration for orchestration
+- Web app for interactive annotation review
+- Multiple LLM comparison and benchmarking
+- Improved biological knowledge base and retrieval quality

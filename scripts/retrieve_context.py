@@ -60,6 +60,28 @@ def expand_biological_query(query: str) -> str:
     return f"{query} cell type identity function biology marker genes"
 
 
+def filter_retrieved_chunks(chunks: list[dict]) -> list[dict]:
+    noise_keywords = [
+        "references",
+        "copyright",
+        "available online",
+        "article info",
+        "contents lists available",
+        "fig.",
+        "figure",
+    ]
+
+    filtered = []
+    for chunk in chunks:
+        text = str(chunk.get("text", ""))
+        text_lower = text.lower()
+        if any(keyword in text_lower for keyword in noise_keywords):
+            continue
+        filtered.append(chunk)
+
+    return filtered
+
+
 def retrieve_context_points(query: str, hf_token: str, limit: int = 5) -> list[dict]:
     expanded_query = expand_biological_query(query)
     query_embedding = get_embedding(expanded_query, hf_token)
@@ -81,7 +103,8 @@ def retrieve_context_points(query: str, hf_token: str, limit: int = 5) -> list[d
                 "text": payload.get("text", ""),
             }
         )
-    return output
+    filtered = filter_retrieved_chunks(output)
+    return filtered[:limit]
 
 
 def main() -> None:
