@@ -71,6 +71,12 @@ python scripts/parse_markers.py --input data/example_markers.csv --output data/c
 python scripts/annotate_clusters.py
 ```
 
+## RAG Preparation
+
+The `papers/` folder will later store uploaded research PDFs.
+
+`scripts/prepare_papers.py` is the first step toward PDF ingestion and currently scans `papers/` for PDF files.
+
 ## Future Architecture
 
 - Qdrant (vector DB)
@@ -91,3 +97,17 @@ Candidate future models may include:
 - `Mistral-Nemo-Instruct-2407` (or another Mistral instruct model available through Hugging Face)
 
 Model choice should eventually be configurable instead of hard-coded.
+
+## Evaluation Plan
+
+We will eventually compare multiple Hugging Face models on the same marker inputs.
+
+Outputs will be compared by:
+
+- predicted cell type
+- confidence
+- warning frequency
+- marker evidence quality
+- agreement with expert/known labels
+
+This evaluation will support future manuscript figures and tables.
