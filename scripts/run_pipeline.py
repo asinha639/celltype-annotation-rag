@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import os
+from pathlib import Path
+
+from annotate_clusters import annotate_clusters, save_annotations
+from parse_markers import group_top_markers, load_markers
+
+
+def main() -> None:
+    token = os.getenv("HF_TOKEN")
+    if not token:
+        raise ValueError("HF_TOKEN is not set")
+
+    input_csv = Path("data/example_markers.csv")
+    cluster_json_path = Path("data/cluster_markers.json")
+    annotations_path = Path("data/annotations.json")
+
+    print("Parsing markers...")
+    rows = load_markers(input_csv)
+    grouped = group_top_markers(rows, top_n=5)
+
+    cluster_json_path.parent.mkdir(parents=True, exist_ok=True)
+    with cluster_json_path.open("w", encoding="utf-8") as handle:
+        json.dump(grouped, handle, indent=2)
+
+    with cluster_json_path.open("r", encoding="utf-8") as handle:
+        clusters = json.load(handle).get("clusters", [])
+
+    print("Annotating clusters...")
+    annotations = annotate_clusters(clusters, token)
+    save_annotations(annotations_path, annotations)
+
+    print("Pipeline complete.")
+
+
+if __name__ == "__main__":
+    main()

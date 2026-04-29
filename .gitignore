@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environment and secrets
+.env
+huggingface_token.txt
+
+# Generated data artifacts
+data/annotations.json
+data/cluster_markers.json
+
+# Editor and IDE
+.vscode/
+.idea/
+
+# Node
+node_modules/
+
+# Logs
+*.log
