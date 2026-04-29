@@ -31,6 +31,18 @@ This project is a local Python pipeline for annotating single-cell RNA-seq clust
 3. Install Python dependencies:
    - `pip install -r requirements.txt`
 
+## Quick Start (Full Pipeline)
+
+1. Set Hugging Face token (PowerShell):
+   - `$env:HF_TOKEN="your_token_here"`
+2. Run full pipeline:
+   - `python scripts/run_pipeline.py`
+3. Outputs:
+   - `data/annotations.json` -> structured annotations
+   - `reports/annotation_report.md` -> human-readable report
+4. (Optional) Prepare papers for RAG:
+   - `python scripts/prepare_papers.py --workers 12 --upload-qdrant`
+
 ## Usage
 
 - Run main annotation pipeline:
