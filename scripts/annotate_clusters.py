@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+import re
 
 import requests
 from retrieve_context import filter_retrieved_chunks, retrieve_context_points
@@ -71,6 +72,9 @@ def build_messages(cluster_id: str, genes: list[str], literature_context: str) -
         "- warning should be a short string about uncertainty or caution (or empty string if none)\n"
         "- marker_evidence should be a JSON object with keys that are marker genes and values that briefly explain support/conflict\n"
         "- marker_evidence must only include genes from the input marker list for this cluster\n"
+        "- the reasoning must ONLY mention marker genes provided for the current cluster\n"
+        "- never mention genes from other clusters\n"
+        "- if you mention a gene not in the input marker list, the output is invalid\n"
         "- no markdown, no extra text"
     )
 
@@ -180,9 +184,46 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
     if not filtered_evidence:
         warnings.append("No marker evidence provided.")
 
+    # Reject outputs that leak gene symbols not present in this cluster input.
+    reasoning = str(annotation.get("reasoning", ""))
+    allowed_genes_upper = {gene.strip().upper() for gene in input_genes if gene.strip()}
+    ignored_tokens = {"RNA", "SCRNA", "PBMC", "DNA", "JSON", "LLM"}
+    gene_like_tokens = set(re.findall(r"\b[A-Z0-9-]{3,15}\b", reasoning))
+    invalid_reasoning_genes = []
+    for token in gene_like_tokens:
+        if token in ignored_tokens:
+            continue
+        if token not in allowed_genes_upper:
+            invalid_reasoning_genes.append(token)
+    if invalid_reasoning_genes:
+        invalid_reasoning_genes = sorted(invalid_reasoning_genes)
+        raise ValueError(
+            "Reasoning mentions genes not in input markers: "
+            + ", ".join(invalid_reasoning_genes)
+        )
+
     predicted_cell_type = str(annotation.get("predicted_cell_type", "")).strip().lower()
     if predicted_cell_type == "unknown":
         warnings.append("Model could not confidently assign a cell type.")
+
+    # Hard rule: classical monocyte when canonical monocyte markers are present,
+    # unless strong neutrophil markers are also present in the input list.
+    input_gene_set = {gene.strip().upper() for gene in input_genes if gene.strip()}
+    monocyte_signature = {"LYZ", "FCN1", "CTSS", "S100A8", "S100A9"}
+    strong_neutrophil_markers = {
+        "FCGR3B",
+        "CSF3R",
+        "CXCR2",
+        "LCN2",
+        "MPO",
+        "ELANE",
+        "AZU1",
+        "S100A12",
+    }
+    has_monocyte_signature = monocyte_signature.issubset(input_gene_set)
+    has_strong_neutrophil_markers = bool(input_gene_set & strong_neutrophil_markers)
+    if has_monocyte_signature and not has_strong_neutrophil_markers:
+        annotation["predicted_cell_type"] = "classical monocyte"
 
     # Preserve order while removing duplicates.
     unique_warnings = list(dict.fromkeys(warnings))
@@ -220,7 +261,18 @@ def calibrate_confidence(annotation: dict, input_genes: list[str]) -> float:
     if isinstance(alternatives, list) and alternatives:
         confidence -= 0.05
 
-    return max(0.0, min(1.0, confidence))
+    confidence = min(confidence, 0.95)
+
+    if isinstance(alternatives, list) and alternatives:
+        confidence = min(confidence, 0.90)
+
+    if warning:
+        confidence = min(confidence, 0.85)
+
+    if not isinstance(marker_evidence, dict) or len(marker_evidence) < 3:
+        confidence = min(confidence, 0.75)
+
+    return max(0.0, confidence)
 
 
 def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
