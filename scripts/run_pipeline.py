@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import json
 import os
 from pathlib import Path
@@ -10,12 +11,23 @@ from generate_report import main as generate_report_main
 from parse_markers import group_top_markers, load_markers
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Run the full annotation pipeline.")
+    parser.add_argument(
+        "--input",
+        default="data/example_markers.csv",
+        help="Path to input marker CSV file (default: data/example_markers.csv).",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     token = os.getenv("HF_TOKEN")
     if not token:
         raise ValueError("HF_TOKEN is not set")
 
-    input_csv = Path("data/example_markers.csv")
+    input_csv = Path(args.input)
     cluster_json_path = Path("data/cluster_markers.json")
     annotations_path = Path("data/annotations.json")
 

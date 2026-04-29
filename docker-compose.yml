@@ -7,6 +7,7 @@ services:
     ports:
       - "5678:5678"
     environment:
+      - N8N_NODES_INCLUDE=n8n-nodes-base.manualTrigger,n8n-nodes-base.executeCommand
       - N8N_HOST=localhost
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
@@ -17,10 +18,11 @@ services:
       - DB_POSTGRESDB_USER=n8n
       - DB_POSTGRESDB_PASSWORD=n8n_password
       - GENERIC_TIMEZONE=America/New_York
+      - N8N_BLOCK_NODES=
     depends_on:
       - postgres
     volumes:
-      - n8n_data:/home/node/.n8n
+      - ./:/workspace
 
   postgres:
     image: postgres:16
