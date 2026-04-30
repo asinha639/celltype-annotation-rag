@@ -1,0 +1,1342 @@
+1
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access 
+ScRNA- seq reveals novel immune- 
+suppressive T cells and investigates 
+CMV- TCR- T cells cytotoxicity 
+against GBM
+Xinmiao Long    ,1,2,3 Zuping Zhang,4 Yuzhe Li,5,6 Kun Deng,1,2,3 Wei Gao,1,2,3 
+Meng Huang,5,7 Xiangyu Wang,5 Xiang Lin,1,2 Xiaoling She,8 Yiming Zhao,1,4 
+Minfu Zhang,1 Cheng Huang,2,3 Shiyi Wang,2,3 Yinfei Du,2,3 Peng Du,9 Shuai Chen,1 
+Qing Liu,5 Minghua Wu1,2,3
+To cite: Long X, Zhang Z, Li Y, 
+et al.  ScRNA- seq reveals novel 
+immune- suppressive T cells 
+and investigates CMV- TCR- T 
+cells cytotoxicity against GBM. 
+Journal for ImmunoTherapy 
+of Cancer 2024;12:e008967. 
+doi:10.1136/jitc-2024-008967
+ ► Additional supplemental 
+material is published online only. 
+To view, please visit the journal 
+online (https:// doi. org/ 10. 1136/ 
+jitc- 2024- 008967 ).
+Accepted 11 April 2024
+For numbered affiliations see 
+end of article.
+Correspondence to
+Professor Minghua Wu;  
+ wuminghua554@ aliyun. com
+Qing Liu;  Lliuqingdr@ csu. edu. cn
+Professor Shuai Chen;  
+ 13637499833@ 139. com
+Professor Peng Du;  
+ 13699994376@ 163. com
+Original research
+© Author(s) (or their 
+employer(s)) 2024. Re- use 
+permitted under CC BY- NC. No 
+commercial re- use. See rights 
+and permissions. Published by 
+BMJ.
+ABSTRACT
+Background Glioblastoma (GBM) is a fatal primary brain 
+malignancy in adults. Previous studies have shown that 
+cytomegalovirus (CMV) is a risk factor for tumorigenesis 
+and aggressiveness for glioblastoma. However, little is 
+known about how CMV infection affects immune cells in 
+the tumor microenvironment of GBM. Furthermore, there 
+has been almost no engineered T- cell receptor (TCR)- T 
+targeting CMV for GBM research to date.
+Methods We evaluated the CMV infection status of 
+patients with GBM’s tumor tissue by immune electron 
+microscopy, immunofluorescence, and droplet digital 
+PCR. We performed single- cell RNA sequencing for CMV- 
+infected GBM to investigate the effects of CMV on the 
+GBM immune microenvironment. CellChat was applied to 
+analyze the interaction between cells in the GBM tumor 
+microenvironment. Additionally, we conducted single- 
+cell TCR/B cell receptor (BCR) sequencing and Grouping 
+of Lymphocyte Interactions with Paratope Hotspots 2 
+algorithms to acquire specific CMV- TCR sequences. 
+Genetic engineering was used to introduce CMV- TCR into 
+primary T cells derived from patients with CMV- infected 
+GBM. Flow cytometry was used to measure the proportion 
+and cytotoxicity status of T cells in vitro.
+Results We identified two novel immune cell 
+subpopulations in CMV- infected GBM, which were 
+bipositive CD68+SOX2+ tumor- associated macrophages 
+and FXYD6+ T cells. We highlighted that the interaction 
+between bipositive TAMs or cancer cells and T cells was 
+predominantly focused on FXYD6+ T cells rather than 
+regulatory T cells (Tregs), whereas, FXYD6+ T cells were 
+further identified as a group of novel immunosuppressive 
+T cells. CMV- TCR- T cells showed significant therapeutic 
+effects on the human- derived orthotopic GBM mice model.
+Conclusions These findings provided an insight into the 
+underlying mechanism of CMV infection promoting the 
+GBM immunosuppression, and provided a novel potential 
+immunotherapy strategy for patients with GBM.
+INTRODUCTION
+Glioblastomas (GBM) stand as the most prev-
+alent and aggressive primary brain malig-
+nancy among adults. 1 The current standard 
+of care includes maximal surgical resection 
+followed by radiotherapy and chemotherapy 
+with temozolomide. Unfortunately, this 
+aggressive management is rarely curative, 
+cancer recurrence and death are almost 
+inevitable. Individuals diagnosed with GBM 
+exhibit a median survival of 15.4 months, 
+with less than 5% surviving beyond 5 years. 2 
+Currently, many novel GBM immunotherapy 
+trials, including vaccines, chimeric antigen 
+receptor T cells, and immune checkpoint 
+blockade (such as programmed death 1 
+(PD- 1)/ligand- 1 (PD- L1) blockade therapy), 
+have shown only modest benefits in patients 
+with GBM. 3 Lack of tumor- infiltrating T 
+cells, as well as uniquely immunosuppressive 
+macrophages, are significant barriers limiting 
+the efficacy of immunotherapy in GBM and 
+the relapsing and refractory treatment of 
+WHAT IS ALREADY KNOWN ON THIS TOPIC
+ ⇒ Cytomegalovirus (CMV) infection in glioblastoma 
+(GBM) promotes malignant cell proliferation and mi-
+gration, contributing to tumor progression.
+WHAT THIS STUDY ADDS
+ ⇒ Our results elucidate the unique immune microen-
+vironment of CMV infection in GBM. It shows that 
+CMV primarily induces immunosuppression and 
+facilitates tumor cell growth by mediating crosstalk 
+between bipositive tumor- associated macrophages 
+and FXYD6 + T cells during GBM progression. We 
+have also developed CMV- T- cell receptor- T cells 
+that effectively kill GBM tumor cells.
+HOW THIS STUDY MIGHT AFFECT RESEARCH, 
+PRACTICE OR POLICY
+ ⇒ It provides a potential therapeutic target in a nov-
+el subset of immune cells and offers new research 
+ideas and methods for the development of cellular 
+immunotherapy for GBM.
+2
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access 
+patients with GBM.4 There is an urgent need to decipher 
+the pathogenic mechanism of GBM and develop more 
+effective treatments for the patients.
+Cytomegalovirus (CMV) is a β-herpes virus which 
+exhibits strict host specificity and establishes life- long 
+persistence with alternating phases of latency and 
+productive infection.5 CMV was reported present in many 
+solid cancers, including breast, 6 prostate 7and medul-
+loblastoma.8 Present mainly in tumor cells, the CMV 
+infection may be tumorigenic, inducing the activation 
+of mitotic signals transmitted by the products of proto- 
+oncogenes such as c- fos c- jun and c- myc.5 9  Cobbs et al 
+first reported the detection of human CMV antigens in 
+GBM in 2002.10 Since then, many studies have attempted 
+to address the controversial question of whether there is 
+an association between CMV and GBM. 11 CMV encodes 
+for a plethora of gene products that serve to evade the 
+immune system by intercepting, for example, interferon- 
+regulatory factor, signal transducer and activator of tran-
+scription, and nuclear factor κB dependent signaling. 12 
+However, it remains largely elusive how immune cells in 
+the GBM tumor environment respond to the presence of 
+CMV, especially macrophages and T cells. Meanwhile, it 
+is unknown how CMV- infected GBM altered depending 
+on the disease stage whether CMV- specific cell subsets 
+are found in different uninfected CMV tumor microen-
+vironments and/or exhibit distinct immune checkpoint, 
+and how to design to use CMV as a novel, potential thera-
+peutic target for the tumor.
+In this work, we confirmed the presence of CMV infec-
+tion in 60% of GBM cases. For the first time, we have 
+constructed a single- cell transcriptomic atlas for GBM 
+with CMV infection. Our findings indicate that CMV 
+infection promotes the expansion of a subset of bipositive 
+SOX2+CD68+ tumor- associated macrophages (TAMs). 
+CMV manifests through mediating interactions between 
+bipositive TAMs and novel identified immunosuppressive 
+FXYD6+ T cells, leading to T- cell exhaustion and exac-
+erbating the immune- suppressive microenvironment 
+in GBM. Furthermore, we have developed CMV- T- cell 
+receptor (TCR)- T cells, which demonstrated encour -
+aging therapeutic effects when introduced into the GBM, 
+providing a promising avenue for the treatment of GBM.
+METHOD
+Collection of tissue and blood samples
+Relevant clinical information of the patients is succinctly 
+presented in online supplemental table 1. Surgically 
+resected GBM specimens were promptly placed on 
+ice, ensuring a transfer time of no more than 30 min 
+following lesion excision. Blood samples from patients 
+were collected 1 day before the surgical procedure. The 
+cohort of patients with GBM comprised 8 women and 12 
+men, spanning an age range from 22 to 73 years. A total 
+of 20 samples were analyzed in this study, encompassing 
+20 tumor samples, and 20 patient blood samples.
+Immune electron microscopy
+The GBM tumor tissue, post- removal, is stored in immu-
+noelectron microscopy fixative at 4°C, avoiding freezing 
+during transportation. Immediate embedding and immu-
+nolabeling tests are vital to prevent antigen loss. After 
+washing the tissue blocks thrice with pre- cooled 0.1 M 
+phosphate buffer (PB) (pH 7.4), resin penetration occurs 
+in stages at 4°C, followed by embedding in London 
+Resin (LR) white resin and polymerization at −20°C for 
+48 hours. Ultrathin sections (70–80 nm) are cut from resin 
+blocks on an ultra- microtome and then fished onto nickel 
+grids. Immunolabeling involves multiple steps, including 
+incubation with primary (Anti- Cytomegalovirus IE1/2, 
+ab53495, Abcam; anti- HCMV- pp65, BIOSS, bs- 0271R) 
+and secondary antibodies (Goat- anti- mouse IgG (HL)−4 
+nm Gold, 115- 185- 146, Jackson; Goat- anti- rabbit IgG 
+(HL)−10 nm Gold, G7402, Sigma), rinsing, staining, and 
+drying the nickel grids in a controlled manner. Finally, 
+observation under a transmission electron microscope 
+(TEM) and image capture is conducted to identify 
+positive signals, which appear as 4/10 nm black golden 
+particles.
+Droplet digital PCR for CMV copy number
+Microdroplet preparation involves placing the genera-
+tion chip in a holder, adding 40 µL microdroplet to the 
+oil phase well, and introducing 20 µL PCR reaction water 
+phase to the sample well. After dealing with the chip’s 
+pad, it’s placed in the MicroDROP- 100A instrument for 
+microdroplet formation. Once formed, transfer drop-
+lets (45–55 µL) to a 96- well PCR plate. Seal the plate and 
+puncture the film, then heat- seal it. Perform PCR within 
+30 min. After PCR, use a MicroDROP- 100B biochip reader 
+for detection. Preheat the detector for 30 min, insert the 
+plate, and press the button for detection. Afterward, 
+analyze results using Quant Drop software.
+Immunohistochemistry
+To assess the cell composition density and spatial posi-
+tioning of bipositive SOX2+CD68+ TAMs in CMV- infected 
+GBM, multiplex immunohistochemical (multi- IHC), and 
+multispectral imaging were performed on formalin- fixed 
+paraffin- embedded slides from 20 patients with GBM. 
+The multi- IHC kit was used for staining specific cell 
+markers, including CD68 (anti CD68 mAb,14- 0688- 82, 
+Thermo Fisher), SOX2 (Anti- SOX2, #ab97959, Abcam), 
+CMV- IE1/2 (Anti- Cytomegalovirus IE1/2, #ab53495, 
+Abcam), TNF-β (Thermo fisher), FXYD6 (Santa Cruz), 
+CD3 (CD3 Rabbit mAb, #49268, Signalway Antibody), 
+KI67 (anti KI67, #P41816, ProMab Biotechnologies). 
+After sequential application of primary antibodies, slides 
+underwent incubation with secondary antibodies and 
+tyramide signal amplification. Microwave heat- treated 
+antigen retrieval was applied, and nuclei were stained 
+with 4',6- diamidino- 2- phenylindole (DAPI). Multispectral 
+images were obtained by scanning stained slides using the 
+Mantra System (CaseViewer) across the fluorescence exci-
+tation spectrum (420–720 nm). In addition, histological 
+3
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access
+staining and immunofluorescence staining of mice brain 
+tissue used CD3 (Anti- CD3 mAb, #ab86883, Abcam), 
+Hematoxylin and Eosin Staining Kit (Reedbio) and TdT- 
+mediated dUTP nick end labeling (TUNEL, #afihc030, 
+AiFang biological) Kit. InForm image analysis software 
+(CaseViewer) performed multispectral unmixing using 
+a spectral library created from auto- fluorescence and 
+single- stained sections, resulting in reconstructed images 
+with auto- fluorescence removed.
+Flow cytometry
+Cryopreserved single- cell suspensions from GBM tumor 
+tissue (and peripheral blood mononuclear cells (PBMCs) 
+for use as controls) were thawed. In the bipositive 
+SOX2+CD68+ TAMs identification experiment, samples 
+were stained for viability with Zombie NIR Fixable 
+Viability Dye Kit (1:500 dilution, BioLegend, #423101) at 
+25°C for 20 min in the dark. Samples were then washed 
+in phosphate- buffered saline (PBS) supplemented with 
+2% fetal bovine serum (FBS), before staining with a 
+master mix of surface antibodies (Alexa Fluor 647 anti- 
+human CD68 Antibody, BioLegend, #333820), and in 
+PBS supplemented with 2% FBS at 25°C for 60 min in the 
+dark. Appropriate antibody concentrations were deter -
+mined previously by titration. FIX & PERM Cell Permea-
+bilization Kit (Thermo Fisher, #GAS003) are intended for 
+the fixation (Reagent A), permeabilization (Reagent B), 
+and intracellular antibodies (Alexa Fluor 488 anti- SOX2 
+Antibody, BioLegend, #656110) of the cells. Samples were 
+washed with PBS supplemented with 2% FBS and resus-
+pended in 1× stabilizing fixative for use in flow cytometry.
+Tissue dissociation and preparation for single-cell RNA 
+sequencing
+The fresh tissues were preserved in the sCelLiVE Tissue 
+Preservation Solution (Singleron) on ice within 30 min 
+post- surgery. Following this, the specimens underwent 
+a triple wash with Hanks Balanced Salt Solution, were 
+minced into small pieces, and subsequently digested 
+with 3 mL of sCelLiVE Tissue Dissociation Solution 
+(Singleron) using the Singleron PythoN Tissue Dissocia-
+tion System at 37°C for 15 min. The resulting cell suspen-
+sion was collected and passed through a 40 micron sterile 
+strainer. Next, GEXSCOPE red blood cell lysis buffer 
+(RCLB, Singleron) was introduced to the cell suspen-
+sion. This mixture, in a ratio of one part cell to two parts 
+RCLB by volume, was incubated at room temperature for 
+5–8 min to eliminate red blood cells. After incubation, 
+the mixture underwent centrifugation at 300×g at 4°C for 
+5 min to remove the supernatant. The remaining pellet 
+was gently resuspended in PBS.
+Single-cell RNA sequencing and data preprocessing
+The single- cell RNA sequencing (scRNA- seq) libraries 
+were prepared with the Chromium Single Cell 5′ Reagent 
+Kit from the Chromium platform (10x Genomics), 
+following the manufacturer’s guidelines. Sequencing 
+was performed on the Illumina HiSeq X Ten platform. 
+Preprocessing of PE150 Illumina sequencing reads was 
+conducted using Cell Ranger software (V.7.0.0). Raw 
+format reads were converted to FASTQ using “cellranger 
+mkfastq”. Subsequently, reads in FASTQ format were 
+aligned to the human genome reference (hg38, GRCh38) 
+using STAR. The “cellranger count” tool was employed to 
+generate gene expression matrices for each sample.
+Quality control, dimension-reduction, and clustering
+Cells were filtered by gene counts below 200 and the 
+top 2% gene counts and the top 2% unique molecular 
+identifier (UMI) counts. Cells with over 50% mitochon-
+drial content were removed. Following the removal of 
+low- quality and doublet cells, single cells were normal-
+ized, 121,637 cells were retained for the downstream 
+dimension reduction and clustering analyses. We applied 
+principal component analyses to reduce the dimension-
+ality of the data using the top 2,000 most variable genes 
+in the data set. Computed principal components were 
+batch corrected for variations between patients using 
+the Harmony R package V.1.0. We used batch- corrected 
+principal componets (PCs) as input for Louvain- based 
+graphing and chose resolution parameters between 0.1 
+and 1 depending on the single- cell data sets. Seurat was 
+used to identify cluster- specific marker genes and visual-
+ization with dot and feature plots.
+scRNA-seq-based CNA detection
+The InferCNV package was used to detect the copy number 
+alterations (CNAs) in malignant cells (cancer cells). non- 
+malignant cells were used as baselines to estimate the 
+CNAs of malignant cells. Genes expressed in more than 
+20 cells were sorted based on their loci on each chromo-
+some. The relative expression values were centered to 1, 
+using a 1.5 SD from the residual- normalized expression 
+values as the ceiling. A slide window size of 101 genes was 
+used to smoothen the relative expression on each chro-
+mosome, to remove the effect of gene- specific expression.
+Pathway enrichment analysis
+To explore the potential functions of the differentially 
+expressed genes (DEGs), Gene Ontology (GO) and 
+Kyoto Encyclopedia of Genes and Genomes analyses 
+were conducted using the “clusterProfiler” R package 
+V.4.10.0.13 Pathways with an adjusted p value (p_adj) below 
+0.05 were deemed significantly enriched. GO gene sets, 
+encompassing molecular function, biological process, 
+and cellular component categories, served as the refer -
+ence. Gene Set Enrichment Analysis (GSEA) was applied 
+to assess the DEGs between two groups. Additionally, for 
+Gene Set Variation Analysis (GSVA) pathway enrichment 
+analysis, the average gene expression of each cell type was 
+employed as input data, using the GSVA package.
+Cell–cell interaction analysis
+The R package CellChat V.1.6.114 was employed to quan-
+titatively infer and analyze intercellular communica-
+tion networks using our scRNAseq data. CellChat uses 
+network analysis and pattern recognition approaches 
+4
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access 
+to predict major signaling inputs and outputs for cells, 
+elucidating how cells and signals coordinate for various 
+functions. This tool classifies signaling pathways, 
+outlining both conserved and context- specific pathways 
+through manifold learning and quantitative contrasts. 
+CellChat calculates the communication probability of a 
+ligand- receptor pair between two cell types using a law of 
+mass action model. This calculation takes into account 
+ligand and receptor concentrations, any known cofactor 
+concentrations, and the number of cells in each cell type. 
+The significance of the communication probability is 
+determined by assessing whether it is statistically higher 
+between the known cell types than between randomly 
+permuted groups of cells.
+Trajectory analysis
+For the classification of a cell as a lymphocyte in the 
+context of trajectory inference, a T cell was required to 
+exhibit at least one UMI for each of the genes protein tyro-
+sine phosphatase receptor type C (PTPRC/ CD45). After 
+excluding B cells and natural killer cells, uniform mani-
+fold approximation and projection (UMAP) was reap-
+plied for dimensionality reduction. Post dimensionality 
+reduction for both trajectories, hierarchical clustering 
+was conducted on the UMAP coordinates. The Sling-
+shot V.2.10.0 tool15 was used to fit a minimum spanning 
+tree to these clusters, thereby determining the approxi-
+mate trajectory structure. This piecewise linear trajectory 
+underwent smoothing via simultaneous principal curves 
+to derive the final trajectories and pseudotime values.
+Comparison with published spatial transcriptomics and 
+scRNA-seq data for GBM
+The spatial transcriptomics data (processed Seurat 
+object) of patients with GBM treated with anti- PD- 1/
+PD- L1 treatment were downloaded from GSE235672 
+(https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?  
+acc=GSE235672.). The Published scRNA- seq data of low- 
+grade gliomas (LGG), newly diagnosed glioblastomas 
+(ndGBM), and recurrent glioblastomas (rGBM) from 
+GSE182109 (https://www.ncbi.nlm.nih.gov/geo/query/ 
+acc.cgi?acc=GSE182109).
+Bulk RNA-seq
+The published bulk RNA- seq data of GBM matched 
+survival information was downloaded from UCSC Xena 
+(https://xenabrowser.net/datapages/). Raw reads were 
+processed and quantification and identification of DEGs 
+were performed using DEseq2.
+The detection of HLA types
+Human leukocyte antigen (HLA) was detected by single- 
+molecule real- time (SMRT) sequencing. A reaction 
+mastermixture was prepared before use, which contained 
+the 10 µL of reaction mix contained 4 µL of PCR product, 
+5 µmol/L barcoded adaptor, 1×T4 DNA ligase buffer, 
+1 mmol/L ATP, 200 µmol/L dNTP, 2.5 units of T4 polynu-
+cleotide kinase, 0.75 units of T4 DNA polymerase and 180 
+units of T4 DNA ligase (HC). The purified PCR product 
+(120–250 ng) was mixed with the enzyme mixture. Reac-
+tion mixes were then incubated at 37°C for 20 min, 25°C 
+for 15 min, and 65°C for 10 min. Exonucleases I and III 
+were then used to remove failed ligation products, and 
+the pre- library was purified with Ampure PB beads. After 
+pooling, the pre- libraries were purified twice more. The 
+final library was bound with sequencing enzymes and 
+primers using specific Pacific Biosciences kits, loaded 
+with DNA- polymerase complexes, and sequenced on the 
+Sequel II platform for 20 hours. The primary analysis of 
+output data was carried out with SMRT Link V.10.1.0 soft-
+ware. All HLA alleles were named according to the Inter-
+national Society of Blood Transfusion working group 
+that develops and maintains guidelines for blood group 
+antigen and allele nomenclature.
+TCR analysis
+TCR analysis involved enriching full- length TCR V(D)J 
+segments from 5′ library- amplified complementary DNA 
+via PCR using the Chromium Single- Cell V(D)J Enrich-
+ment kit (10x Genomics). Cell Ranger vdj pipeline assem-
+bled TCR sequences, identifying CDR3 sequences and 
+rearranged TCR genes. Loupe V(D)J Browser V.2.0.1 (10x 
+Genomics) facilitated analysis. Some T cells exhibited the 
+same TCR with two α and/or two β chains. Four TCR 
+forms (1α1β, 1α2β, 2α1β, and 2α2β) were considered, 
+treating the same TCR form with one class, resulting in 
+a unique TCR name. The TCR diversity metric, encom-
+passing clonotype frequency and barcode information, 
+was derived for analysis.
+Grouping of Lymphocyte Interactions with Paratope Hotspots 
+2 algorithm
+The GLIPH2 (Grouping of Lymphocyte Interactions with 
+Paratope Hotspots 2) algorithm functions by grouping 
+lymphocyte interactions based on complementary para-
+tope hotspots.16 It dissects highly diverse TCR sequences 
+into shared specific groups that may recognize the same 
+peptide- major histocompatibility complex ligand. These 
+shared specific groups are established through strong 
+homology within the same amino acid sequence motif 
+or complementarity determining region 3 (CDR3) of the 
+TCRβ chain. Prediction of shared CDR3 sequences using 
+the GLIPH2 algorithm: Amplified TCR or B cell receptor 
+(BCR) sequences are input into the system, and the 
+GLIPH2 algorithm is used for analysis. TCR sequences 
+are grouped and clustered, and shared CDR3 sequences 
+are identified, resulting in the generation of visualized 
+outcomes.
+Generation of TCR-T cells
+We designed a gRNA to target the first exon of the constant 
+chain of the TCRα gene (TRAC). The sequence targeted 
+is located upstream of the transmembrane domain of 
+the TCRα. This domain is required for the TCRα and β 
+assembly and addressing to the cell surface. Both, non- 
+homologous end joining and integration of the TCR by 
+homology directed repair (HDR) at this locus would then 
+5
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access
+efficiently disrupt the TCR complex. In the process of 
+gene targeting, primary T cells are isolated from periph-
+eral blood by lymphocyte isolation fluid in patients. T- cell 
+activation was initiated, and 48 hours later, the CD3/
+CD28 beads were magnetically removed. Subsequently, T 
+cells underwent transfection through electrotransfer of 
+Cas9 mRNA and gRNA using the NEPA21 system from 
+the NEPA GENE apparatus. A mixture of 1×10 6 cells, 
+1.6 µL(25 pmol/µL) of Cas9, 1.2 µL(100 pmol/µL) of 
+gRNA, and 4 µg of dsDNA (TCR) were electroporated 
+in a Nepa Electroporation Cuvettes (NEPA GENE, #EC- 
+002S). Following electroporation, cells were diluted into 
+the culture medium and incubated at 37°C with 5% CO2. 
+The culture is 2–4 hours post- electroporation (1×10 5 to 
+1×106). Transduced T cells were cultured with replaced 
+fresh medium and IL- 2 (Recombinant Human Interleu-
+kin- 2, PrimeGene, GMP- 101–02) every 3 days edited cells 
+were then cultured under standard conditions at 37°C 
+and expanded in T- cell growth medium, with regular 
+replenishment to maintain a density of approximately 
+1×106 cells per ml every 2–3 days. For a more in- depth 
+understanding of targeting constructs and strategies, 
+TRAC gRNA and dsDNA(TCR) sequence, refer to figure 
+5F.
+Co-culture U251 and TCR-T cell in vitro
+A total of 6×10 5 CMV- TCR- T cells/untransduced (UTD) 
+T cells were co- cultured with an equivalent number 
+of mixed U251- GFP- Luci- Vector cells (derived from a 
+human glioma cell line and engineered with a green 
+fluorescent protein and luciferase vector, previously 
+constructed by our laboratory), were infected with CMV 
+(Strain AD169, sourced from the Microbial Virus Strain 
+Bank of Central South University). This co- culture took 
+place at 37°C for 16 hours in Roswell Park Memorial 
+Institute (RPMI) 1640, supplemented with L- glutamine 
+(2 mM), antibiotics (penicillin 100 U/mL, streptomycin 
+100 µg/mL), and 10% FBS. Brefeldin A (10 µg/mL 
+#420601, BioLegend) was added 4 hours before harvest. 
+Following incubation, cells were washed twice with PBS 
+containing 1% FBS, then stained with CD3 (BV421 
+Mouse Anti- Human CD3), CD8 (PerCP/Cyanine5.5 anti- 
+human CD8a, BioLegend, #301032) and Zombie NIR 
+Fixable Viability Dye Kit at 4°C for 30 min. After washing 
+and fixation using the FIX & PERM Cell Permeabiliza-
+tion Kit (Thermo Fisher, #GAS003), cells were further 
+stained with interferon (IFN)-γ (APC Mouse Anti- Human 
+IFN-γ Antibody, BioLegend, #506510) for 45 min at 4°C. 
+After two additional washes, cell analysis was conducted 
+using an FACS flow cytometer, and FlowJo software was 
+employed for data analysis.
+Intracranial in situ tumorigenic mice models
+All animal experiments were approved by the Animal 
+Care and Use Committee of Central South University. 
+U251- GFP- Luci- Vector cells infected with CMV were 
+harvested during the logarithmic growth phase, washed 
+twice with PBS, and then loaded into a 50 µL syringe with 
+a 25- gage needle attachment. Using a stereotactic frame 
+for precision, the tumor cells were implanted 2 mm to 
+the right of bregma, at a depth of 4 mm from the surface 
+of the skull at the coronal suture. Resuspended at 5×10 5 
+cells in 5 µL of serum- free medium per mouse. In mouse 
+models, effector cells were systematically infused via tail 
+vein injection in a 100 µL volume. Each mouse in the 
+corresponding groups received an intravenous transplant 
+of 2×107 CMV TCR- T cells or UTD T cells. Simultaneously, 
+interleukin (IL)- 2 (1×10 6 U per mouse) was intraperi-
+toneally injected. Tumor progression was longitudinally 
+monitored by assessing bioluminescence emission using a 
+BLT AniView100 optical imaging system after intraperito-
+neal substrate injection.
+Statistical analysis
+In scRNA- seq data, cell distribution comparisons between 
+two groups were evaluated through unpaired two- tailed 
+Wilcoxon rank- sum tests. For comparisons of gene 
+expression or gene signature between two groups of 
+cells, unpaired two- tailed Student’s t- tests were employed. 
+Paired two- tailed Wilcoxon rank- sum tests were used for 
+the analysis of cell distribution within paired cell types. All 
+statistical analyses and data presentations were conducted 
+using R. The specific statistical tests applied in the figures 
+were delineated in the figure legends. Statistical signifi-
+cance was defined at p<0.05.
+For statistical analysis of other experimental, data are 
+presented as the mean±SD from at least three separate 
+experiments, and the data were analyzed using GraphPad 
+Prism V.9.5 Differences between the variables of the two 
+groups were tested using the Student’s t- test, and one- way 
+analysis of variance was used to evaluate the differences 
+among variables of multiple groups. Survival analysis was 
+calculated by the Kaplan- Meier method. Values of p<0.05 
+were considered statistically significant.
+RESULTS
+CMV infection induces bipositive CD68+SOX2+ TAMs to 
+remodel GBM immune microenvironment through scRNA-seq
+We combined immunogold electron microscopy with 
+droplet digital PCR (ddPCR) to assess CMV viral parti-
+cles and DNA in fresh postoperative tumor tissue for 
+confirmed 20 patients with GBM (online supplemental 
+figure S1A). The rare electron- dense particles labeled 
+with gold were confirmed that be morphologically consis-
+tent with CMV virions (figure 1A); the low viral copy 
+numbers were displayed in 60% of tissues of patients with 
+GBM (12/20) by ddPCR detection (online supplemental 
+figure S1B). The clinical details of these patients are 
+summarized in online supplemental table 1.
+Next, a comprehensive exploration of the functional 
+and transcriptional diversity in CMV- infected GBM tissues 
+was performed by scRNA- seq. After initial quality control 
+and filtering, transcriptomic data were available for 
+121,637 cells from GBMs including CMV- infected GBMs 
+(CMV+, n=6) and CMV- uninfected GBMs (CMV −, n=3). 
+6
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access 
+Figure 1 CMV infection triggers bipositive TAMs- driven remodeling of the GBM immune microenvironment. (A) Transmission 
+electron microscopy images of CMV- infected GBMs. Scale bars respectively, 5 μm 1 µm 500 nm. The red arrows are pp65 at 
+10 nm. green arrows are IE1/2 at 4 nm, and the white box shows electron- dense particles. (B) The UMAP above shows the 
+composition of the annotated cells, with different colors representing different cell populations. The below is the CMV infected 
+map, and the dark blue is the CMV infected. (C) The dot plot shows the expression levels of different classical cell marker genes 
+in annotated cell populations. (D) UMAP feature plot representation of marker gene expression within individually identified 
+macrophage and cancer cell populations and phenotypic states. (E) Representative images of multiplex immunofluorescence 
+staining in formalin- fixed paraffin- embedded tissues, indicating CD68+SOX2+ TAMs, in paired CMV+ and CMV− samples. Scale 
+bar, 200 µm and 50 µm. Boxplots illustrating the fraction of CD68+SOX2+ TAMs in CMV− (light blue) and CMV+(deep blue), 
+respectively. Box center lines, bounds of the box, and whiskers indicate medians, first and third quartiles, and minimum and 
+maximum values within 1.5×IQR of the box limits, respectively. Significance was determined using a two- sided, unpaired 
+Wilcoxon rank- sum test relative to CMV+ (n = 12) for CMV− (n=8, p value<0.0001). (F) Representative flow cytometry plots 
+and summary data showing the percentage of cellular staining for CD68+SOX2+ TAMs in CMV− and CMV+ GBM (n=20). CMV, 
+cytomegalovirus; GBM, glioblastomas; TAM, tumor- associated macrophages; UMAP , uniform manifold approximation and 
+projection.
+7
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access
+Using known lineage markers, we identified seven major 
+cell populations, including cancer cells, macrophages, 
+stromal cells, oligodendrocytes, endothelial cells, and 
+T cells (figure 1B and online supplemental table 2). In 
+the GBM landscape, we observed chromosome 7 ampli-
+fication and chromosome 10 loss specifically in glioma 
+cells, which was consistent with published whole- exome 
+sequencing data for gliomas (online supplemental figure 
+S1C). We found a novel cell type: bipositive TAMs (Bipos-
+itive TAMs) co- expressing markers of both macrophages 
+and tumor cells, which were relatively specific in patients 
+with CMV+ GBM (figure 1C, online supplemental figure 
+S1D). We excluded the effect of common molecular 
+features on cellular compartmentalization (eg, TP53 
+mutation and MGMT methylation status) (online supple-
+mental figure S1E,F). We scored our single- cell data using 
+the gene set (COATES_MACROPHAGE_M1_VS_M2_
+UP) from GSEA, and the results showed that bipositive 
+TAMs were more biased towards M1- type macrophages 
+(online supplemental figure S2A). However, the polar -
+ization of the characterized genetically analyzed macro-
+phages was not obvious (online supplemental figure S2B). 
+By analyzing the expression levels of classical markers 
+of macrophages and tumor cells, we found that CD68 
+and SOX2 were more significantly expressed in bipos-
+itive TAMs (figure 1D). Intriguingly, immunofluores-
+cence and flow cytometry detection indicated that GBM 
+tissues infected with CMV are enriched with bipositive 
+CD68+SOX2+ TAMs (figure 1E,F, online supplemental 
+figure S2C), suggesting that CD68 and SOX2 serve as a 
+reliable marker for bipositive TAMs. The functional anal-
+ysis revealed that differentially expressed genes in biposi-
+tive TAMs and T cells were predominantly associated with 
+human CMV infection and viral protein interaction with 
+cytokine and cytokine receptor pathways (online supple-
+mental figure S2D,E). These results suggested that CMV 
+infection remodels the GBM immune microenvironment 
+through bipositive CD68+SOX2+ TAMs.
+Bipositive TAMs are major contributors to the clinical outcome 
+of GBMs
+To better understand the functional characteristics of 
+bipositive TAMs, we conducted a meticulous re- anno-
+tation analysis of the published scRNA- seq data from 
+glioma tumor tissue, which encompassed 44 segments 
+obtained from 18 patients with glioma, comprising 2 
+LGG, 11 ndGBM, and 5 rGBM. This data set comprehen-
+sively covered eight major cell types, namely cancer cells 
+macrophages, oligodendrocytes, endothelial, stromal 
+cells, and so on. Bipositive TAMs were reproducibly found 
+in these patients with glioma (figure 2A,B). Functional 
+analysis revealed that the differential genes of bipositive 
+TAMs were mainly enriched in the human CMV infection 
+pathway (figure 2C, online supplemental figure S2F).
+To assess the correlation of bipositive TAMs with the 
+clinical progression of patients with glioma, we analyzed 
+the percentage of type of cells in the tumor tissue. Anal-
+ysis of the percentage of each cell type in patient tumor 
+tissue indicated that we observed more pronounced 
+heterogeneity in cell composition in ndGBM (figure 2D). 
+In comparison to ndGBM, rGBM displays lower spatial 
+heterogeneity and a less complex array of cellular compo-
+nents within the tumor region. Notably, we found bipos-
+itive TAMs were prevalent at the disease stage of glioma 
+progression and particularly prominent in patients with 
+GBM (figure 2E, online supplemental figure S2G). Bipos-
+itive TAMs potentially originate from the fusion of macro-
+phages engulfing tumor cells in the early stage of disease 
+progression (LGG), and the number of cells is relatively 
+more, but bipositive TAM cells may form tumor cells with 
+the progression of the disease to late stage (GBM). We 
+sought to determine which cells carried the most prog-
+nostic information, only bipositive TAMs signatures 
+displayed to be an independent prognostic factor by 
+multivariate analyses (figure 2F). Kaplan- Meier survival 
+analyses showed that the more the bipositive TAMs infil-
+tration, the shorter were overall survival of patients with 
+GBM (figure 2G). These results suggested that bipositive 
+TAMs might act as a pointer of GBM progression. Taken 
+together, these data collectively suggest that bipositive 
+TAMs, which are associated with CMV infection gene 
+expression programs, played a significant role in shaping 
+the progression of GBM.
+CMV infection enhances a novel immunosuppressive FXYD6+ 
+T cell and facilitates GBM progression
+To decipher how bipositive TAMs drive the tumor progres-
+sion, we used a public repository of ligand- receptor inter-
+actions, CellChat V.1.6.0, to infer interactions between 
+bipositive TAMs, cancer cells, and all T populations in 
+our scRNA- seq data. First, seven lymphocyte subpopula-
+tions were classified by differential gene expression and 
+examination of known lineage markers (figure 3A, online 
+supplemental figure S3A), in which five T- cell clusters 
+across tumor samples were identified, each with unique 
+signature genes (online supplemental figure S3B). Specif-
+ically, the central memory T cells were characterized by 
+high expression of the IL- 7R and CD40LG genes. The 
+T regulatory cells highly expressed the genes encoding 
+inhibitory FOXP3, CTLA- 4, and IL- 2R, while effector T 
+cells demonstrated high expression of cytotoxic cytokines 
+such as CD8A/B, GZMH, and NKG7 genes (figure 3B).
+Thrillingly, we discovered a cluster of T cells that was 
+characterized by high expression of FXYD6, LSAMP, 
+MEG3, and NCAM1 genes. We define it as FXYD6+ T cells, 
+detailed FXYD6 + T cells characteristic genes are shown 
+in online supplemental table 3. Compared with other T 
+cells, FXYD6+ T cells highly expressed the related genes 
+of cell cycling, gliogenesis development cell growth, 
+and differentiation, such as MDK, ASCL1, SOX10, and 
+SOX11 (figure 3C, online supplemental figure S3C), GO 
+terms enriched in FXYD6 + T cells were associated with 
+regulation of microtubule polymerization or depolym-
+erization and regulation of nervous system development 
+(figure 3D). These results suggested that FXYD6 + T cells 
+supported the gain- promoting gliogenesis, which was 
+8
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access 
+Figure 2 Bipositive TAMs significantly influence the clinical outcomes of GBMs. (A) UMAP plot of 236,575 cells from tumor 
+tissue samples of patients with glioma from GSE182109 data. Each cluster is shown in a different color. (B) Violin plots showing 
+the expression levels of different classical cell marker genes in the 8 cell clusters. (C) Radargram demonstrating Gene Ontology 
+analysis associated with infection by pathogenic organisms. (D) The bar graph shows the percentage of each cell population 
+in each sample in single- cell RNA sequencing (E) Box plot showing the percentage of different cell populations in low- grade 
+gliomas (LGG), newly diagnosed glioblastomas (ndGBM), and recurrent glioblastomas (rGBM) (F) Comparison of the signatures 
+of each cell type gene multivariable Cox regression was used to obtain the HRs (with Wald 95% CIs shown as horizontal bars, 
+and p values given on the right) based on the cross- validated prognostic scores derived using the Cox model and applied 
+to pairwise differences of expression of the genes. (G) Kaplan- Meier plot of cross- validated macrophage prognostic score 
+from (F) at 50% cut- off, showing the genes with opposite effects selected by the model. GBM, glioblastomas; RNA- seq, RNA 
+sequencing; TAMs, tumor- associated macrophages; t- SNE, t- distributed stochastic neighbor embedding; UMAP , uniform 
+manifold approximation and projection.
+9
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access
+Figure 3 CMV infection amplifies a newly identified immunosuppressive FXYD6+ T cell, promoting the progression of GBM. 
+(A) Distribution and expression of representative genes in lymphocyte clusters. (B) Violin plots showing the expression levels of 
+different classical lymphocyte marker genes in the seven cell clusters. (C) Gene network diagram showing functional analysis 
+of FXYD6+ T cells characterized genes. (D) Gene function network diagram demonstrating the analysis of the major functions 
+of the FXYD6+ T cells signature gene cluster. (E) Over- represented GO terms of FXYD6+ T cells (pink) compared with other T 
+cells (violet). (F) The inferred MDK signaling networks between cancer cells/ bipositive TAMs and T- cell clusters. (G) Expression 
+score of the FXYD6+ T cells gene sets of non- responder and responder after neoadjuvant anti- PD- 1 therapy. (H) Representative 
+example of CMV− (G15) and CMV + (G3) GBM tumors. Tumor staining by multiplexed immunofluorescence shows the spatial 
+distributions of FXYD6+ T cells, KI67+ cancer cells (tumor cell proliferation), and TNF-β (T- cell cytotoxicity). (I) Circos plots 
+showing well- known ligand- receptor pairs from CellChat databases under the requirement that either the ligand or the receptor 
+(or both) both being expressed. Arrows are pointing from the ligand toward the receptors. Different colors represent different 
+cells, and the width is proportional to the number of events. Only selected example pairs are labeled and highlighted for the 
+network. P values are adjusted for the number of cell types. CMV, cytomegalovirus; GBM, glioblastomas; PD- 1, programmed 
+death 1; TAM, tumor- associated macrophages; UMAP , uniform manifold approximation and projection.
+10
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access 
+different from the reported proliferating T cells; mean-
+while, FXYD6+ T cells the majority of genes defining the 
+GO term “positive regulation of immune system process” 
+and “T cell mediated cytotoxicity” was downregulated in 
+FXYD6+ T cells compared with other T cells (figure 3E), 
+which suggested FXYD6+ T cells induce immunosuppres-
+sion. It is not characterized by high expression of corre-
+sponding immunosuppressive molecules, like PDCD1, 
+CTLA- 4, TIGIT, LAG3, and BTLA, etc (online supple-
+mental figure S3D), so, FXYD6 + T cells are a group of 
+T cells which is different from the classical exhausted T 
+cells. In summary, FXYD6 + T cells are a group of novel 
+immunosuppressive T cells.
+Subsequently, we performed the analysis of the inter -
+actions between bipositive TAMs, cancer cells, and all T 
+populations in our scRNA- seq data. Compared with the 
+uninfected group, we found that CMV infection altered 
+interactions between bipositive TAMs, cancer cells, and T 
+cells, primarily mediated via the MDK (Midkine) pathway 
+(online supplemental figure S3E), in which either the 
+cell–cell interactions of cancer cells and T cells or bipos-
+itive TAMs and T cells mainly focus on FXYD6 + T cells 
+(figure 3F). We next analyzed data from published 
+spatial transcriptome. 17 Analysis of the co- localization 
+FXYD6+ T cells signature in spatial transcriptome data 
+showed increased FXYD6+ T cells signatures in anti- PD- 1/
+anti- PD- L1 treatment no responder patients with GBM 
+(figure 3G). Multiplex IHC showed that FXYD6 +CD3+ 
+cells were numerically higher in patient with CMV+ GBM 
+samples than in patient with CMV − GBM samples. Mean-
+while, patients with concurrent CMV infection showed 
+more tumor cell proliferation and less T- cell toxicity 
+(figure 3H, online supplemental figure S3F). In addi-
+tion, we found more clues about interactions between 
+FXYD6+ T cells and cancer cells. We detected the neuro-
+trophic factors MDK and pleiotrophin (PTN) in cancer 
+cells. PTN and MDK are involved in inducing and stim-
+ulating neuronal differentiation. Receptor protein tyro-
+sine phosphatase type Z 1 (PTPRZ1) and nucleolin 
+(NCL), a shared receptor of MDK and PTN, were highly 
+expressed in FXYD6 + T cells (figure 3I). The binding of 
+MDK to PTPRZ1 is important for the MDK- dependent 
+survival of embryonic neurons.18 The interaction of PTN 
+with PTPRZ1 is known to play an important role in cell–
+cell adhesion, cell motility, migration, cell division, and 
+promoted glioblastoma stem cells (GSC) proliferation 
+and self- renewal.19 In short, in GBM with CMV infection, 
+the interactions of cancer cells and FXYD6 + T cells via 
+ligand- receptor binding MDK and PTN with PTPRZ1/
+NCL mediated the tumor immunosuppressive microenvi-
+ronment and promoted GBM progression.
+CMV infection increased T-cell exhaustion in GBM
+To better understand the changes in T cells in patients 
+with CMV+ GBM, each type of T cell was found in indi-
+vidual patient tissues (figure 4A,B). We found that most 
+T cells in CMV- infected GBM tumors were IL- 7R+ T cells 
+(46.3%), while CMV- uninfected were GZMH + T cells 
+(57.7%) (figure 4C,D). We used Slingshot for trajectory 
+inference with markers PTPRC/CD45, CD3D, and CD3E 
+(online supplemental figure S4A). The analysis produced 
+a two- lineage trajectory, with one terminal point to 
+FOXP3+ T cells and another to FXYD6 + T cells. We first 
+observed that the position of individual cells along the 
+trajectory (ie, in pseudotime) varied largely according to 
+their CMV infection. T cells from CMV − tissue localized 
+almost entirely in the early portion of the trajectory, while 
+CMV- infected tumors were heavily skewed toward the 
+ends of the trajectory (online supplemental figure S4B). 
+We have referred to the article published by Carrasco et 
+al20 to analyze the hallmarks of T- cell aging in our data to 
+validate the accuracy of the starting/ending point of the 
+trajectory (see online supplemental figure S4C). Through 
+differential gene expression analysis, numerous inhibi-
+tory checkpoints had increased expression in T cells from 
+CMV+ GBM tumors compared with the CMV− GBM. Their 
+expression, including PDCD1/PD- 1, HAVCR2/TIM- 3, 
+and LAG3, was substantially increased late in pseudotime 
+(figure 4E,F). Their expression levels which are associated 
+with a more terminally exhausted phenotype were consis-
+tently low throughout pseudotime (figure 4G), poten-
+tially explaining the low efficacy of immune checkpoint 
+inhibitors in GBM. The trajectory analysis indicates that 
+T cells were predominantly enriched in the later stage of 
+the trajectory in CMV + GBM, suggesting that CMV infec-
+tion drives T- cell exhaustion, and potentially interferes 
+with the response to inhibitor treatment.
+Identifying clonally expanded TCRs in patients with GBM with 
+CMV infection
+We further explored whether T cells could generate 
+specific activated TCR in CMV- infected GBM tumor 
+microenvironment. We investigated the TCR of T cells in 
+CMV+ GBM and uninfected tissue by performing single- 
+cell TCR/BCR sequencing (scTCR/BCR- seq) on the cells 
+for which we had transcriptome data, enabling a linkage 
+between clone type and phenotype (figure 5A). We sought 
+to determine the antigens that drive the clonal expansion 
+of T cells in the tissue of patients with CMV infection 
+(figure 5B). Conspicuously, patients with CMV+ GBM have 
+more TCR clones, especially in CD8+ and GZMH+ T cells 
+(online supplemental figure S5A,B). We next compared 
+CMV infected TCR clone type with the uninfected 
+(defined as the percentage of total TCRαβ sequences that 
+are identical to one or more TCRαβ sequences), which 
+revealed that the levels of TRBV4- 3 were higher in CMV- 
+infected GBMs (figure 5C, online supplemental figure 
+S5C–E). To identify the primary clinical beneficiaries 
+of our CMV- TCR- T cell immunotherapy, we conducted 
+single- molecule real- time sequencing for high- resolution 
+HLA typing on 10 patients (online supplemental table 
+4). We applied the GLIPH2.0 (Grouping of Lymphocyte 
+Interactions by Paratope Hotspots) algorithm to analyze 
+our TCR sequences and define specificity groups that 
+are shared by TCRs. Notably, GLIPH identified a shared 
+TCRβ (TRBV4- 3) chain between patients with CMV 
+11
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access
+infected (CASSPGTGSYEQYF), which shared homology 
+with a TCRβ chain from another CMV infected patient 
+(CASSPGSGSYEQYF) (figure 5D). To test for antigen 
+specificity of GLIPH- derived TCRs, we generated a T cell 
+termed TCRαβ from these patients with GBM with CMV 
+infected (online supplemental figure S5F). We used a 
+strategy to replace the endogenous TCR using non- viral 
+Figure 4 T cells profile in glioblastomas with CMV infection. (A) The UMAP shows the composition of the T cells, with different 
+colors representing different T- cell populations. (B) UMAP representation from colored based on patient ID. (C) The bar shows 
+the percentage of T- cell subsets comparing CMV- infected and CMV- uninfected groups. (D) Bar graph showing the percentage 
+of T- cell subsets in patients. (E) Distribution and expression of exhaustion- related genes in T cells in the CMV- uninfected 
+group. (F) Distribution and expression of exhaustion- related genes in T cells in the CMV- infected group. (G) Slingshot trajectory 
+analysis demonstrates the average expression pattern of each gene and signature across pseudotime (scaled from minimum to 
+maximum average expression for each gene). CMV, cytomegalovirus; UMAP , uniform manifold approximation and projection.
+12
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access 
+Figure 5 Identification of clonally expanded T- cell receptors in patients with CMV- infected GBM. (A) UMAP showing the 
+concentration of clonal cells in locations of T- cell clusters paired a- b TCRs were detected in T cells (n=9 subjects per group). 
+(B) UMAP shows the composition of T cells colored by cluster. The deep blue dot shows CMV + GBMs. (C) Grouped differential 
+TCR-β sequences with genes in the horizontal coordinate and the frequency of use percentage of the V genes of the TCR in 
+the vertical coordinate, with different colors indicating different groups. (D) Schematic diagram of Grouping of Lymphocyte 
+Interactions with Paratope Hotspots 2 results, the larger and redder the nodes are the more core, and the thicker and redder 
+the connecting lines between the nodes represent more similar CDR3 sequences. Note: The global pattern contains the “%!” 
+symbol to indicate that variation is allowed at that position. (E) TCR substitutes CMV- TCR sequences for HDR templates of 
+endogenous TCR with the CRISPR/Cas9 editing system. (F) Detection of gene editing in CMV- TCR by PCR- restriction fragment 
+length polymorphism. CMV, cytomegalovirus; GBM, glioblastomas; HDR, homology directed repair; TCR, T- cell receptors; 
+UMAP , uniform manifold approximation and projection.
+13
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access
+genome targeting to integrate an approximately 1.5 kb 
+DNA cassette into the first exon of the TCRα constant 
+region (TRAC) (figure 5E). Cas9 ribonucleoprotein 
+(Cas9 RNP) was co- electroporated with a dsDNA HDR 
+template designed, we observed that the primary cell was 
+successful in introducing the TCR sequence (figure 5F, 
+online supplemental table 5).
+CMV-TCR-T cells are effective against orthotopic GBM in mice 
+models
+Finally, we assessed the effect of CMV- TCR- T cells on 
+GBM cells in vitro and in vivo. When CMV- TCR- T cells 
+were co- cultured with U251- GFP cells for 36 hours, we 
+found that CMV- TCR- T cells maintained the capacity 
+to efficiently lyse tumor cells through T cells mediated 
+cytotoxicity (figure 6A). We assessed the cytotoxicity 
+of CMV- TCR- T cells against tumor cells induced with 
+CMV infection compared with UTD cells at varied 
+effector- to- target ratios. Our results demonstrate that 
+CMV- TCR- T cells exhibit significantly higher killing 
+efficiency against tumor cells compared with the 
+UTD group (figure 6B). Meanwhile, CMV- TCR- T cells 
+exhibited selective activation against GBM by specifi-
+cally producing IFN-γ . By contrast, we did not detect 
+T- cell activation in cells containing either UTD cells 
+(figure 6C,D, online supplemental figure S5G).
+We wanted to know whether the in vivo efficacy of 
+TCR- T cells was dependent on TCR recognition of its 
+antigen or whether secreted were sufficient to achieve 
+measurable antitumor responses in vivo. To test this 
+hypothesis, we topically implanted human GBM cells 
+(U251) into NOD- scid IL 2Rγnull  (NSG) mice and 
+proceeded with an intraventricular injection of CMV-  
+TCR- T cells (figure 6E). U251 has been cited for its 
+ability to most closely reflect the salient pathobio-
+logical features of human GBM when implanted in 
+mice. Using this model, we demonstrated durable 
+regression of established GBM following injection 
+with CMV TCR- T cells. Conversely, mice treated 
+with UTD T- cells demonstrated progressive tumor 
+burden (figure 6F). Finally, we confirmed that non-  
+viral genome targeting could be used to generate 
+TCR cells and that these CMV- TCR- T cells have in 
+vivo antitumor functions. Adoptive transfer of sorted 
+CMV- TCR- T cells also reduced the tumor burden 
+in treated animals (figure 6G). Further histological 
+analyses of brain sections revealed that mice treated 
+with CMV- TCR- T cells developed significantly smaller 
+GBM tumors compared with the UTD T cells group 
+and control group. Moreover, immunofluorescence 
+studies demonstrated the localization of CD3 + cells 
+and TUNEL + cells in the mouse tumor tissue. Notably, 
+the CMV- TCR- T cells group exhibited a higher number 
+of CD3 + cells and TUNEL + cells compared with the 
+UTD T cells group or control group (figure 6H). 
+Altogether, CMV- TCR- T cells constructed from CMV 
+infected effectively inhibit the growth of GBM.
+DISCUSSION
+GBM, the most prevalent and lethal malignant brain 
+tumor, is known for its systemic immunosuppression 
+and poor response to current immunotherapies. 21 
+Therefore, it is crucial to have a comprehensive under -
+standing of the mechanisms behind immunosuppression 
+to develop effective immunotherapy strategies for GBM. 
+Recent studies have consistently linked CMV infection 
+to GBM, and CMV has been found to activate growth 
+signals, prevent cell death, enhance cell movement and 
+invasion,22 trigger abnormal blood vessel formation, and 
+influence the tumor microenvironment. 23 In this study, 
+we conducted single- cell transcriptomic analysis to map 
+the landscape of CMV infection in GBM. Our results 
+show that CMV primarily induces immunosuppression 
+and facilitates tumor cell growth by mediating crosstalk 
+between bipositive TAMs and FXYD6 + T cells during 
+GBM progression. Additionally, CMV infection within 
+GBM leads to increased expression of immune check-
+point proteins, highlighting the substantial role of CMV 
+in driving immunosuppression. Based on this under -
+standing, we developed a CMV- TCR- T cellular therapy 
+targeting CMV, which demonstrated enhanced efficacy in 
+eliminating tumor cells.
+Our study reports for the first time that bipositive TAMs, 
+co- expressing both macrophage and tumor cell charac-
+teristics, are enriched to promote immunosuppression 
+in patients with CMV + GBM. Bipositive cells that express 
+macrophage and tumor cell markers have been docu-
+mented in various malignancies, including GBM, 24 mela-
+noma, colon adenocarcinoma,25 and ovarian cancer.26 Wu 
+et al reported that double- positive TAMs in GBM exhibit 
+heightened immunosuppressive activity compared with 
+normal TAMs, with cell fusion being the dominant mech-
+anism for the formation of these bipositive cells, while 
+phagocytosis contributes to tumor invasion, metastasis, 
+and progression.27 According to Pallett et al 28 reported, 
+like- T cells are a group of cell subsets that express both 
+T cells and monocytes (CD14 +CD8+ T cells), preferen-
+tially accumulate within the donor pool in liver allografts, 
+among tumor- infltrating responses and hepatic virus- 
+specific, and in cirrhotic ascites, which have high constitu-
+tive production of the immunoprotective cytokine IL- 10, 
+mount rapid and potent effector function after TCR 
+engagement, and switch to chemotactic/hepatoprotec-
+tive function after LPS exposure. Interestingly, the bipos-
+itive CD68+SOX2+ TAMs we identified were localized at 
+tumor junctions, which is consistent with the presence of 
+immunosuppressed TAMs at the margins of gliomas that 
+have been reported, 29 which further confirms that CMV 
+infection leads to immunosuppression through bipositive 
+TAMs.
+Previous studies have suggested that the beneficial 
+effects of PD- 1/PD- L1 are limited to a few patients with 
+GBM.30 In this study, we newly discovered FXYD6+ T cells, 
+a type of immune- suppressive T cell, which is reported by 
+us for the first time in GBM. FXYD6 + T cells are highly 
+enriched in patients with GBM who did not respond to 
+14
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access 
+Figure 6 CMV- TCR- T demonstrates efficacy against orthotopic glioblastomas in murine models. (A) CMV- TCR- T cells co- 
+cultured with U251- GFP- Luci (HLA- A*0201) after flow cytometric detection of T- cell proliferation. (B) Flow cytometry cytotoxicity 
+assay of UTD cells, sorted CMV- TCR- T cells against U251- GFP- Luci at indicated efficiency- to- target (E/T) ratios over 24 hours. 
+(C) Flow cytometry detection of apoptotic tumor cells after co- culture of CMV- TCR- T cells and U251 after flow cytometric. 
+(D) Cytokine production by primary human UTD, CMV- TCR- T cells when co- cultured overnight with U251 at an E/T of 1:3. 
+(E) Schematic representation of experimental design in which a heterogeneous population (CMV +) of U251 glioma cells was 
+implanted orthotopically into the brains of NSG mice. Both U251 were modified with luci allowing for visualization of total 
+intracranial tumor burden by bioluminescent imaging. Mice were treated intraventricularly on day 30 postimplantation with 
+UTD cells or CMV- TCR- T cells. (F) Bioluminescence analysis of mixed tumor growth over time, n= 5. (G) The mice body weight 
+is displayed for individual mice and as average values (n=5, mean+SD is depicted; unpaired, two- tailed t- test, ***p< 0.001). 
+(H) Hematoxylin and immunofluorescence staining for CD3 (T cells) and apoptotic cells identified by TdT- mediated dUTP nick 
+end labeling (TUNEL) in tumor specimens from mice treated with intravenous CMV- TCR- T cells or UDT cells (scale bar, 20 µm). 
+APC, allophycocyanin; CMV, cytomegalovirus; FITC, fluorescein isothiocyanate; IFN, interferon; PBS, phosphate- buffered saline; 
+UTD, untransduced; TCR, T- cell receptor.
+15
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access
+anti- PD- 1/anti- PD- L1 treatment immunotherapy. Our 
+results elucidate that its main function is to promote 
+the growth of GBM cells while inhibiting the immune 
+activity of T cells. Immune checkpoint inhibitors, such 
+as anti- PD- 1/PD- L1, have demonstrated significant effi-
+cacy in various tumors. 31 However, it has been suggested 
+that patients with GBM do not benefit from PD- 1/PD- L1 
+inhibitors in terms of survival, which is primarily due 
+to the low expression levels of PD- 1 in GBM. 32 Notably, 
+reduced T- cell activity has also been observed in the 
+GBM microenvironment, suggesting the presence of a 
+specific T- cell failure mechanism in GBM. FXYD6+ T cells 
+are precisely the key entry point for addressing T- cell 
+immunosuppression in GBM. FXYD6, the FXYD domain- 
+containing ion transport regulator 6, has been reported 
+to affect the activity of Na +/K+- ATPase and be associated 
+with mental diseases, 33 such as Alzheimer’s disease and 
+schizophrenia.34 Our results also highlight that the inter -
+action between bipositive TAMs or cancer cells and T 
+cells is predominantly focused on FXYD6 + T cells rather 
+than regulatory T cells (Tregs). The strong interactions 
+between cancer cells and FXYD6 + T cells via ligand- 
+receptor binding of PTN- PTPRZ1 and MDK- NCL induce 
+the formation of tumor immunosuppressive microenvi-
+ronment, thereby promoting GBM progression. Addition-
+ally, neurotrophic factors MDK and PTN are involved in 
+inducing and stimulating neuronal differentiation.18 The 
+PTN- PTPRZ1 signaling axis plays a pivotal role in facil-
+itating cell–cell adhesion, 35 promoting cell migration, 36 
+regulating cell division, as well as enhancing proliferation 
+and self- renewal of GSC. 19 The MDK- NCL interaction 
+plays a pivotal role in modulating cell proliferation, apop-
+tosis, and angiogenesis,37 while concurrently suppressing 
+immune cell activity.38 Moreover, the presence of FXYD6+ 
+T cells provides an alternative perspective indicating that 
+the immune evasion mechanism of glioma cells may not 
+solely depend on the PD- 1/PD- L1 pathway. Bipositive 
+TAMs and FXYD6 as therapeutic targets are mainly limited 
+by the small number of cells and the intersection of their 
+characteristic marker genes with normal cells. Given that 
+FXYD6 is also expressed in some normal cells, such as 
+stromal cells and oligodendrocytes, the direct target inhi-
+bition of FXYD6 may influence the physiological function 
+of normal cells and lead to certain side effects. Bipositive 
+TAMs and M2- TAMs cells studied by Cao et al39 have similar 
+effects, used the feature of accumulation at the margins 
+of GBM and designed to outline the tumor margins and 
+guide the surgery, thereby improving surgical prognosis. 
+However, the production of both bipositive TAMs and 
+FXYD6 was regulated by CMV infection. Therefore, we 
+further explore therapeutic strategies that fundamentally 
+address CMV+ GBM by directly targeting CMV.
+Existing CMV- targeting approaches for GBM, 
+including antiviral drug valganciclovir, 40 CAR- T 
+therapy, 41 42  and dendritic cells (DCs) therapy, 43 have 
+certain limitations such as inability to penetrate the 
+blood- brain barrier, limited recognition of tumor 
+intracellular antigens by CAR- T therapy, and the 
+complexity of antigen presentation in DC cell therapy. 
+At present, the research on CMV- targeting TCR- T cell 
+therapy for GBM has not been noticed. In a phase 
+I clinical trial (NCT04153279), pp65- specific TCR- T 
+cell therapy for CMV infection after hematopoi-
+etic stem- cell transplantation was conducted in only 
+seven patients. 44 Previous CMV- specific T- cell ther -
+apies using custom CMV peptide pools have shown 
+suboptimal efficacy due to limited antitumor activity 
+and persistence. 45 The exogenous TCR- transduced T 
+cellular therapy demonstrates stronger specificity and 
+sensitivity, and prolonged T- cell persistence for up to 
+9 months. 46 Notably, there is no research investigating 
+the use of exogenous CMV- specific TCR- transduced T 
+cellular therapy for GBM. In this study, scTCR/BCR-  
+seq was performed on CMV- infected and uninfected 
+GBM tissue. Although specific BCR sequences were 
+not acquired, the specific CMV- TCR sequences were 
+obtained and successfully exogenously transduced 
+to generate highly effective CMV- TCR- T cells. The 
+major advantage of this strategy lies in its ability to 
+obtain clonal TCR sequences that express tumor-  
+recognizing antigens. Moreover, the natural selec-
+tion of self TCR- T cells reduces the risk of off- target 
+tumor toxicity of these TCR- T cells in patients. 47 48  
+Remarkably, these therapeutic interventions demon-
+strated ideal efficacy in a human- derived orthotopic 
+glioblastoma mice model. These findings underscore 
+that CMV- TCR- T therapy has a broad clinical applica-
+tion prospect.
+Although CMV- TCR- T has shown significant thera-
+peutic effects, we did not find CMV antigen against 
+CMV- TCR- T, which will also be the direction of 
+our further research. In conclusion, our findings 
+contribute to a better understanding of CMV infection 
+in GBM immunosuppression, providing deep insights 
+into the composition of the GBM immune micro-
+environment. The identification of novel immune 
+cell subpopulations and therapeutic targets opens 
+avenues for improving GBM treatment strategies.
+Author affiliations
+1Hunan Cancer Hospital/the Affiliated Cancer Hospital of Xiangya School of 
+Medicine, Central South University, Changsha, Hunan, China
+2The Key Laboratory of Carcinogenesis of the Chinese Ministry of Health, The 
+Key Laboratory of Carcinogenesis and Cancer Invasion of the Chinese Ministry of 
+Education, Cancer Research Institute, Central South University, Changsha, Hunan, 
+China
+3FuRong Laboratory, Central South University, Changsha, Hunan, China
+4Department of Pathogeny Biology, School of Basic Medical Science, Central South 
+University, Changsha, Hunan, China
+5Department of Neurosurgery in Xiangya Hospital, Central South University, 
+Changsha, Hunan, China
+6Chinese Academy of Medical Sciences and Peking Union Medical College, Peking 
+University, Beijing, China
+7Guangdong Cardiovascular Institute, Guangdong Provincial People's Hospital, 
+Guangdong Academy of Medical Sciences, Guangzhou, China Medical Research 
+Institute, Guangdong Provincial People's Hospital, Guangdong Academy of Medical 
+Sciences, Southern Medical University, Guangzhou, Guangdong, China
+8Department of Pathology in Second Xiangya Hospital, Central South University, 
+Changsha, Hunan, China
+16
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access 
+9Department of Neurosurgery, The Second Affiliated Hospital, Xinjiang Medical 
+University, Urumqi, Xinjiang, China
+Acknowledgements We would like to express our sincere gratitude to Professor 
+Guojun Wu from the Department of Microbiology, Central South University, for 
+providing the HCMV (strain AD169). The authors would like to extend their gratitude 
+to the Singleron team for their continuous support. Special thanks are due to Dr 
+Jianming Zeng from the University of Macau and all members of his bioinformatics 
+team, biotrainee, for generously sharing their expertise and codes. Additionally, 
+the authors acknowledge Hao Zhang from Nanjing Medical University for the 
+development of the SCP package for scRNA- seq visualization (https://github.com/ 
+zhanghao-njmu/SCP/).
+Contributors XL performed the experiments and conducted the bioinformatics 
+analysis of the sequence data. ZZ, YL, XW and MH collected tumor samples 
+and clinical data. WG, KD, XL, XS, CH and YD managed the mouse models and 
+performed pathological diagnosis of glioblastoma. MZ, SW, and YZ provide 
+experimental and analytical assistance. QL, SC, and PD provided partial funding 
+for the project. MW designed the experiments, interpreted the data, wrote the 
+manuscript, and supervised the study. MW is responsible for the overall content as 
+guarantor.
+Funding The present study was financially supported by the National Natural 
+Science Foundation of China (No.82274371; No.82303362), the Scientific Research 
+Program of FuRong Laboratory (No. 2023SK2085), the Hunan Cancer Hospital 
+Climb Plan (No. YF2021005) and the Fundamental Research Funds for the Central 
+Universities of Central South University (No. CX20230376).
+Competing interests The authors declare no conflict of interest. The cartoon 
+figure was created with www. figdraw. com.
+Patient consent for publication Not applicable.
+Ethics approval In this study, tumor tissue and blood samples were obtained from 
+patients or volunteers. All the donors or their guardians provided written informed 
+consent for sample collection and data analysis. All procedures of this study 
+were approved by the Ethics Committee on Scientific Research of Central South 
+University. (approval number 202103150). Participants gave informed consent to 
+participate in the study before taking part.
+Provenance and peer review Not commissioned; externally peer reviewed.
+Data availability statement Data are available upon reasonable request.
+Supplemental material This content has been supplied by the author(s). It has 
+not been vetted by BMJ Publishing Group Limited (BMJ) and may not have been 
+peer- reviewed. Any opinions or recommendations discussed are solely those 
+of the author(s) and are not endorsed by BMJ. BMJ disclaims all liability and 
+responsibility arising from any reliance placed on the content. Where the content 
+includes any translated material, BMJ does not warrant the accuracy and reliability 
+of the translations (including but not limited to local regulations, clinical guidelines, 
+terminology, drug names and drug dosages), and is not responsible for any error 
+and/or omissions arising from translation and adaptation or otherwise.
+Open access This is an open access article distributed in accordance with the 
+Creative Commons Attribution Non Commercial (CC BY- NC 4.0) license, which 
+permits others to distribute, remix, adapt, build upon this work non- commercially, 
+and license their derivative works on different terms, provided the original work is 
+properly cited, appropriate credit is given, any changes made indicated, and the use 
+is non- commercial. See http://creativecommons.org/licenses/by-nc/4.0/.
+ORCID iD
+Xinmiao Long http://orcid.org/0000-0003-2898-0947
+REFERENCES
+ 1 van den Bent MJ, Geurts M, French PJ, et al. Primary brain tumours 
+in adults. Lancet 2023;402:1564–79. 
+ 2 Stupp R, Taillibert S, Kanner A, et al. Effect of tumor- treating fields 
+plus maintenance Temozolomide vs maintenance Temozolomide 
+alone on survival in patients with glioblastoma: a randomized clinical 
+trial. JAMA 2017;318:2306–16. 
+ 3 Sampson JH, Gunn MD, Fecci PE, et al. Brain immunology and 
+immunotherapy in brain tumours. Nat Rev Cancer 2020;20:12–25. 
+ 4 Jackson CM, Choi J, Lim M. Mechanisms of immunotherapy 
+resistance: lessons from glioblastoma. Nat Immunol 2019;20:1100–9. 
+ 5 Boldogh I, AbuBakar S, Albrecht T. Activation of proto- oncogenes: 
+an immediate early event in human cytomegalovirus infection. 
+Science 1990;247:561–4. 
+ 6 Richardson AK, Walker LC, Cox B, et al. Breast cancer and 
+cytomegalovirus. Clin Transl Oncol 2020;22:585–602. 
+ 7 Samanta M, Harkins L, Klemm K, et al. High prevalence of human 
+cytomegalovirus in prostatic intraepithelial neoplasia and prostatic 
+carcinoma. J Urol 2003;170:998–1002. 
+ 8 Baryawno N, Rahbar A, Wolmer- Solberg N, et al. Detection of human 
+cytomegalovirus in Medulloblastomas reveals a potential therapeutic 
+target. J Clin Invest 2011;121:57147:4043–55:. 
+ 9 Herbein G. The human cytomegalovirus, from oncomodulation to 
+oncogenesis. Viruses 2018;10:408. 
+ 10 Cobbs CS, Harkins L, Samanta M, et al. Human cytomegalovirus 
+infection and expression in human malignant glioma. Cancer Res 
+2002;62:3347–50.
+ 11 Hochhalter CB, Carr C, O’Neill BE, et al. The association between 
+human cytomegalovirus and glioblastomas: a review. NN 2017;4:96. 
+ 12 Paulus C, Krauss S, Nevels M. A human cytomegalovirus antagonist 
+of type I IFN- dependent signal transducer and activator of 
+transcription signaling. Proc Natl Acad Sci U S A 2006;103:3840–5. 
+ 13 Yu G, Wang L- G, Han Y , et al. clusterProfiler: an R package for 
+comparing biological themes among gene clusters. OMICS 
+2012;16:284–7. 
+ 14 Jin S, Guerrero- Juarez CF , Zhang L, et al. Inference and analysis of 
+cell- cell communication using Cellchat. Nat Commun 2021;12:1088. 
+ 15 Street K, Risso D, Fletcher RB, et al. Slingshot: cell lineage and 
+pseudotime inference for single- cell transcriptomics. BMC Genomics 
+2018;19:477. 
+ 16 Huang H, Wang C, Rubelt F , et al. Analyzing the mycobacterium 
+tuberculosis immune response by T- cell receptor clustering with 
+GLIPH2 and genome- wide antigen screening. Nat Biotechnol 
+2020;38:1194–202. 
+ 17 Mei Y , Wang X, Zhang J, et al. Siglec- 9 acts as an immune- 
+checkpoint molecule on macrophages in glioblastoma, restricting 
+T- cell priming and immunotherapy response. Nat Cancer 
+2023;4:1273–91. 
+ 18 Herradón G, Pérez- García C. Targeting midkine and pleiotrophin 
+signalling pathways in addiction and neurodegenerative disorders: 
+recent progress and perspectives. Br J Pharmacol 2014;171:837–48. 
+ 19 Shi Y , Ping Y- F , Zhou W, et al. Tumour- associated macrophages 
+secrete pleiotrophin to promote PTPRZ1 signalling in glioblastoma 
+stem cells for tumour growth. Nat Commun 2017;8:15080. 
+ 20 Carrasco E, Gómez de Las Heras MM, Gabandé-Rodríguez E, 
+et al. The role of T cells in age- related diseases. Nat Rev Immunol 
+2022;22:97–111. 
+ 21 Lim M, Xia Y , Bettegowda C, et al. Current state of immunotherapy 
+for glioblastoma. Nat Rev Clin Oncol 2018;15:422–42. 
+ 22 Cobbs CS, Soroceanu L, Denham S, et al. Modulation of oncogenic 
+phenotype in human glioma cells by cytomegalovirus IE1- mediated 
+mitogenicity. Cancer Res 2008;68:724–30. 
+ 23 Fornara O, Bartek J Jr, Rahbar A, et al. Cytomegalovirus infection 
+induces a stem cell phenotype in human primary glioblastoma cells: 
+prognostic significance and biological impact. Cell Death Differ 
+2016;23:261–9. 
+ 24 Cao M- F , Chen L, Dang W- Q, et al. Hybrids by tumor- associated 
+macrophages X glioblastoma cells entail nuclear reprogramming and 
+glioblastoma invasion. Cancer Lett 2019;442:445–52. 
+ 25 Powell AE, Anderson EC, Davies PS, et al. Fusion between intestinal 
+epithelial cells and macrophages in a cancer context results in 
+nuclear reprogramming. Cancer Res 2011;71:1497–505. 
+ 26 Akhter MZ, Sharawat SK, Kumar V, et al. Aggressive serous epithelial 
+ovarian cancer is potentially propagated by EpCAM(+)CD45(+) 
+phenotype. Oncogene 2018;37:2089–103. 
+ 27 Wu M, Wu L, Wu W, et al. Phagocytosis of glioma cells enhances 
+the immunosuppressive phenotype of bone marrow- derived 
+macrophages. Cancer Res 2023;83:771–85. 
+ 28 Pallett LJ, Swadling L, Diniz M, et al. Tissue CD14(+)CD8(+) T cells 
+reprogrammed by myeloid cells and modulated by LPS. Nature 
+2023;614:334–42. 
+ 29 Vucur M, Ghallab A, Schneider AT, et al. Sublethal necroptosis 
+signaling promotes inflammation and liver cancer. Immunity 
+2023;56:1578–95. 
+ 30 Zhao J, Chen AX, Gartrell RD, et al. Immune and genomic correlates 
+of response to anti- PD- 1 immunotherapy in glioblastoma. Nat Med 
+2019;25:462–9. 
+ 31 Shen X, Zhao B. Efficacy of PD- 1 or PD- L1 inhibitors and PD- L1 
+expression status in cancer: meta- analysis. BMJ 2018;362:k3529. 
+ 32 Abdelfattah N, Kumar P , Wang C, et al. Single- cell analysis of human 
+glioma and immune cells identifies S100A4 as an immunotherapy 
+target. Nat Commun 2022;13:767. 
+17
+Long X, et al. J Immunother Cancer 2024;12:e008967. doi:10.1136/jitc-2024-008967
+Open access
+ 33 Gao Q, Chen X, Duan H, et al. FXYD6: a novel therapeutic target 
+toward hepatocellular carcinoma. Protein Cell 2014;5:532–43. 
+ 34 Chaumette B, Ferrafiat V, Ambalavanan A, et al. Missense variants in 
+ATP1A3 and FXYD gene family are associated with childhood- onset 
+schizophrenia. Mol Psychiatry 2020;25:821–30. 
+ 35 Jiravejchakul N, Abe GL, Loza M, et al. Intercellular crosstalk in 
+adult dental pulp is mediated by heparin- binding growth factors 
+pleiotrophin and midkine. BMC Genomics 2023;24:184. 
+ 36 Lampropoulou E, Logoviti I, Koutsioumpa M, et al. Cyclin- dependent 
+kinase 5 mediates pleiotrophin- induced endothelial cell migration. 
+Sci Rep 2018;8:5893. 
+ 37 Cerezo- Wallis D, Contreras- Alcalde M, Troulé K, et al. Midkine 
+rewires the melanoma microenvironment toward a tolerogenic and 
+immune- resistant state. Nat Med 2020;26:1865–77. 
+ 38 Zhang Y , Zuo C, Liu L, et al. Single- cell RNA- sequencing atlas 
+reveals an MDK- dependent immunosuppressive environment in ErbB 
+pathway- mutated gallbladder cancer. J Hepatol 2021;75:1128–41. 
+ 39 Cao C, Yin H, Yang B, et al. Intra- operative definition of glioma 
+infiltrative margins by visualizing immunosuppressive tumor- 
+associated macrophages. Advanced Science 2023;10. 
+ 40 Stragliotto G, Pantalone MR, Rahbar A, et al. Valganciclovir as add- 
+on to standard therapy in glioblastoma patients. Clin Cancer Res 
+2020;26:4031–9. 
+ 41 Ahmed N, Brawley V, Hegde M, et al. HER2- specific chimeric antigen 
+receptor- modified virus- specific T cells for progressive glioblastoma: 
+a phase 1 dose- escalation trial. JAMA Oncol 2017;3:1094–101. 
+ 42 Choi BD, Yu X, Castano AP , et al. CAR- T cells secreting bites 
+circumvent antigen escape without detectable toxicity. Nat 
+Biotechnol 2019;37:1049–58. 
+ 43 Mitchell DA, Batich KA, Gunn MD, et al. Tetanus Toxoid and CCL3 
+improve dendritic cell vaccines in mice and glioblastoma patients. 
+Nature 2015;519:366–9. 
+ 44 Liu G, Chen H, Cao X, et al. Efficacy of pp65- specific TCR- T cell 
+therapy in treating cytomegalovirus infection after hematopoietic 
+stem cell transplantation. Am J Hematol 2022;97:1453–63. 
+ 45 Smith C, Lineburg KE, Martins JP , et al. Autologous CMV- specific T 
+cells are a safe adjuvant immunotherapy for primary glioblastoma 
+multiforme. J Clin Invest 2020;130:6041–53. 
+ 46 Stadtmauer EA, Fraietta JA, Davis MM, et al. CRISPR- engineered T 
+cells in patients with refractory cancer. Science 2020;367:eaba7365. 
+ 47 Louveau A, Smirnov I, Keyes TJ, et al. Structural and functional 
+features of central nervous system lymphatic vessels. Nature 
+2015;523:337–41. 
+ 48 He J, Xiong X, Yang H, et al. Defined tumor antigen- specific T 
+cells potentiate personalized TCR- T cell therapy and prediction of 
+immunotherapy response. Cell Res 2022;32:530–42. 

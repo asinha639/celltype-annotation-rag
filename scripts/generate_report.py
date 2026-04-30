@@ -52,6 +52,9 @@ def main() -> None:
         alternatives = ann.get("alternative_cell_types", [])
         if not isinstance(alternatives, list):
             alternatives = []
+        literature_sources = ann.get("literature_sources", [])
+        if not isinstance(literature_sources, list):
+            literature_sources = []
 
         lines.append(f"## Cluster {cluster}")
         lines.append("")
@@ -72,6 +75,21 @@ def main() -> None:
         if alternatives:
             for alt in alternatives:
                 lines.append(f"- {str(alt)}")
+        else:
+            lines.append("- None")
+        lines.append("")
+
+        lines.append("### Literature context used")
+        if literature_sources:
+            for source in literature_sources:
+                if not isinstance(source, dict):
+                    continue
+                source_pdf = str(source.get("source_pdf", "unknown"))
+                score = to_float(source.get("score", 0.0))
+                snippet = str(source.get("text", "")).strip() or "N/A"
+                lines.append(f"- Source: {source_pdf}")
+                lines.append(f"  Score: {score:.4f}")
+                lines.append(f"  Snippet: {snippet}")
         else:
             lines.append("- None")
         lines.append("")

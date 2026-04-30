@@ -227,6 +227,7 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
         if token not in allowed_genes_upper:
             external_reasoning_genes.append(token)
     if external_reasoning_genes:
+        warnings.append("Reasoning contains genes not in input.")
         warnings.append("Reasoning references canonical markers not present in input.")
 
     input_gene_set = {gene.strip().upper() for gene in input_genes if gene.strip()}
@@ -239,6 +240,9 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
 
     def set_min_confidence(min_value: float) -> None:
         annotation["confidence"] = max(current_confidence(), min_value)
+
+    if external_reasoning_genes:
+        annotation["confidence"] = min(current_confidence(), 0.5)
 
     # Hard rule: B cell
     if {"MS4A1", "CD79A"}.issubset(input_gene_set):
@@ -408,6 +412,7 @@ def calibrate_confidence(annotation: dict, input_genes: list[str]) -> float:
         confidence += 0.1
 
     warning = str(annotation.get("warning", "")).strip()
+    warning_lower = warning.lower()
     if warning:
         confidence -= 0.1
 
@@ -422,6 +427,9 @@ def calibrate_confidence(annotation: dict, input_genes: list[str]) -> float:
 
     if warning:
         confidence = min(confidence, 0.85)
+
+    if "reasoning contains genes not in input." in warning_lower:
+        confidence = min(confidence, 0.5)
 
     if not isinstance(marker_evidence, dict) or len(marker_evidence) < 3:
         confidence = min(confidence, 0.75)
@@ -447,6 +455,7 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
                     "alternative_cell_types": [],
                     "warning": "No marker genes were provided; prediction is unreliable.",
                     "marker_evidence": {},
+                    "literature_sources": [],
                     "error": "No marker genes in input.",
                 }
             )
@@ -461,6 +470,22 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
             retrieved = []
 
         filtered_retrieved = filter_retrieved_chunks(retrieved)
+        literature_sources = []
+        for item in filtered_retrieved[:5]:
+            source_pdf = str(item.get("source_pdf", "unknown"))
+            score_raw = item.get("score", 0.0)
+            try:
+                score = float(score_raw)
+            except (TypeError, ValueError):
+                score = 0.0
+            snippet = str(item.get("text", "")).strip()[:300]
+            literature_sources.append(
+                {
+                    "source_pdf": source_pdf,
+                    "score": score,
+                    "text": snippet,
+                }
+            )
         literature_texts = [
             item.get("text", "").strip() for item in filtered_retrieved if item.get("text")
         ]
@@ -475,6 +500,7 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
                 parsed_output = parse_model_json(raw_output, cluster_id, genes)
                 parsed_output = validate_annotation(parsed_output, genes)
                 parsed_output["confidence"] = calibrate_confidence(parsed_output, genes)
+                parsed_output["literature_sources"] = literature_sources
 
                 if not parsed_output.get("marker_evidence"):
                     raise ValueError("marker_evidence is empty")
@@ -511,6 +537,7 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
                         f"{str(last_exception)}"
                     ),
                     "marker_evidence": {},
+                    "literature_sources": literature_sources,
                     "error": str(last_exception),
                 }
             )

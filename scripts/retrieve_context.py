@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import os
+import re
 
 import requests
 from qdrant_client import QdrantClient
@@ -56,30 +57,54 @@ def expand_biological_query(query: str) -> str:
     upper_tokens = [t for t in tokens if t.isupper() and any(c.isalpha() for c in t)]
     if upper_tokens:
         genes = " ".join(upper_tokens)
-        return f"marker genes {genes} cell type identity monocyte function biology"
-    return f"{query} cell type identity function biology marker genes"
+        return (
+            f"single cell RNA-seq marker genes {genes} "
+            "cell type annotation identity"
+        )
+    return f"single cell RNA-seq marker genes {query} cell type annotation identity"
 
 
 def filter_retrieved_chunks(chunks: list[dict]) -> list[dict]:
     noise_keywords = [
         "references",
+        "doi",
         "copyright",
+        "et al",
+        "supplementary",
         "available online",
         "article info",
         "contents lists available",
         "fig.",
         "figure",
     ]
+    bio_keywords = ["t cell", "marker", "expression", "subset", "cd", "gene"]
 
-    filtered = []
+    filtered_with_priority = []
     for chunk in chunks:
         text = str(chunk.get("text", ""))
         text_lower = text.lower()
+        if len(text.strip()) < 200:
+            continue
         if any(keyword in text_lower for keyword in noise_keywords):
             continue
-        filtered.append(chunk)
 
-    return filtered
+        # Remove chunks that look like dense reference lists:
+        # repeated numbered bullets (e.g., 1. 2. 3.) or many citation-like tokens.
+        numbered_refs = re.findall(r"\b\d+\.", text)
+        citation_like = re.findall(r"\[\d+\]|\(\d{4}\)|\b\d{1,3},\d{1,3}\b", text)
+        long_number_runs = re.findall(r"\d{4,}", text)
+        if len(numbered_refs) >= 5:
+            continue
+        if len(citation_like) >= 4:
+            continue
+        if len(long_number_runs) > 3:
+            continue
+
+        priority_score = sum(1 for kw in bio_keywords if kw in text_lower)
+        filtered_with_priority.append((priority_score, chunk))
+
+    filtered_with_priority.sort(key=lambda x: x[0], reverse=True)
+    return [item[1] for item in filtered_with_priority]
 
 
 def retrieve_context_points(query: str, hf_token: str, limit: int = 5) -> list[dict]:
@@ -104,7 +129,7 @@ def retrieve_context_points(query: str, hf_token: str, limit: int = 5) -> list[d
             }
         )
     filtered = filter_retrieved_chunks(output)
-    return filtered[:limit]
+    return filtered[:3]
 
 
 def main() -> None:

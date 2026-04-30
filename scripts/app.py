@@ -4,6 +4,7 @@ import requests
 
 
 API_URL = "http://localhost:8000/upload-markers"
+PAPERS_API_URL = "http://localhost:8000/upload-papers"
 
 
 def main() -> None:
@@ -58,13 +59,15 @@ def main() -> None:
         st.session_state.evaluation_summary = ""
     if "run_summary" not in st.session_state:
         st.session_state.run_summary = {}
+    if "paper_ingestion" not in st.session_state:
+        st.session_state.paper_ingestion = {}
 
     with st.container(border=True):
         st.subheader("Upload Marker CSV")
         st.write("Expected CSV columns: `cluster`, `gene`, `avg_log2FC`, `p_val_adj`")
         uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
         st.subheader("Upload Research PDFs (optional)")
-        st.file_uploader(
+        uploaded_pdfs = st.file_uploader(
             "Add one or more PDF files",
             type=["pdf"],
             accept_multiple_files=True,
@@ -77,6 +80,33 @@ def main() -> None:
 
     if st.button("Run Annotation Pipeline"):
         with st.spinner("Running pipeline..."):
+            st.session_state.paper_ingestion = {}
+
+            if uploaded_pdfs:
+                paper_files = [
+                    ("files", (pdf.name, pdf.getvalue(), "application/pdf"))
+                    for pdf in uploaded_pdfs
+                ]
+                try:
+                    papers_response = requests.post(
+                        PAPERS_API_URL, files=paper_files, timeout=600
+                    )
+                    papers_response.raise_for_status()
+                    papers_result = papers_response.json()
+                    st.session_state.paper_ingestion = {
+                        "success": bool(papers_result.get("success", False)),
+                        "message": str(papers_result.get("message", "")),
+                        "stderr": str(papers_result.get("stderr", "")),
+                        "saved_files": papers_result.get("saved_files", []),
+                    }
+                except requests.RequestException as exc:
+                    st.session_state.paper_ingestion = {
+                        "success": False,
+                        "message": f"Paper ingestion request failed: {exc}",
+                        "stderr": "",
+                        "saved_files": [],
+                    }
+
             files = {"file": (uploaded_file.name, uploaded_file.getvalue(), "text/csv")}
             try:
                 response = requests.post(API_URL, files=files, timeout=300)
@@ -118,6 +148,20 @@ def main() -> None:
 
     with left_col:
         with st.container(border=True):
+            paper_ingestion = st.session_state.paper_ingestion
+            if paper_ingestion:
+                if paper_ingestion.get("success", False):
+                    st.success(
+                        paper_ingestion.get("message", "Paper ingestion completed successfully.")
+                    )
+                else:
+                    st.error(
+                        paper_ingestion.get("message", "Paper ingestion failed.")
+                    )
+                saved_files = paper_ingestion.get("saved_files", [])
+                if saved_files:
+                    st.write("Uploaded PDFs: " + ", ".join(saved_files))
+
             if success:
                 st.success("Pipeline completed successfully.")
             else:
