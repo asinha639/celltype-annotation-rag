@@ -70,6 +70,8 @@ def main() -> None:
         success = bool(result.get("success", False))
         report_markdown = result.get("report_markdown", "")
         report_path = result.get("report_path", "reports/annotation_report.md")
+        error_message = str(result.get("error_message", "")).strip()
+        stderr_text = str(result.get("stderr", "")).strip()
 
         left_col, right_col = st.columns([1, 1], gap="large")
 
@@ -79,9 +81,14 @@ def main() -> None:
                     st.success("Pipeline completed successfully.")
                 else:
                     st.error("Pipeline failed.")
+                    if error_message:
+                        st.write(error_message)
+                    if stderr_text:
+                        with st.expander("Error details"):
+                            st.code(stderr_text)
                 st.write(f"Report path: `{report_path}`")
 
-                if report_markdown:
+                if success and report_markdown:
                     st.download_button(
                         label="Download Report",
                         data=report_markdown,
@@ -105,10 +112,12 @@ def main() -> None:
 
         st.divider()
         st.subheader("Annotation Report")
-        if report_markdown:
+        if success and report_markdown:
             st.markdown(report_markdown)
-        else:
+        elif success:
             st.info("No report content returned.")
+        else:
+            st.info("Report is not shown because the pipeline failed.")
 
 
 if __name__ == "__main__":

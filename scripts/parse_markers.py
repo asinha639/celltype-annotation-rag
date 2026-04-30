@@ -19,6 +19,12 @@ from pathlib import Path
 
 
 REQUIRED_COLUMNS = {"cluster", "gene", "avg_log2FC", "p_val_adj"}
+COLUMN_ALIASES = {
+    "cluster": ["cluster", "seurat_clusters", "leiden", "cluster_id"],
+    "gene": ["gene", "genes", "marker", "marker_gene"],
+    "avg_log2FC": ["avg_log2fc", "avg_logfc", "log2fc", "logfc"],
+    "p_val_adj": ["p_val_adj", "p_adj", "padj", "adjusted_p_value", "q_value"],
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -44,45 +50,100 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def ensure_columns(fieldnames: list[str] | None) -> None:
+def normalize_column_name(name: str) -> str:
+    return name.strip().replace("\ufeff", "").lower()
+
+
+def build_column_mapping(fieldnames: list[str]) -> dict[str, str]:
+    normalized_to_original = {}
+    for name in fieldnames:
+        normalized_to_original[normalize_column_name(name)] = name
+
+    mapping: dict[str, str] = {}
+    for canonical, aliases in COLUMN_ALIASES.items():
+        for alias in aliases:
+            if alias in normalized_to_original:
+                mapping[canonical] = normalized_to_original[alias]
+                break
+    return mapping
+
+
+def ensure_columns(fieldnames: list[str] | None, column_mapping: dict[str, str]) -> None:
     if not fieldnames:
         raise ValueError("CSV appears empty or is missing a header row.")
 
-    missing = REQUIRED_COLUMNS - set(fieldnames)
+    missing = REQUIRED_COLUMNS - set(column_mapping.keys())
     if missing:
+        found = [normalize_column_name(col) for col in fieldnames]
         raise ValueError(
-            f"CSV is missing required columns: {', '.join(sorted(missing))}"
+            "CSV is missing required columns.\n"
+            f"Required canonical columns: {', '.join(sorted(REQUIRED_COLUMNS))}\n"
+            f"Found columns: {', '.join(found)}"
         )
 
 
-def to_float(value: str, column: str, row_number: int) -> float:
+def to_float_or_default(
+    value: str, column: str, row_number: int, default: float
+) -> tuple[float, bool]:
+    raw = (value or "").strip()
+    if not raw:
+        print(
+            f"Warning: missing {column} on row {row_number}; using default {default}."
+        )
+        return default, True
     try:
-        return float(value)
-    except ValueError as exc:
-        raise ValueError(
-            f"Invalid numeric value in column '{column}' on row {row_number}: {value}"
-        ) from exc
+        return float(raw), False
+    except ValueError:
+        print(
+            f"Warning: invalid {column} on row {row_number} ('{value}'); using default {default}."
+        )
+        return default, True
 
 
 def load_markers(csv_path: Path) -> list[dict]:
     rows: list[dict] = []
-    with csv_path.open("r", newline="", encoding="utf-8") as handle:
+    skipped_rows = 0
+    repaired_values = 0
+
+    with csv_path.open("r", newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
-        if reader.fieldnames:
-            reader.fieldnames = [
-                col.strip().replace("\ufeff", "").lower() for col in reader.fieldnames
-            ]
-        ensure_columns(reader.fieldnames)
+        raw_fieldnames = reader.fieldnames or []
+        column_mapping = build_column_mapping(raw_fieldnames)
+        ensure_columns(raw_fieldnames, column_mapping)
 
         for idx, row in enumerate(reader, start=2):  # Header is row 1.
+            cluster = (row.get(column_mapping["cluster"]) or "").strip()
+            gene = (row.get(column_mapping["gene"]) or "").strip()
+            if not cluster or not gene:
+                skipped_rows += 1
+                continue
+
+            avg_log2fc, repaired_avg = to_float_or_default(
+                row.get(column_mapping["avg_log2FC"], ""),
+                "avg_log2FC",
+                idx,
+                0.0,
+            )
+            p_val_adj, repaired_padj = to_float_or_default(
+                row.get(column_mapping["p_val_adj"], ""),
+                "p_val_adj",
+                idx,
+                1.0,
+            )
+            repaired_values += int(repaired_avg) + int(repaired_padj)
+
             rows.append(
                 {
-                    "cluster": row["cluster"].strip(),
-                    "gene": row["gene"].strip(),
-                    "avg_log2FC": to_float(row["avg_log2FC"], "avg_log2FC", idx),
-                    "p_val_adj": to_float(row["p_val_adj"], "p_val_adj", idx),
+                    "cluster": cluster,
+                    "gene": gene,
+                    "avg_log2FC": avg_log2fc,
+                    "p_val_adj": p_val_adj,
                 }
             )
+
+    print(f"Rows loaded: {len(rows)}")
+    print(f"Rows skipped: {skipped_rows}")
+    print(f"Numeric values repaired: {repaired_values}")
     return rows
 
 

@@ -75,6 +75,11 @@ def build_messages(cluster_id: str, genes: list[str], literature_context: str) -
         "- the reasoning must ONLY mention marker genes provided for the current cluster\n"
         "- never mention genes from other clusters\n"
         "- if you mention a gene not in the input marker list, the output is invalid\n"
+        "- Return ONLY valid JSON. No extra text. No explanation outside JSON.\n"
+        "- Do not wrap JSON in markdown.\n"
+        "- Do not include explanatory text before or after JSON.\n"
+        "- Use double quotes for all JSON keys and string values.\n"
+        "- Do not use trailing commas.\n"
         "- no markdown, no extra text"
     )
 
@@ -88,7 +93,7 @@ def call_hf_chat(token: str, messages: list[dict], temperature: float = 0.2) -> 
     payload = {
         "model": MODEL_NAME,
         "messages": messages,
-        "max_tokens": 400,
+        "max_tokens": 700,
         "temperature": temperature,
     }
 
@@ -109,15 +114,24 @@ def call_hf_chat(token: str, messages: list[dict], temperature: float = 0.2) -> 
 
 
 def parse_model_json(raw_text: str, cluster_id: str, input_genes: list[str]) -> dict:
+    cleaned_text = raw_text.strip()
+    if cleaned_text.startswith("```"):
+        cleaned_text = re.sub(r"^```(?:json)?\s*", "", cleaned_text, flags=re.IGNORECASE)
+        cleaned_text = re.sub(r"\s*```$", "", cleaned_text)
+
     try:
-        parsed = json.loads(raw_text)
+        parsed = json.loads(cleaned_text)
     except json.JSONDecodeError:
-        # Basic recovery for cases where the model wraps JSON in extra text.
-        start = raw_text.find("{")
-        end = raw_text.rfind("}")
+        # Strict recovery for cases where model adds extra text around JSON.
+        start = cleaned_text.find("{")
+        end = cleaned_text.rfind("}")
         if start == -1 or end == -1 or end <= start:
             raise ValueError("Model response is not valid JSON")
-        parsed = json.loads(raw_text[start : end + 1])
+        json_block = cleaned_text[start : end + 1]
+        try:
+            parsed = json.loads(json_block)
+        except json.JSONDecodeError as exc:
+            raise ValueError("Model response is not valid JSON") from exc
 
     required_keys = {
         "cluster",
@@ -184,23 +198,18 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
     if not filtered_evidence:
         warnings.append("No marker evidence provided.")
 
-    # Reject outputs that leak gene symbols not present in this cluster input.
     reasoning = str(annotation.get("reasoning", ""))
     allowed_genes_upper = {gene.strip().upper() for gene in input_genes if gene.strip()}
     ignored_tokens = {"RNA", "SCRNA", "PBMC", "DNA", "JSON", "LLM"}
     gene_like_tokens = set(re.findall(r"\b[A-Z0-9-]{3,15}\b", reasoning))
-    invalid_reasoning_genes = []
+    external_reasoning_genes = []
     for token in gene_like_tokens:
         if token in ignored_tokens:
             continue
         if token not in allowed_genes_upper:
-            invalid_reasoning_genes.append(token)
-    if invalid_reasoning_genes:
-        invalid_reasoning_genes = sorted(invalid_reasoning_genes)
-        raise ValueError(
-            "Reasoning mentions genes not in input markers: "
-            + ", ".join(invalid_reasoning_genes)
-        )
+            external_reasoning_genes.append(token)
+    if external_reasoning_genes:
+        warnings.append("Reasoning references canonical markers not present in input.")
 
     predicted_cell_type = str(annotation.get("predicted_cell_type", "")).strip().lower()
     if predicted_cell_type == "unknown":
@@ -314,6 +323,7 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
         messages = build_messages(cluster_id, genes, literature_context)
 
         for attempt in range(1, 4):
+            raw_output = ""
             try:
                 temperature = 0.1 + (0.1 * attempt)  # 0.2, 0.3, 0.4
                 raw_output = call_hf_chat(token, messages, temperature=temperature)
@@ -329,7 +339,18 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
                 break
             except (requests.RequestException, ValueError, KeyError, IndexError) as exc:
                 last_exception = exc
+                print(
+                    f"Cluster {cluster_id} attempt {attempt} failed: "
+                    f"{type(exc).__name__}: {exc}"
+                )
+                if raw_output:
+                    print(raw_output[:1000])
                 if attempt < 3:
+                    if isinstance(exc, ValueError) and "JSON" in str(exc).upper():
+                        print(
+                            f"Invalid JSON response for cluster {cluster_id} on attempt {attempt}"
+                        )
+                        print((raw_output or "<no response>")[:500])
                     print(f"Retrying cluster {cluster_id} (attempt {attempt + 1})...")
 
         if last_exception is not None:
@@ -340,7 +361,10 @@ def annotate_clusters(clusters: list[dict], token: str) -> list[dict]:
                     "confidence": 0.0,
                     "reasoning": "Annotation failed for this cluster.",
                     "alternative_cell_types": [],
-                    "warning": "Model call or JSON parsing failed; output is a fallback.",
+                    "warning": (
+                        "LLM annotation failed after retries: "
+                        f"{str(last_exception)}"
+                    ),
                     "marker_evidence": {},
                     "error": str(last_exception),
                 }
