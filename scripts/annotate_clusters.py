@@ -39,9 +39,15 @@ def build_messages(cluster_id: str, genes: list[str], literature_context: str) -
         "1) top marker genes for the cluster\n"
         "2) literature_context snippets from retrieved papers\n"
         "Marker genes are the primary evidence.\n"
+        "You MUST base your prediction ONLY on the provided marker genes.\n"
         "Literature context is supporting background only, not the main decision signal.\n"
         "Be conservative: literature supports reasoning, but final cell-type decisions must be driven by marker genes.\n"
         "Never let literature_context override the marker genes provided for the cluster.\n"
+        "Do NOT infer cell types based on general biological knowledge if marker genes do not support it.\n"
+        "Do NOT default to common immune cell types unless markers strongly support them.\n"
+        "If markers do not clearly support a known immune cell type, return a more general label such as "
+        "'proliferating cells', 'epithelial cells', or 'endothelial cells'.\n"
+        "If uncertain, return 'unknown' instead of guessing.\n"
         "marker_evidence must ONLY include genes from the input marker list for this cluster. "
         "Do not add genes from literature_context into marker_evidence.\n"
         "Do not mention genes from other clusters."
@@ -75,6 +81,17 @@ def build_messages(cluster_id: str, genes: list[str], literature_context: str) -
         "- the reasoning must ONLY mention marker genes provided for the current cluster\n"
         "- never mention genes from other clusters\n"
         "- if you mention a gene not in the input marker list, the output is invalid\n"
+        "- You MUST base your prediction ONLY on the provided marker genes\n"
+        "- Do NOT default to common immune cell types unless markers strongly support them\n"
+        "- Do NOT infer cell types from general biological knowledge when input markers do not support it\n"
+        "- If markers do not clearly support a known immune cell type, use a general label such as "
+        "'proliferating cells', 'epithelial cells', or 'endothelial cells'\n"
+        "- If uncertain, return 'unknown' instead of guessing\n"
+        "- Examples:\n"
+        "  Markers: PPBP, PF4, GP9 -> platelet\n"
+        "  Markers: MKI67, TOP2A -> proliferating cells\n"
+        "  Markers: EPCAM, KRT8 -> epithelial cells\n"
+        "  Markers: PECAM1, VWF -> endothelial cells\n"
         "- Return ONLY valid JSON. No extra text. No explanation outside JSON.\n"
         "- Do not wrap JSON in markdown.\n"
         "- Do not include explanatory text before or after JSON.\n"
@@ -168,6 +185,7 @@ def parse_model_json(raw_text: str, cluster_id: str, input_genes: list[str]) -> 
 
 def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
     warnings: list[str] = []
+    rule_applied = False
     existing_warning = annotation.get("warning", "")
     if isinstance(existing_warning, str) and existing_warning.strip():
         warnings.append(existing_warning.strip())
@@ -211,13 +229,33 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
     if external_reasoning_genes:
         warnings.append("Reasoning references canonical markers not present in input.")
 
-    predicted_cell_type = str(annotation.get("predicted_cell_type", "")).strip().lower()
-    if predicted_cell_type == "unknown":
-        warnings.append("Model could not confidently assign a cell type.")
+    input_gene_set = {gene.strip().upper() for gene in input_genes if gene.strip()}
+
+    def current_confidence() -> float:
+        try:
+            return float(annotation.get("confidence", 0.0))
+        except (TypeError, ValueError):
+            return 0.0
+
+    def set_min_confidence(min_value: float) -> None:
+        annotation["confidence"] = max(current_confidence(), min_value)
+
+    # Hard rule: B cell
+    if {"MS4A1", "CD79A"}.issubset(input_gene_set):
+        annotation["predicted_cell_type"] = "B cell"
+        set_min_confidence(0.90)
+        rule_applied = True
+
+    # Hard rule: cytotoxic T cell signature
+    cytotoxic_t_markers = {"NKG7", "GNLY", "PRF1", "CTSW", "TRAC"}
+    if cytotoxic_t_markers.issubset(input_gene_set):
+        annotation["predicted_cell_type"] = "cytotoxic T cell"
+        set_min_confidence(0.85)
+        annotation["alternative_cell_types"] = ["NK cell"]
+        rule_applied = True
 
     # Hard rule: classical monocyte when canonical monocyte markers are present,
     # unless strong neutrophil markers are also present in the input list.
-    input_gene_set = {gene.strip().upper() for gene in input_genes if gene.strip()}
     monocyte_signature = {"LYZ", "FCN1", "CTSS", "S100A8", "S100A9"}
     strong_neutrophil_markers = {
         "FCGR3B",
@@ -233,10 +271,117 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
     has_strong_neutrophil_markers = bool(input_gene_set & strong_neutrophil_markers)
     if has_monocyte_signature and not has_strong_neutrophil_markers:
         annotation["predicted_cell_type"] = "classical monocyte"
+        set_min_confidence(0.85)
+        rule_applied = True
+
+    platelet_markers = {"PPBP", "PF4", "GP9", "ITGA2B", "NRGN"}
+    if input_gene_set & platelet_markers:
+        annotation["predicted_cell_type"] = "platelet"
+        set_min_confidence(0.90)
+        rule_applied = True
+        existing_warning_text = str(annotation.get("warning", ""))
+        warning_lower = existing_warning_text.lower()
+        if "b cell" in warning_lower or "t cell" in warning_lower:
+            annotation["warning"] = ""
+        warnings.append("Strong platelet markers detected.")
+
+    proliferating_markers = {"MKI67", "TOP2A", "STMN1", "PCNA", "TYMS"}
+    if len(input_gene_set & proliferating_markers) >= 3:
+        annotation["predicted_cell_type"] = "proliferating cells"
+        set_min_confidence(0.85)
+        rule_applied = True
+        annotation["alternative_cell_types"] = []
+        annotation["warning"] = (
+            "Cell cycle markers indicate proliferation; parent lineage may require additional markers."
+        )
+
+    epithelial_markers = {"EPCAM", "KRT8", "KRT18", "KRT19", "CLDN4"}
+    if len(input_gene_set & epithelial_markers) >= 2:
+        annotation["predicted_cell_type"] = "epithelial cell"
+        set_min_confidence(0.90)
+        rule_applied = True
+        annotation["alternative_cell_types"] = []
+
+    endothelial_markers = {"PECAM1", "VWF", "KDR", "ENG", "CDH5"}
+    if len(input_gene_set & endothelial_markers) >= 2:
+        annotation["predicted_cell_type"] = "endothelial cell"
+        set_min_confidence(0.90)
+        rule_applied = True
+        annotation["alternative_cell_types"] = []
+
+    smooth_muscle_markers = {"ACTA2", "TAGLN", "MYH11", "CNN1", "DES"}
+    if len(input_gene_set & smooth_muscle_markers) >= 3:
+        annotation["predicted_cell_type"] = "smooth muscle cell"
+        set_min_confidence(0.90)
+        rule_applied = True
+        annotation["alternative_cell_types"] = ["pericyte"]
+
+    t_cell_core = {"CD3D", "CD3E"}
+    t_cell_support = {"IL7R", "CCR7", "LTB"}
+    cytotoxic_markers = {"NKG7", "GNLY", "PRF1"}
+    has_t_cell_core = t_cell_core.issubset(input_gene_set)
+    has_t_cell_support = bool(input_gene_set & t_cell_support)
+    has_cytotoxic_signature = bool(input_gene_set & cytotoxic_markers)
+    if has_t_cell_core and has_t_cell_support and not has_cytotoxic_signature:
+        annotation["predicted_cell_type"] = "naive/central memory T cell"
+        set_min_confidence(0.85)
+        rule_applied = True
+        annotation["alternative_cell_types"] = ["CD4 T cell"]
+
+    nonclassical_monocyte_markers = {"FCGR3A", "MS4A7", "LST1", "AIF1", "TYROBP"}
+    if nonclassical_monocyte_markers.issubset(input_gene_set):
+        annotation["predicted_cell_type"] = "non-classical monocyte"
+        set_min_confidence(0.85)
+        rule_applied = True
+        annotation["alternative_cell_types"] = ["NK cell"]
+
+    predicted_cell_type = str(annotation.get("predicted_cell_type", "")).strip().lower()
+    if predicted_cell_type == "unknown":
+        warnings.append("Model could not confidently assign a cell type.")
+
+    updated_warning = annotation.get("warning", "")
+    if isinstance(updated_warning, str) and updated_warning.strip():
+        warnings.append(updated_warning.strip())
+
+    final_confidence_value = annotation.get("confidence", 0.0)
+    try:
+        final_confidence = float(final_confidence_value)
+    except (TypeError, ValueError):
+        final_confidence = 0.0
+
+    if final_confidence >= 0.8:
+        warnings = [w for w in warnings if "low confidence" not in w.lower()]
+
+    if predicted_cell_type != "unknown":
+        warnings = [
+            w
+            for w in warnings
+            if "model could not confidently assign a cell type" not in w.lower()
+        ]
+
+    if rule_applied:
+        filtered_warnings = []
+        for warning_text in warnings:
+            warning_lower = warning_text.lower()
+            if "no clear markers" in warning_lower:
+                continue
+            if "low confidence prediction" in warning_lower:
+                continue
+            if "model could not confidently assign a cell type" in warning_lower:
+                continue
+            if "insufficient marker evidence" in warning_lower:
+                continue
+            filtered_warnings.append(warning_text)
+        warnings = filtered_warnings
 
     # Preserve order while removing duplicates.
-    unique_warnings = list(dict.fromkeys(warnings))
-    annotation["warning"] = " ".join(unique_warnings)
+    normalized_warnings = []
+    for w in warnings:
+        clean = " ".join(str(w).split()).strip()
+        if clean:
+            normalized_warnings.append(clean)
+    unique_warnings = list(dict.fromkeys(normalized_warnings))
+    annotation["warning"] = " ".join(unique_warnings) if unique_warnings else ""
 
     return annotation
 

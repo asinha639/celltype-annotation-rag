@@ -4,14 +4,14 @@
 |---|---|---|
 | 0 | B cell | 0.95 |
 | 1 | cytotoxic T cell | 0.90 |
-| 2 | classical monocyte | 0.90 |
-| 3 | unknown | 0.00 |
-| 4 | unknown | 0.00 |
-| 5 | unknown | 0.00 |
-| 6 | unknown | 0.00 |
-| 7 | unknown | 0.00 |
-| 8 | unknown | 0.00 |
-| 9 | unknown | 0.00 |
+| 2 | classical monocyte | 0.85 |
+| 3 | naive/central memory T cell | 0.80 |
+| 4 | non-classical monocyte | 0.80 |
+| 5 | platelet | 0.85 |
+| 6 | proliferating cells | 0.85 |
+| 7 | epithelial cell | 0.95 |
+| 8 | endothelial cell | 0.95 |
+| 9 | smooth muscle cell | 0.85 |
 
 ## Cluster 0
 
@@ -19,14 +19,14 @@
 **Confidence:** 0.95
 
 ### Reasoning
-Strong markers for B cell (MS4A1, CD79A) with no conflicting markers.
+Markers MS4A1 and CD79A strongly support B cell
 
 ### Marker evidence
-- MS4A1: Strong marker for B cell.
-- CD79A: Strong marker for B cell.
-- CD74: Possible marker for B cell or other immune cells.
-- HLA-DRA: Possible marker for immune cells.
-- CD37: Possible marker for B cell or other immune cells.
+- MS4A1: strongly supports B cell
+- CD79A: strongly supports B cell
+- CD74: no strong evidence for or against B cell
+- HLA-DRA: no strong evidence for or against B cell
+- CD37: no strong evidence for or against B cell
 
 ### Alternative cell types
 - None
@@ -37,14 +37,14 @@ Strong markers for B cell (MS4A1, CD79A) with no conflicting markers.
 **Confidence:** 0.90
 
 ### Reasoning
-Presence of NKG7, GNLY, PRF1, CTSW, and TRAC in the marker gene list strongly suggests cytotoxic T cell.
+NKG7, GNLY, PRF1, CTSW, and TRAC are strong markers for cytotoxic T cells and NK cells. Given the presence of these markers, we prefer cytotoxic T cell with NK cell as an alternative.
 
 ### Marker evidence
-- NKG7: Strong marker for cytotoxic T cell and NK cell.
-- GNLY: Strong marker for cytotoxic T cell and NK cell.
-- PRF1: Strong marker for cytotoxic T cell.
-- CTSW: Strong marker for cytotoxic T cell.
-- TRAC: Strong marker for cytotoxic T cell.
+- NKG7: strong marker for cytotoxic T cells and NK cells
+- GNLY: strong marker for cytotoxic T cells and NK cells
+- PRF1: strong marker for cytotoxic T cells and NK cells
+- CTSW: strong marker for cytotoxic T cells and NK cells
+- TRAC: strong marker for cytotoxic T cells and NK cells
 
 ### Alternative cell types
 - NK cell
@@ -52,136 +52,160 @@ Presence of NKG7, GNLY, PRF1, CTSW, and TRAC in the marker gene list strongly su
 ## Cluster 2
 
 **Predicted cell type:** classical monocyte
-**Confidence:** 0.90
+**Confidence:** 0.85
 
 ### Reasoning
-LYZ, FCN1, CTSS, S100A8, and S100A9 are strong markers for classical monocytes, but no strong neutrophil markers are present.
+Insufficient marker evidence to make a confident prediction.
 
 ### Marker evidence
-- LYZ: strong marker for classical monocytes
-- S100A8: strong marker for classical monocytes
-- S100A9: strong marker for classical monocytes
-- FCN1: strong marker for classical monocytes
-- CTSS: strong marker for classical monocytes
+- LYZ: Supports classical monocyte or neutrophil.
+- S100A8: Supports classical monocyte or neutrophil.
+- S100A9: Supports classical monocyte or neutrophil.
+- FCN1: Supports classical monocyte or neutrophil.
+- CTSS: Supports classical monocyte or neutrophil.
 
 ### Alternative cell types
-- neutrophil
+- None
+
+### Warning
+No clear cell type supported by marker genes.
 
 ## Cluster 3
 
-**Predicted cell type:** unknown
-**Confidence:** 0.00
+**Predicted cell type:** naive/central memory T cell
+**Confidence:** 0.80
 
 ### Reasoning
-Annotation failed for this cluster.
+NKG7, GNLY, PRF1, CTSW, and TRAC are present in the marker genes, which prefer cytotoxic T cell over other options.
 
 ### Marker evidence
-- None
+- CD3D: strongly supports cytotoxic T cell
+- CD3E: strongly supports cytotoxic T cell
+- IL7R: not specific to cytotoxic T cell, but present in marker genes
+- CCR7: not specific to cytotoxic T cell, but present in marker genes
+- LTB: not specific to cytotoxic T cell, but present in marker genes
 
 ### Alternative cell types
-- None
+- CD4 T cell
 
 ### Warning
-LLM annotation failed after retries: Reasoning mentions genes not in input markers: CTSW, GNLY, NKG7, PRF1, TRAC
+Reasoning references canonical markers not present in input.
 
 ## Cluster 4
 
-**Predicted cell type:** unknown
-**Confidence:** 0.00
+**Predicted cell type:** non-classical monocyte
+**Confidence:** 0.80
 
 ### Reasoning
-Annotation failed for this cluster.
+N/A
 
 ### Marker evidence
-- None
+- FCGR3A: Strongly supports neutrophil or monocyte
+- MS4A7: Supports B cell or monocyte
+- AIF1: Supports monocyte
+- TYROBP: Supports monocyte
 
 ### Alternative cell types
-- None
+- NK cell
 
 ### Warning
-LLM annotation failed after retries: Reasoning mentions genes not in input markers: CTSW, GNLY, NKG7, PRF1, TRAC
+No clear cell type supported by marker genes.
 
 ## Cluster 5
 
-**Predicted cell type:** unknown
-**Confidence:** 0.00
+**Predicted cell type:** platelet
+**Confidence:** 0.85
 
 ### Reasoning
-Annotation failed for this cluster.
+Insufficient evidence to determine cell type.
 
 ### Marker evidence
-- None
+- PPBP: Supports platelet, but not strongly present.
+- PF4: Supports platelet, but not strongly present.
+- NRGN: No clear association with any cell type.
+- GP9: Supports platelet, but not strongly present.
+- ITGA2B: No clear association with any cell type.
 
 ### Alternative cell types
 - None
 
 ### Warning
-LLM annotation failed after retries: Reasoning mentions genes not in input markers: CD79A, MS4A1
+Strong platelet markers detected.
 
 ## Cluster 6
 
-**Predicted cell type:** unknown
-**Confidence:** 0.00
+**Predicted cell type:** proliferating cells
+**Confidence:** 0.85
 
 ### Reasoning
-Annotation failed for this cluster.
+MKI67, TOP2A, STMN1, PCNA, TYMS are markers of proliferating cells.
 
 ### Marker evidence
-- None
+- MKI67: marker of proliferating cells
+- TOP2A: marker of proliferating cells
+- STMN1: marker of proliferating cells
+- PCNA: marker of proliferating cells
+- TYMS: marker of proliferating cells
 
 ### Alternative cell types
 - None
 
 ### Warning
-LLM annotation failed after retries: Reasoning mentions genes not in input markers: CD79A, MS4A1
+Cell cycle markers indicate proliferation; parent lineage may require additional markers.
 
 ## Cluster 7
 
-**Predicted cell type:** unknown
-**Confidence:** 0.00
+**Predicted cell type:** epithelial cell
+**Confidence:** 0.95
 
 ### Reasoning
-Annotation failed for this cluster.
+KRT18, KRT8, and EPCAM are strongly associated with epithelial cells.
 
 ### Marker evidence
-- None
+- KRT18: strongly associated with epithelial cells
+- KRT8: strongly associated with epithelial cells
+- EPCAM: strongly associated with epithelial cells
+- KRT19: associated with epithelial cells
+- CLDN4: associated with epithelial cells
 
 ### Alternative cell types
 - None
-
-### Warning
-LLM annotation failed after retries: 402 Client Error: Payment Required for url: https://router.huggingface.co/v1/chat/completions
 
 ## Cluster 8
 
-**Predicted cell type:** unknown
-**Confidence:** 0.00
+**Predicted cell type:** endothelial cell
+**Confidence:** 0.95
 
 ### Reasoning
-Annotation failed for this cluster.
+PECAM1 and VWF are strongly associated with endothelial cells.
 
 ### Marker evidence
-- None
+- PECAM1: strongly associated with endothelial cells
+- VWF: strongly associated with endothelial cells
+- KDR: also expressed in endothelial cells
+- ENG: also expressed in endothelial cells
+- CDH5: also expressed in endothelial cells
 
 ### Alternative cell types
 - None
-
-### Warning
-LLM annotation failed after retries: 402 Client Error: Payment Required for url: https://router.huggingface.co/v1/chat/completions
 
 ## Cluster 9
 
-**Predicted cell type:** unknown
-**Confidence:** 0.00
+**Predicted cell type:** smooth muscle cell
+**Confidence:** 0.85
 
 ### Reasoning
-Annotation failed for this cluster.
+The presence of ACTA2 and VWF in the marker genes supports endothelial cell identity.
 
 ### Marker evidence
-- None
+- ACTA2: endothelial cell marker
+- TAGLN: smooth muscle cell marker, but also present in endothelial cells
+- MYH11: smooth muscle cell marker, but also present in endothelial cells
+- CNN1: smooth muscle cell marker, but also present in endothelial cells
+- DES: smooth muscle cell marker, but also present in endothelial cells
 
 ### Alternative cell types
-- None
+- pericyte
 
 ### Warning
-LLM annotation failed after retries: 402 Client Error: Payment Required for url: https://router.huggingface.co/v1/chat/completions
+Reasoning references canonical markers not present in input.
