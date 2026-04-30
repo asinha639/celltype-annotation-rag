@@ -19,6 +19,7 @@ services:
       - DB_POSTGRESDB_PASSWORD=n8n_password
       - GENERIC_TIMEZONE=America/New_York
       - N8N_BLOCK_NODES=
+      - N8N_RESTRICT_FILE_ACCESS_TO=/workspace
     depends_on:
       - postgres
     volumes:

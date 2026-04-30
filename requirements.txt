@@ -4,3 +4,4 @@ qdrant-client
 fastapi
 uvicorn
 python-multipart
+streamlit

@@ -68,6 +68,10 @@ def load_markers(csv_path: Path) -> list[dict]:
     rows: list[dict] = []
     with csv_path.open("r", newline="", encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
+        if reader.fieldnames:
+            reader.fieldnames = [
+                col.strip().replace("\ufeff", "").lower() for col in reader.fieldnames
+            ]
         ensure_columns(reader.fieldnames)
 
         for idx, row in enumerate(reader, start=2):  # Header is row 1.
