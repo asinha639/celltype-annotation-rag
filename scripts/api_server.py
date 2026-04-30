@@ -112,3 +112,42 @@ async def upload_markers(file: UploadFile = File(...)) -> dict:
         "report_markdown": report_markdown,
         "evaluation_markdown": evaluation_markdown,
     }
+
+
+@app.post("/upload-papers")
+async def upload_papers(files: list[UploadFile] = File(...)) -> dict:
+    project_root = Path(__file__).resolve().parent.parent
+    papers_dir = project_root / "papers"
+    papers_dir.mkdir(parents=True, exist_ok=True)
+
+    saved_files: list[str] = []
+    for uploaded_file in files:
+        filename = uploaded_file.filename or "uploaded.pdf"
+        destination = papers_dir / filename
+        destination.write_bytes(await uploaded_file.read())
+        saved_files.append(filename)
+
+    result = subprocess.run(
+        [sys.executable, "scripts/prepare_papers.py", "--workers", "12", "--upload-qdrant"],
+        cwd=project_root,
+        capture_output=True,
+        text=True,
+    )
+
+    success = result.returncode == 0
+    if not success:
+        return {
+            "success": False,
+            "stdout": result.stdout,
+            "stderr": result.stderr,
+            "saved_files": saved_files,
+            "message": "Paper ingestion failed while preparing or uploading paper chunks.",
+        }
+
+    return {
+        "success": True,
+        "stdout": result.stdout,
+        "stderr": result.stderr,
+        "saved_files": saved_files,
+        "message": "Paper ingestion complete.",
+    }
