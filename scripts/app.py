@@ -69,6 +69,7 @@ def main() -> None:
 
         success = bool(result.get("success", False))
         report_markdown = result.get("report_markdown", "")
+        evaluation_markdown = result.get("evaluation_markdown", "")
         report_path = result.get("report_path", "reports/annotation_report.md")
         error_message = str(result.get("error_message", "")).strip()
         stderr_text = str(result.get("stderr", "")).strip()
@@ -88,13 +89,21 @@ def main() -> None:
                             st.code(stderr_text)
                 st.write(f"Report path: `{report_path}`")
 
-                if success and report_markdown:
-                    st.download_button(
-                        label="Download Report",
-                        data=report_markdown,
-                        file_name="annotation_report.md",
-                        mime="text/markdown",
-                    )
+                if success:
+                    if report_markdown:
+                        st.download_button(
+                            label="Download Annotation Report",
+                            data=report_markdown,
+                            file_name="annotation_report.md",
+                            mime="text/markdown",
+                        )
+                    if evaluation_markdown:
+                        st.download_button(
+                            label="Download Evaluation Summary",
+                            data=evaluation_markdown,
+                            file_name="evaluation_summary.md",
+                            mime="text/markdown",
+                        )
 
         with right_col:
             with st.container(border=True):
@@ -111,13 +120,20 @@ def main() -> None:
                 )
 
         st.divider()
-        st.subheader("Annotation Report")
-        if success and report_markdown:
-            st.markdown(report_markdown)
-        elif success:
-            st.info("No report content returned.")
+        if success:
+            tab_report, tab_eval = st.tabs(["Annotation Report", "Evaluation Summary"])
+            with tab_report:
+                if report_markdown:
+                    st.markdown(report_markdown)
+                else:
+                    st.info("No annotation report content returned.")
+            with tab_eval:
+                if evaluation_markdown:
+                    st.markdown(evaluation_markdown)
+                else:
+                    st.info("No evaluation summary content returned.")
         else:
-            st.info("Report is not shown because the pipeline failed.")
+            st.info("Report outputs are not shown because the pipeline failed.")
 
 
 if __name__ == "__main__":

@@ -15,10 +15,20 @@ def read_report_markdown(project_root: Path) -> str:
     return report_path.read_text(encoding="utf-8")
 
 
+def read_evaluation_markdown(project_root: Path) -> str:
+    evaluation_path = project_root / "reports" / "evaluation_summary.md"
+    if not evaluation_path.exists():
+        return ""
+    return evaluation_path.read_text(encoding="utf-8")
+
+
 def remove_old_report(project_root: Path) -> None:
     report_path = project_root / "reports" / "annotation_report.md"
     if report_path.exists():
         report_path.unlink()
+    evaluation_path = project_root / "reports" / "evaluation_summary.md"
+    if evaluation_path.exists():
+        evaluation_path.unlink()
 
 
 def run_pipeline_command(project_root: Path, command: list[str]) -> subprocess.CompletedProcess:
@@ -46,9 +56,11 @@ def run_pipeline() -> dict:
             "stderr": result.stderr,
             "report_path": "reports/annotation_report.md",
             "report_markdown": "",
+            "evaluation_markdown": "",
         }
 
     report_markdown = read_report_markdown(project_root)
+    evaluation_markdown = read_evaluation_markdown(project_root)
     return {
         "success": success,
         "error_message": "",
@@ -56,6 +68,7 @@ def run_pipeline() -> dict:
         "stderr": result.stderr,
         "report_path": "reports/annotation_report.md",
         "report_markdown": report_markdown,
+        "evaluation_markdown": evaluation_markdown,
     }
 
 
@@ -84,9 +97,11 @@ async def upload_markers(file: UploadFile = File(...)) -> dict:
             "input_path": "data/uploaded_markers.csv",
             "report_path": "reports/annotation_report.md",
             "report_markdown": "",
+            "evaluation_markdown": "",
         }
 
     report_markdown = read_report_markdown(project_root)
+    evaluation_markdown = read_evaluation_markdown(project_root)
     return {
         "success": success,
         "error_message": "",
@@ -95,4 +110,5 @@ async def upload_markers(file: UploadFile = File(...)) -> dict:
         "input_path": "data/uploaded_markers.csv",
         "report_path": "reports/annotation_report.md",
         "report_markdown": report_markdown,
+        "evaluation_markdown": evaluation_markdown,
     }
