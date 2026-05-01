@@ -186,6 +186,8 @@ def parse_model_json(raw_text: str, cluster_id: str, input_genes: list[str]) -> 
 def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
     warnings: list[str] = []
     rule_applied = False
+    original_predicted = str(annotation.get("predicted_cell_type", "")).strip()
+    original_predicted_lower = original_predicted.lower()
     existing_warning = annotation.get("warning", "")
     if isinstance(existing_warning, str) and existing_warning.strip():
         warnings.append(existing_warning.strip())
@@ -241,7 +243,7 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
     def set_min_confidence(min_value: float) -> None:
         annotation["confidence"] = max(current_confidence(), min_value)
 
-    if external_reasoning_genes:
+    if len(external_reasoning_genes) >= 3:
         annotation["confidence"] = min(current_confidence(), 0.5)
 
     # Hard rule: B cell
@@ -339,6 +341,13 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
         rule_applied = True
         annotation["alternative_cell_types"] = ["NK cell"]
 
+    exhausted_t_markers = {"PDCD1", "LAG3", "TOX", "HAVCR2", "CXCL13"}
+    if len(input_gene_set & exhausted_t_markers) >= 3:
+        annotation["predicted_cell_type"] = "exhausted T cell"
+        set_min_confidence(0.85)
+        rule_applied = True
+        annotation["alternative_cell_types"] = ["T follicular helper cell"]
+
     predicted_cell_type = str(annotation.get("predicted_cell_type", "")).strip().lower()
     if predicted_cell_type == "unknown":
         warnings.append("Model could not confidently assign a cell type.")
@@ -352,6 +361,17 @@ def validate_annotation(annotation: dict, input_genes: list[str]) -> dict:
         final_confidence = float(final_confidence_value)
     except (TypeError, ValueError):
         final_confidence = 0.0
+
+    current_predicted = str(annotation.get("predicted_cell_type", "")).strip()
+    current_predicted_lower = current_predicted.lower()
+    known_immune_terms = ("t cell", "b cell", "monocyte")
+    original_is_known_immune = any(term in original_predicted_lower for term in known_immune_terms)
+    if (
+        original_is_known_immune
+        and current_predicted_lower == "unknown"
+        and final_confidence >= 0.3
+    ):
+        annotation["predicted_cell_type"] = original_predicted
 
     if final_confidence >= 0.8:
         warnings = [w for w in warnings if "low confidence" not in w.lower()]
